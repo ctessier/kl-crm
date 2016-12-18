@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\ConsumerStatus;
 
-class ConsumerStatusesTable extends Seeder
+class ConsumerStatusesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,18 +14,23 @@ class ConsumerStatusesTable extends Seeder
     {
         DB::table('consumer_statuses')->insert([
             [
+                'id'    => ConsumerStatus::TEST_PROGRAM,
                 'label' => 'Programme Test',
             ],
             [
+                'id'    => ConsumerStatus::PRIVILEGED_CUSTOMER,
                 'label' => 'Client Privilégié',
             ],
             [
-                'label' => 'Arrêté Définitivement',
+                'id'    => ConsumerStatus::STOPPED,
+                'label' => 'A arrêté la consommation',
             ],
             [
-                'label' => 'Arrêté Temporairement',
+                'id'    => ConsumerStatus::IN_BREAK,
+                'label' => 'A arrêté temporairement',
             ],
             [
+                'id'    => ConsumerStatus::OTHER,
                 'label' => 'Autre',
             ],
         ]);
