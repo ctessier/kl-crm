@@ -36,8 +36,8 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
     public function setUp()
     {
         parent::setUp();
-        Model::unguard();
         $this->runDatabaseMigrations();
+        $this->seed();
     }
     /**
      * Tear down testing environment.
@@ -46,7 +46,6 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
      */
     public function tearDown()
     {
-        Model::reguard();
         parent::tearDown();
     }
 }
