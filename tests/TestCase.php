@@ -1,7 +1,12 @@
 <?php
 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+
 abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
 {
+    use DatabaseMigrations;
+
     /**
      * The base URL to use while testing the application.
      *
@@ -21,5 +26,27 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
         $app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
 
         return $app;
+    }
+
+    /**
+     * Setup testing environment (run migrations and unguard models).
+     *
+     * @return void
+     */
+    public function setUp()
+    {
+        parent::setUp();
+        Model::unguard();
+        $this->runDatabaseMigrations();
+    }
+    /**
+     * Tear down testing environment.
+     *
+     * @return void
+     */
+    public function tearDown()
+    {
+        Model::reguard();
+        parent::tearDown();
     }
 }
