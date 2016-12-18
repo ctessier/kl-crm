@@ -41,7 +41,7 @@ class Consumer extends Model
     /**
      * Return consumer's current status (latest status).
      *
-     * @return \App\ConsumerStatus
+     * @return \App\ConsumersConsumerStatus
      */
     public function getCurrentStatusAttribute()
     {
