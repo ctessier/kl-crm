@@ -24,6 +24,10 @@ Route::put('profile', [
     'as'   => 'profile.update',
     'uses' => 'ProfileController@update',
 ]);
+Route::put('profile/password/update', [
+    'as'   => 'profile.password.update',
+    'uses' => 'Auth\UpdatePasswordController@update',
+]);
 
 Route::resource('consumers', 'ConsumerController');
 
