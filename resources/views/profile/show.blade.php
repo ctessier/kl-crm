@@ -17,7 +17,7 @@
                         {!! $errors->first('name', '<span class="help-block">:message</span>') !!}
                     </div>
                     <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
-                        {!! Form::label('email', 'Adresse e-mail') !!}
+                        {!! Form::label('email', 'Adresse E-Mail') !!}
                         {!! Form::email('email', null, ['class' => 'form-control']) !!}
                         {!! $errors->first('email', '<span class="help-block">:message</span>') !!}
                     </div>
@@ -32,14 +32,16 @@
                 <h3 class="box-title">Sécurité</h3>
             </div>
             <div class="box-body">
-                {!! Form::open(['url' => '', 'method' => 'PUT', 'role' => 'form']) !!}
-                <div class="form-group">
+                {!! Form::open(['route' => 'profile.password.update', 'method' => 'PUT', 'role' => 'form']) !!}
+                <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
                     {!! Form::label('password', 'Nouveau mot de passe') !!}
                     {!! Form::password('password', ['class' => 'form-control']) !!}
+                    {!! $errors->first('password', '<span class="help-block">:message</span>') !!}
                 </div>
-                <div class="form-group">
-                    {!! Form::label('confirmation_password', 'Confirmation du mot de passe') !!}
-                    {!! Form::password('confirmation_password', ['class' => 'form-control']) !!}
+                <div class="form-group {{ $errors->has('password_confirmation') ? 'has-error' : '' }}">
+                    {!! Form::label('password_confirmation', 'Confirmation du mot de passe') !!}
+                    {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
+                    {!! $errors->first('password_confirmation', '<span class="help-block">:message</span>') !!}
                 </div>
                 {!! Form::submit('Changer mon mot de passe', ['class' => 'btn btn-default']) !!}
                 {!! Form::close() !!}
@@ -47,7 +49,7 @@
         </div>
     </div>
 </div>
-<div class="row">
+<!--<div class="row">
     <div class="col-md-6">
         <div class="box">
             <div class="box-header with-border">
@@ -68,5 +70,5 @@
             </div>
         </div>
     </div>
-</div>
+</div>-->
 @endsection
