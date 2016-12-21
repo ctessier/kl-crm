@@ -7,7 +7,7 @@ class ConsumerTest extends TestCase
      *
      * @return void
      */
-    public function testCurrentStatus()
+    public function test_current_status_is_correct()
     {
         $consumer = \App\Consumer::find(1);
         $this->assertInstanceOf(\App\ConsumersConsumerStatus::class, $consumer->current_status);
@@ -19,7 +19,7 @@ class ConsumerTest extends TestCase
      *
      * @return void
      */
-    public function testSetStatus()
+    public function test_it_updates_current_status()
     {
         $consumer = \App\Consumer::find(1);
         $consumer->setStatus(\App\ConsumerStatus::STOPPED, '2015-10-05');

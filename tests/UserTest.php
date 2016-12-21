@@ -7,7 +7,7 @@ class UserTest extends TestCase
      *
      * @return void
      */
-    public function testUserConsumersRelationship()
+    public function test_user_has_consumers()
     {
         $userConsumers = \App\User::findOrFail(1)->consumers;
         $this->assertContainsOnlyInstancesOf(\App\Consumer::class, $userConsumers);

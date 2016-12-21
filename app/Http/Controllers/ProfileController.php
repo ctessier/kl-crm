@@ -33,7 +33,7 @@ class ProfileController extends Controller
      *
      * @param \App\Http\Requests\ProfileRequest $request
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(ProfileRequest $request)
     {
