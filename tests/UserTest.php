@@ -1,20 +1,20 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
-
 class UserTest extends TestCase
 {
     /**
-     * A basic test example.
+     * Test user relationship with consumers.
      *
      * @return void
      */
-    public function testUserConsumersRelationship()
+    public function test_user_has_consumers()
     {
-        $userConsumers = $user->consumers;
-        $this->assertContainsOnlyInstancesOf($userConsumers, \App\Consumer::class);
+        $userConsumers = \App\User::findOrFail(1)->consumers;
+        $this->assertContainsOnlyInstancesOf(\App\Consumer::class, $userConsumers);
         $this->assertCount(3, $userConsumers);
+
+        $userConsumers = \App\User::findOrFail(2)->consumers;
+        $this->assertContainsOnlyInstancesOf(\App\Consumer::class, $userConsumers);
+        $this->assertCount(2, $userConsumers);
     }
 }
