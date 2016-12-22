@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
 
         if (App::environment() !== 'production') {
             $this->call(ConsumersTableSeeder::class);
+            $this->call(StockTableSeeder::class);
         }
     }
 }
