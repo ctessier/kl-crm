@@ -14,6 +14,12 @@
                     <span>Mes consommateurs</span>
                 </a>
             </li>
+                <li class="{{ Route::currentRouteNamed('stock.edit') ? 'active' : '' }}">
+                    <a href="{{ url('/stock') }}">
+                        <i class="fa fa-list"></i>
+                        <span>Mon stock</span>
+                    </a>
+                </li>
             <li class="header">UTILISATEUR</li>
             <li class="{{ Route::currentRouteNamed('profile') ? 'active' : '' }}">
                 <a href="{{ url('/profile') }}">
