@@ -13,7 +13,7 @@ class CreateStockTable extends Migration
      */
     public function up()
     {
-        Schema::create('stock', function (Blueprint $table) {
+        Schema::create('user_products', function (Blueprint $table) {
             $table->unsignedInteger('product_id');
             $table->unsignedInteger('user_id');
             $table->smallInteger('quantity')->default(0);
@@ -31,6 +31,6 @@ class CreateStockTable extends Migration
      */
     public function down()
     {
-        Schema::drop('stock');
+        Schema::drop('user_products');
     }
 }
