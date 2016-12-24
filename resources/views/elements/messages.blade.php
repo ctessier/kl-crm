@@ -1,5 +1,11 @@
-@if (session()->has('success'))
+@if (session('success'))
 <div class="callout callout-success">
-    {{ session()->get('success') }}
+    {{ session('success') }}
 </div>
+@endif
+
+@if (session('status'))
+    <div class="callout callout-success">
+        {{ session('status') }}
+    </div>
 @endif
