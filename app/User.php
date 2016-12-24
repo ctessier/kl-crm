@@ -40,7 +40,9 @@ class User extends Authenticatable
     }
 
     /**
+     * Return associated products (stock) thanks to pivot table.
      *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function products()
     {
@@ -48,14 +50,22 @@ class User extends Authenticatable
             ->withPivot('quantity', 'optimal_quantity');
     }
 
+    /**
+     * Return an entry from the products pivot tables from a given product id.
+     *
+     * @param int $product_id
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\Pivot
+     */
     public function getProductPivot($product_id)
     {
         $product = $this->products()->where('product_id', $product_id)->first();
-        
+
         if ($product) {
+            dd($product->pivot);
             return $product->pivot;
         }
-        
+
         return null;
     }
 }
