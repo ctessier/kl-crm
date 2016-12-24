@@ -14,10 +14,17 @@
                     <span>Mes consommateurs</span>
                 </a>
             </li>
+            <li class="header">UTILISATEUR</li>
             <li class="{{ Route::currentRouteNamed('profile') ? 'active' : '' }}">
                 <a href="{{ url('/profile') }}">
                     <i class="fa fa-user"></i>
                     <span>Mon compte</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url('/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                    <i class="fa fa-sign-out"></i>
+                    <span>Déconnexion</span>
                 </a>
             </li>
             @else
