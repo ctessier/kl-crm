@@ -38,4 +38,24 @@ class User extends Authenticatable
             ->orderBy('last_name')
             ->orderBy('first_name');
     }
+
+    /**
+     *
+     */
+    public function products()
+    {
+        return $this->belongsToMany('App\Products', 'user_products', 'user_id', 'product_id')
+            ->withPivot('quantity', 'optimal_quantity');
+    }
+
+    public function getProductPivot($product_id)
+    {
+        $product = $this->products()->where('product_id', $product_id)->first();
+        
+        if ($product) {
+            return $product->pivot;
+        }
+        
+        return null;
+    }
 }
