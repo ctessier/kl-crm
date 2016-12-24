@@ -9,8 +9,10 @@
             <span class="sr-only">Toggle navigation</span>
         </a>
 
+        @if (Auth::check())
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
+
                 <!--<li class="dropdown notifications-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-bell-o"></i>
@@ -32,11 +34,17 @@
                 </li>-->
 
                 <li class="user user-menu">
-                    <a href="{{ url('/profile') }}">
-                        {{ $user->name }}
+                    <a href="{{ url('/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                        <i class="fa fa-sign-out"></i>
+                        Déconnexion
                     </a>
+
+                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display:none;">
+                          {{ csrf_field() }}
+                    </form>
                 </li>
             </ul>
         </div>
+        @endif
     </nav>
 </header>

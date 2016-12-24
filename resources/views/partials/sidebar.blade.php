@@ -1,6 +1,7 @@
 <div class="main-sidebar">
     <div class="sidebar">
         <ul class="sidebar-menu">
+            @if (Auth::check())
             <li class="{{ Route::currentRouteNamed('dashboard') ? 'active' : '' }}">
                 <a href="{{ url('/') }}">
                     <i class="fa fa-dashboard"></i>
@@ -19,6 +20,14 @@
                     <span>Mon compte</span>
                 </a>
             </li>
+            @else
+                <li class="active">
+                    <a href="{{ url('/login') }}">
+                        <i class="fa fa-sign-in"></i>
+                        <span>Connexion</span>
+                    </a>
+                </li>
+            @endif
         </ul>
     </div>
 </div>
