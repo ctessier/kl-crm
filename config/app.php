@@ -90,7 +90,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'fr',
+    'fallback_locale' => 'en',
 
     /*
     |--------------------------------------------------------------------------
@@ -166,9 +166,8 @@ return [
         /*
          * Package Service Providers...
          */
+        Backpack\Base\BaseServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-
-        //
 
         /*
          * Application Service Providers...
@@ -228,11 +227,10 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         /*
-         * Package aliases...
+         * Package Aliases...
          */
         'Form' => Collective\Html\FormFacade::class,
         'HTML' => Collective\Html\HtmlFacade::class,
-
     ],
 
 ];

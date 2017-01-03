@@ -40,7 +40,7 @@ class ProfileController extends Controller
         $this->user->fill($request->all());
         $this->user->save();
 
-        session()->flash('success', 'Votre profil a été mis à jour avec succès !');
+        \Alert::success('Votre profil a été mis à jour avec succès !')->flash();
 
         return redirect()->route('profile.show');
     }

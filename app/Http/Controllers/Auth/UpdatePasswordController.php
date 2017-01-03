@@ -19,7 +19,7 @@ class UpdatePasswordController extends Controller
         $this->user->password = bcrypt($request->get('password'));
         $this->user->save();
 
-        session()->flash('success', 'Votre mot de passe a bien été mise à jour !');
+        \Alert::success('Votre mot de passe a bien été mise à jour !')->flash();
 
         return redirect()->route('profile.show');
     }
