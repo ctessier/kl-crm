@@ -11,11 +11,6 @@
 |
 */
 
-Route::get('/', [
-    'as'   => 'dashboard',
-    'uses' => 'DashboardController@index',
-]);
-
 /*
 |--------------------------------------------------------------------------
 | Profile routes
@@ -65,13 +60,3 @@ Route::post('stock', [
     'as'   => 'stock.update',
     'uses' => 'StockController@update',
 ]);
-
-/*
-|--------------------------------------------------------------------------
-| Auth routes
-|--------------------------------------------------------------------------
-|
-| Defines the auth routes from the Laravel scaffolding.
-|
-*/
-Auth::routes();

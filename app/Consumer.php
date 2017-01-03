@@ -16,6 +16,16 @@ class Consumer extends Model
     ];
 
     /**
+     * Return the collection of statuses.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function statuses()
+    {
+        return $this->hasMany('App\ConsumersConsumerStatus');
+    }
+
+    /**
      * Set a new status for the consumer.
      *
      * @param int    $status
@@ -48,5 +58,15 @@ class Consumer extends Model
         return ConsumersConsumerStatus::where('consumer_id', $this->id)
             ->orderBy('date', 'DESC')
             ->first();
+    }
+
+    /**
+     * Return consumer's full name.
+     *
+     * @return string
+     */
+    public function getFullName()
+    {
+        return $this->first_name . ' ' . $this->last_name;
     }
 }

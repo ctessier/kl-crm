@@ -62,7 +62,8 @@ class ConsumerController extends Controller
             }
         }
 
-        session()->flash('success', $consumer->first_name.' fait désormais partie de vos consommateurs !');
+        \Alert::success($consumer->first_name
+            .' fait désormais partie de vos consommateurs !')->flash();
 
         return redirect()->route('consumers.index');
     }
@@ -108,8 +109,8 @@ class ConsumerController extends Controller
             $consumer->setStatus($request->get('status_id'), $request->get('date'));
         }
 
-        session()->flash('success', 'Les nouvelles informations de '.$consumer->first_name
-            .' ont bien été prises en compte');
+        \Alert::success('Les nouvelles informations de '.$consumer->first_name
+            .' ont bien été prises en compte !')->flash();
 
         return redirect()->route('consumers.index');
     }
@@ -123,9 +124,10 @@ class ConsumerController extends Controller
      */
     public function destroy(Consumer $consumer)
     {
+        $consumer->statuses()->delete();
         $consumer->delete();
 
-        session()->flash('success', 'Consommateur supprimé avec succès !');
+        \Alert::success('Consommateur supprimé avec succès !')->flash();
 
         return redirect()->route('consumers.index');
     }
