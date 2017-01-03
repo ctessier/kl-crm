@@ -62,7 +62,6 @@ class User extends Authenticatable
         $product = $this->products()->where('product_id', $product_id)->first();
 
         if ($product) {
-            dd($product->pivot);
             return $product->pivot;
         }
 

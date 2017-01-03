@@ -1,6 +1,16 @@
-@extends('layouts.app')
+@extends('backpack::layout')
 
-@section('header', 'Mon stock')
+@section('header')
+    <section class="content-header">
+        <h1>
+            {{ trans('krisslaure.stock') }}
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="{{ url(config('backpack.base.route_prefix', 'admin')) }}">{{ config('backpack.base.project_name') }}</a></li>
+            <li class="active">{{ trans('krisslaure.stock') }}</li>
+        </ol>
+    </section>
+@endsection
 
 @section('content')
 

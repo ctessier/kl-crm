@@ -39,7 +39,7 @@ class StockController extends Controller
     {
         $this->user->products()->sync($request->get('products'));
 
-        session()->flash('success', 'Votre stock a bien été mis à jour !');
+        \Alert::success('Votre stock a bien été mis à jour !')->flash();
 
         return redirect()->route('stock.edit');
     }
