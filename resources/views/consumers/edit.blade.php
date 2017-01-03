@@ -1,6 +1,17 @@
-@extends('layouts.app')
+@extends('backpack::layout')
 
-@section('header', 'Modifier le consommateur')
+@section('header')
+    <section class="content-header">
+        <h1>
+            {{ trans('krisslaure.consumers') }}<small>{{ $consumer->getFullName() }}</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="{{ url(config('backpack.base.route_prefix', 'admin')) }}">{{ config('backpack.base.project_name') }}</a></li>
+            <li><a href="{{ route('consumers.index') }}">{{ trans('krisslaure.consumers') }}</a></li>
+            <li class="active">{{ $consumer->getFullName() }}</li>
+        </ol>
+    </section>
+@endsection
 
 @section('content')
     {!! Form::model($consumer, ['route' => ['consumers.update', $consumer], 'method' => 'put']) !!}

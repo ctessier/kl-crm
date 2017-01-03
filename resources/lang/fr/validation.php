@@ -146,9 +146,11 @@ return [
         'size'                  => 'Taille',
 
         // Custom attributes
-        'birthday'              => 'Date de naissance',
-        'postal_code'           => 'Code postal',
-        'status_id'             => 'Statut',
+        'birthday'                    => 'Date de naissance',
+        'postal_code'                 => 'Code postal',
+        'status_id'                   => 'Statut',
+        'products.*.quantity'         => 'Quantité',
+        'products.*.optimal_quantity' => 'Stock idéal',
     ],
 
 ];

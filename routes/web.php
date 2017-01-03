@@ -11,11 +11,15 @@
 |
 */
 
-Route::get('/', [
-    'as'   => 'dashboard',
-    'uses' => 'DashboardController@index',
-]);
-
+/*
+|--------------------------------------------------------------------------
+| Profile routes
+|--------------------------------------------------------------------------
+|
+| Set of profile routes for showing and update the authenticated user
+| information, included the password.
+|
+*/
 Route::get('profile', [
     'as'   => 'profile.show',
     'uses' => 'ProfileController@show',
@@ -29,6 +33,30 @@ Route::put('profile/password/update', [
     'uses' => 'Auth\UpdatePasswordController@update',
 ]);
 
+/*
+|--------------------------------------------------------------------------
+| Consumer resource
+|--------------------------------------------------------------------------
+|
+| Defines the consumer resource.
+|
+*/
 Route::resource('consumers', 'ConsumerController');
 
-Auth::routes();
+/*
+|--------------------------------------------------------------------------
+| Stock routes
+|--------------------------------------------------------------------------
+|
+| Set of routes for the stock.
+|
+*/
+Route::get('stock', [
+    'as'   => 'stock.edit',
+    'uses' => 'StockController@edit',
+]);
+
+Route::post('stock', [
+    'as'   => 'stock.update',
+    'uses' => 'StockController@update',
+]);
