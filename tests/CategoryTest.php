@@ -11,6 +11,6 @@ class CategoriesTest extends TestCase
     {
         $category = App\Category::findOrFail(1);
         $this->assertContainsOnlyInstancesOf(App\Product::class, $category->products);
-        $this->assertCount(9, $category->products);
+        $this->assertCount(8, $category->products);
     }
 }

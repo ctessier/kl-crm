@@ -14,7 +14,7 @@ class ProductsTest extends TestCase
     public function test_product_has_category()
     {
         $product = App\Product::findOrFail(1);
-        $this->assertInstanceOf(App\Categories::class, $product->category);
+        $this->assertInstanceOf(App\Category::class, $product->category);
         $this->assertEquals(1, $product->category->id);
 
         $product = App\Product::findOrFail(18);
