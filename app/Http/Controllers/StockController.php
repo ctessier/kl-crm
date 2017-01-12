@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Http\Requests\StockRequest;
 
 class StockController extends Controller
@@ -25,7 +26,8 @@ class StockController extends Controller
      */
     public function edit()
     {
-        return view('stock.edit');
+        return view('stock.edit')
+            ->with('categories', Category::all());
     }
 
     /**

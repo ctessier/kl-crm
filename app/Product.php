@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Products extends Model
+class Product extends Model
 {
     /**
      * Return the associated category.
@@ -13,6 +13,6 @@ class Products extends Model
      */
     public function category()
     {
-        return $this->belongsTo('App\Categories');
+        return $this->belongsTo(Category::class);
     }
 }

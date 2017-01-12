@@ -34,7 +34,7 @@ class User extends Authenticatable
      */
     public function consumers()
     {
-        return $this->hasMany('App\Consumer')
+        return $this->hasMany(Consumer::class)
             ->orderBy('last_name')
             ->orderBy('first_name');
     }
@@ -46,7 +46,7 @@ class User extends Authenticatable
      */
     public function products()
     {
-        return $this->belongsToMany('App\Products', 'user_products', 'user_id', 'product_id')
+        return $this->belongsToMany(Product::class, 'user_products', 'user_id', 'product_id')
             ->withPivot('quantity', 'optimal_quantity');
     }
 

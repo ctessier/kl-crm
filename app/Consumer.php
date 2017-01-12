@@ -22,7 +22,7 @@ class Consumer extends Model
      */
     public function statuses()
     {
-        return $this->hasMany('App\ConsumersConsumerStatus');
+        return $this->hasMany(ConsumersConsumerStatus::class);
     }
 
     /**

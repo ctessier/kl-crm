@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Categories extends Model
+class Category extends Model
 {
     /**
      * Return the collection of products.
@@ -13,6 +13,6 @@ class Categories extends Model
      */
     public function products()
     {
-        return $this->hasMany('App\Products', 'category_id');
+        return $this->hasMany(Product::class, 'category_id');
     }
 }

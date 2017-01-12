@@ -17,7 +17,7 @@
     {!! Form::open(['route' => 'stock.update', 'method' => 'post', 'role' => 'form']) !!}
         {!! Form::submit('Sauvegarder', ['class' => 'btn btn-default']) !!}
 
-        @foreach (\App\Categories::all() as $category)
+        @foreach ($categories as $category)
             @include('elements.stock-category')
         @endforeach
 

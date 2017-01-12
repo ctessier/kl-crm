@@ -27,6 +27,6 @@ class ConsumersConsumerStatus extends Model
      */
     public function status()
     {
-        return $this->belongsTo('\App\ConsumerStatus');
+        return $this->belongsTo(ConsumerStatus::class);
     }
 }
