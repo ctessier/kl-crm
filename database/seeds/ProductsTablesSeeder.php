@@ -33,6 +33,11 @@ class ProductsTablesSeeder extends Seeder
                 'name'             => 'Barres Gourmandes',
                 'quantity_per_box' => 6,
             ],
+            [
+                'id'               => 5,
+                'name'             => 'Idée Délice',
+                'quantity_per_box' => 4,
+            ],
         ]);
 
         // Seed products
@@ -74,11 +79,6 @@ class ProductsTablesSeeder extends Seeder
             ],
             [
                 'name'        => 'Noir de cacao',
-                'description' => null,
-                'category_id' => 1,
-            ],
-            [
-                'name'        => 'Idée délice chocolat',
                 'description' => null,
                 'category_id' => 1,
             ],
@@ -151,6 +151,11 @@ class ProductsTablesSeeder extends Seeder
                 'name'        => 'Noix de coco citron',
                 'description' => null,
                 'category_id' => 4,
+            ],
+            [
+                'name'        => 'Idée délice chocolat',
+                'description' => null,
+                'category_id' => 5,
             ],
         ]);
     }
