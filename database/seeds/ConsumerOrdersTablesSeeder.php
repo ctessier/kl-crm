@@ -32,12 +32,12 @@ class ConsumerOrdersTablesSeeder extends Seeder
             [
                 'consumer_order_id' => 1,
                 'product_id'        => 7,
-                'quantity'          => 3,
+                'quantity'          => 2,
             ],
             [
                 'consumer_order_id' => 1,
                 'product_id'        => 8,
-                'quantity'          => 3,
+                'quantity'          => 2,
             ],
             [
                 'consumer_order_id' => 1,
@@ -52,22 +52,12 @@ class ConsumerOrdersTablesSeeder extends Seeder
             [
                 'consumer_order_id' => 2,
                 'product_id'        => 5,
-                'quantity'          => 3,
+                'quantity'          => 4,
             ],
             [
                 'consumer_order_id' => 2,
                 'product_id'        => 6,
-                'quantity'          => 3,
-            ],
-            [
-                'consumer_order_id' => 2,
-                'product_id'        => 17,
-                'quantity'          => 1,
-            ],
-            [
-                'consumer_order_id' => 2,
-                'product_id'        => 21,
-                'quantity'          => 1,
+                'quantity'          => 2,
             ],
         ]);
     }
