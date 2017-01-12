@@ -9,8 +9,8 @@ class CategoriesTest extends TestCase
      */
     public function test_category_has_products()
     {
-        $category = App\Categories::findOrFail(1);
-        $this->assertContainsOnlyInstancesOf(App\Products::class, $category->products);
+        $category = App\Category::findOrFail(1);
+        $this->assertContainsOnlyInstancesOf(App\Product::class, $category->products);
         $this->assertCount(9, $category->products);
     }
 }

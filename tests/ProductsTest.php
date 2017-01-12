@@ -13,11 +13,11 @@ class ProductsTest extends TestCase
      */
     public function test_product_has_category()
     {
-        $product = App\Products::findOrFail(1);
+        $product = App\Product::findOrFail(1);
         $this->assertInstanceOf(App\Categories::class, $product->category);
         $this->assertEquals(1, $product->category->id);
 
-        $product = App\Products::findOrFail(18);
+        $product = App\Product::findOrFail(18);
         $this->assertEquals(3, $product->category->id);
     }
 }
