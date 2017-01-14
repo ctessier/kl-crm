@@ -18,7 +18,7 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
-                @if ($user->consumers->count() > 0)
+                @if ($consumers->count() > 0)
                 <div class="box-body table-responsive no-padding">
                     <table class="table table-hover">
                         <thead>
@@ -32,7 +32,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($user->consumers as $consumer)
+                            @foreach ($consumers as $consumer)
                                 <tr>
                                     <td>{{ $consumer->first_name }}</td>
                                     <td>{{ $consumer->last_name }}</td>

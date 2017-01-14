@@ -27,7 +27,8 @@ class ConsumerController extends Controller
      */
     public function index()
     {
-        return view('consumers.index');
+        return view('consumers.index')
+            ->with('consumers', $this->user->consumers);
     }
 
     /**
