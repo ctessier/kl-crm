@@ -35,16 +35,6 @@ Route::put('profile/password/update', [
 
 /*
 |--------------------------------------------------------------------------
-| Consumer resource
-|--------------------------------------------------------------------------
-|
-| Defines the consumer resource.
-|
-*/
-Route::resource('consumers', 'ConsumerController');
-
-/*
-|--------------------------------------------------------------------------
 | Stock routes
 |--------------------------------------------------------------------------
 |
@@ -60,3 +50,15 @@ Route::post('stock', [
     'as'   => 'stock.update',
     'uses' => 'StockController@update',
 ]);
+
+/*
+|--------------------------------------------------------------------------
+| Resources routes
+|--------------------------------------------------------------------------
+|
+| Defines the routes of all project's resources.
+|
+*/
+Route::resource('consumers', 'ConsumerController');
+Route::resource('consumer_orders', 'ConsumerOrderController');
+Route::resource('consumer_orders.products', 'ConsumerOrderProductController');

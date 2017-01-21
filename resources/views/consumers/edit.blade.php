@@ -3,12 +3,12 @@
 @section('header')
     <section class="content-header">
         <h1>
-            {{ trans('krisslaure.consumers') }}<small>{{ $consumer->getFullName() }}</small>
+            {{ trans('krisslaure.consumers') }}<small>{{ $consumer->full_name }}</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ url(config('backpack.base.route_prefix', 'admin')) }}">{{ config('backpack.base.project_name') }}</a></li>
             <li><a href="{{ route('consumers.index') }}">{{ trans('krisslaure.consumers') }}</a></li>
-            <li class="active">{{ $consumer->getFullName() }}</li>
+            <li class="active">{{ $consumer->full_name }}</li>
         </ol>
     </section>
 @endsection
@@ -22,7 +22,7 @@
                     <h3 class="box-title">Informations personnelles</h3>
                 </div>
                 <div class="box-body">
-                    @include('elements.forms.consumers.personnal-information')
+                    @include('elements.forms.consumers.personal-information')
                 </div>
             </div>
             <div class="box">
@@ -45,7 +45,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    {!! Form::text('date', $consumer->current_status->date, ['class' => 'form-control pull-right', 'data-provide' => 'datepicker', 'data-date-format' => 'yyyy-mm-dd', 'data-date-language' => 'fr', 'data-date-autoclose' => 'true']) !!}
+                                    {!! Form::text('date', $consumer->current_status->date->format('d/m/Y'), ['class' => 'form-control pull-right', 'data-provide' => 'datepicker', 'data-date-format' => 'dd/mm/yyyy', 'data-date-language' => 'fr', 'data-date-autoclose' => 'true']) !!}
                                 </div>
                                 {!! $errors->first('date', '<span class="help-block">:message</span>') !!}
                             </div>
@@ -60,7 +60,7 @@
                     <h3 class="box-title">Coordonnées</h3>
                 </div>
                 <div class="box-body">
-                    @include('elements.forms.consumers.coordinates')
+                    @include('elements.forms.consumers.contact-details')
                 </div>
             </div>
             {!! Form::submit('Enregistrer', ['class' => 'btn btn-default']) !!}
