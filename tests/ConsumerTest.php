@@ -30,4 +30,20 @@ class ConsumerTest extends TestCase
         $this->assertEquals(\App\ConsumerStatus::STOPPED, $consumer->current_status->status_id);
         $this->assertEquals('05/10/2015', $consumer->current_status->date->format('d/m/Y'));
     }
+
+    /**
+     * Test consumer full name.
+     *
+     * @return void
+     */
+    public function test_it_returns_right_full_name()
+    {
+        $consumer = \App\Consumer::find(1);
+        $consumer->update([
+            'first_name' => 'John',
+            'last_name'  => 'Doe',
+        ]);
+
+        $this->assertEquals('John Doe', $consumer->full_name);
+    }
 }

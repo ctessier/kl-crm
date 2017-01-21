@@ -65,7 +65,8 @@ class ConsumerOrder extends Model
      */
     public function setMonthAttribute($value)
     {
-        $this->attributes['month'] = Carbon::createFromFormat('m/Y', $value);
+        $value = Carbon::createFromFormat('m/Y', $value);
+        $this->attributes['month'] = $value->format('Y-m-d');
 
         return $this;
     }
