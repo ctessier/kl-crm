@@ -35,7 +35,7 @@ class ConsumersConsumerStatus extends Model
 
     /**
      * Returns the ConsumerStatus relation.
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function status()
@@ -45,7 +45,7 @@ class ConsumersConsumerStatus extends Model
 
     /**
      * Get the date attribute.
-     * 
+     *
      * @return \DateTime
      */
     public function getDateAttribute()
@@ -55,15 +55,16 @@ class ConsumersConsumerStatus extends Model
 
     /**
      * Set the date attribute.
-     * 
+     *
      * @param $value
-     * 
+     *
      * @return ConsumersConsumerStatus
      */
     public function setDateAttribute($value)
     {
-        $this->attributes['date'] = Carbon::createFromFormat('d/m/Y', $value);
-        
+        $value = Carbon::createFromFormat('d/m/Y', $value);
+        $this->attributes['date'] = $value->format('Y-m-d');
+
         return $this;
     }
 }
