@@ -19,6 +19,8 @@ class Controller extends BaseController
 
     /**
      * Base controller's constructor.
+     *
+     * @return \Illuminate\Http\Response
      */
     public function __construct()
     {
