@@ -37,6 +37,7 @@ class CreateConsumersTables extends Migration
         });
 
         Schema::create('consumers_consumer_statuses', function (Blueprint $table) {
+            $table->increments('id');
             $table->unsignedInteger('consumer_id');
             $table->unsignedInteger('status_id');
             $table->date('date');

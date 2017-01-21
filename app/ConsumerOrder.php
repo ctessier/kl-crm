@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class ConsumerOrder extends Model
@@ -12,8 +13,16 @@ class ConsumerOrder extends Model
      * @var array
      */
     protected $guarded = [
-        'reference',
-        'consumer_id',
+        'user_id',
+    ];
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'date',
     ];
 
     /**
@@ -35,5 +44,29 @@ class ConsumerOrder extends Model
     {
         return $this->belongsToMany(Product::class, 'consumer_orders_products', 'consumer_order_id', 'product_id')
             ->withPivot('quantity');
+    }
+
+    /**
+     * Get the month attribute.
+     *
+     * @return \DateTime
+     */
+    public function getMonthAttribute()
+    {
+        return Carbon::createFromFormat('Y-m-d', $this->attributes['month']);
+    }
+
+    /**
+     * Set the month attribute.
+     *
+     * @param $value
+     *
+     * @return ConsumerOrder
+     */
+    public function setMonthAttribute($value)
+    {
+        $this->attributes['month'] = Carbon::createFromFormat('m/Y', $value);
+
+        return $this;
     }
 }

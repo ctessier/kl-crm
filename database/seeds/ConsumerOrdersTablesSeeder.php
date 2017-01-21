@@ -18,12 +18,14 @@ class ConsumerOrdersTablesSeeder extends Seeder
                 'consumer_id' => 1,
                 'user_id'     => 1,
                 'reference'   => 'KL1',
+                'month'       => '2017-01-01',
             ],
             [
                 'id'          => 2,
                 'consumer_id' => 2,
                 'user_id'     => 1,
                 'reference'   => 'KL2',
+                'month'       => '2016-12-01',
             ],
         ]);
 
