@@ -12,22 +12,16 @@ return [
     |
     */
 
-    'consumers'   => 'Mes consommateurs',
-    'profile'     => 'Mon compte',
-    'stock'       => 'Mon stock',
-
-    /*
-    |--------------------------------------------------------------------------
-    | Actions Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines are used for actions such as links, buttons,
-    | sub-headers, etc.
-    |
-    */
-
-    'edit'   => 'Modifier',
-    'show'   => 'Voir',
-    'delete' => 'Supprimer',
+    'consumers'        => 'Mes consommateurs',
+    'consumers-orders' => 'Commande cliente',
+    'for'              => 'pour',
+    'male'             => 'Homme',
+    'female'           => 'Femme',
+    'profile'          => 'Mon compte',
+    'stock'            => 'Mon stock',
+    'new'              => [
+        'masculine' => 'Nouveau',
+        'feminine'  => 'Nouvelle',
+    ],
 
 ];

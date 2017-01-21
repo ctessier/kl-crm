@@ -3,11 +3,11 @@
 @section('header')
     <section class="content-header">
         <h1>
-            {{ trans('krisslaure.consumers') }}<small>{{ $consumer->full_name }}</small>
+            {{ trans('general.consumers') }}<small>{{ $consumer->full_name }}</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ url(config('backpack.base.route_prefix', 'admin')) }}">{{ config('backpack.base.project_name') }}</a></li>
-            <li><a href="{{ route('consumers.index') }}">{{ trans('krisslaure.consumers') }}</a></li>
+            <li><a href="{{ route('consumers.index') }}">{{ trans('general.consumers') }}</a></li>
             <li class="active">{{ $consumer->full_name }}</li>
         </ol>
     </section>

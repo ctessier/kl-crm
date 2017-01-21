@@ -3,12 +3,12 @@
 @section('header')
     <section class="content-header">
         <h1>
-            {{ trans('general.consumers-orders') }}<small>{{ trans('title.edit') }}</small>
+            {{ trans('general.consumers-orders') }}<small>{{ trans('general.for') }} {{ $consumer_order->consumer->full_name }}</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ url(config('backpack.base.route_prefix', 'admin')) }}">{{ config('backpack.base.project_name') }}</a></li>
             <li><a href="{{ route('consumer_orders.index') }}">{{ trans('general.consumers-orders') }}</a></li>
-            <li class="active">{{ trans('title.edit') }}</li>
+            <li class="active">{{ (!empty($consumer_order->reference)) ? $consumer_order->reference : '#'.$consumer_order->id }}</li>
         </ol>
     </section>
 @endsection
@@ -41,8 +41,8 @@
                     <table class="table table-hover">
                         <thead>
                         <tr>
-                            <th>{{ trans('title.product') }}</th>
-                            <th>{{ trans('title.quantity') }}</th>
+                            <th>{{ trans('label.product') }}</th>
+                            <th>{{ trans('label.quantity') }}</th>
                             <th></th>
                         </tr>
                         </thead>

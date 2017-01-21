@@ -4,15 +4,16 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Language Lines for Consumer Orders
+    | Language Lines for Titles
     |--------------------------------------------------------------------------
     |
-    | The following language lines are used for consumer orders views.
+    | The following language lines are for box titles.
     |
     */
 
     'contact-details'       => 'Coordonnées',
     'general-information'   => 'Informations générales',
     'personal-information'  => 'Informations personnelles',
+    'security'              => 'Sécurité',
 
 ];

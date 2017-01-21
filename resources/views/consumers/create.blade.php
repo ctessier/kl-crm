@@ -3,12 +3,12 @@
 @section('header')
     <section class="content-header">
         <h1>
-            {{ trans('general.consumers') }}<small>{{ trans('title.new.masculine') }}</small>
+            {{ trans('general.consumers') }}<small>{{ trans('general.new.masculine') }}</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ url(config('backpack.base.route_prefix', 'admin')) }}">{{ config('backpack.base.project_name') }}</a></li>
             <li><a href="{{ route('consumers.index') }}">{{ trans('general.consumers') }}</a></li>
-            <li class="active">{{ trans('title.new.masculine') }}</li>
+            <li class="active">{{ trans('general.new.masculine') }}</li>
         </ol>
     </section>
 @endsection
@@ -67,7 +67,7 @@
                         @include('elements.forms.consumers.contact-details')
                     </div>
                 </div>
-                {!! Form::submit(trans('general.save'), ['class' => 'btn btn-default']) !!}
+                {!! Form::submit(trans('actions.save'), ['class' => 'btn btn-default']) !!}
             </div>
 
         </div>

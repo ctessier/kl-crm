@@ -21,7 +21,7 @@
         <div class="col-lg-4 col-md-8 col-lg-offset-4 col-md-offset-2">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">title here</h3>
+                    <h3 class="box-title">{{ trans('title.product-edit') }}</h3>
                 </div>
                 <div class="box-body">
                     <div class="row">

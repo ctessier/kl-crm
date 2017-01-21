@@ -10,9 +10,9 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>Produit</th>
-                            <th>Quantité</th>
-                            <th>Stock idéal</th>
+                            <th>{{ trans('label.product') }}</th>
+                            <th>{{ trans('label.quantity') }}</th>
+                            <th>{{ trans('label.ideal-quantity') }}</th>
                         </tr>
                     </thead>
                     <tbody>

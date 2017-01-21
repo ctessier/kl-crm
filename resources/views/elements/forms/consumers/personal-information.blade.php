@@ -10,6 +10,6 @@
 </div>
 <div class="form-group {{ $errors->has('sex') ? 'has-error' : '' }}">
     {!! Form::label('sex',  trans('label.sex')) !!}
-    {!! Form::select('sex', ['' => '', 'm' => trans('label.male'), 'f' => trans('label.female')], null, ['class' => 'form-control']) !!}
+    {!! Form::select('sex', ['' => '', 'm' => trans('general.male'), 'f' => trans('general.female')], null, ['class' => 'form-control']) !!}
     {!! $errors->first('sex', '<span class="help-block">:message</span>') !!}
 </div>
