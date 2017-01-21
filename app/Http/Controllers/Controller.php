@@ -19,8 +19,6 @@ class Controller extends BaseController
 
     /**
      * Base controller's constructor.
-     *
-     * @return void
      */
     public function __construct()
     {
