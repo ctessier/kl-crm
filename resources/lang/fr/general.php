@@ -4,7 +4,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Titles Language Lines
+    | Header Language Lines
     |--------------------------------------------------------------------------
     |
     | The following language lines are used for menu items, page headers,
@@ -12,10 +12,10 @@ return [
     |
     */
 
-    'consumers'   => 'My consumers',
-    'profile'     => 'My account',
-    'stock'       => 'My stock',
-    
+    'consumers'   => 'Mes consommateurs',
+    'profile'     => 'Mon compte',
+    'stock'       => 'Mon stock',
+
     /*
     |--------------------------------------------------------------------------
     | Actions Language Lines
@@ -25,9 +25,9 @@ return [
     | sub-headers, etc.
     |
     */
-    
-    'edit'   => 'Edit',
-    'show'   => 'Show',
-    'delete' => 'Delete',
+
+    'edit'   => 'Modifier',
+    'show'   => 'Voir',
+    'delete' => 'Supprimer',
 
 ];

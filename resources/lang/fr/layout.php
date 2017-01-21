@@ -4,17 +4,17 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Titles Language Lines
+    | Layout Language Lines
     |--------------------------------------------------------------------------
     |
-    | The following language lines are used for menu items, page headers,
-    | breadcrumbs labels, etc.
+    | The following language lines are used for the layout (menu items, etc.)
     |
     */
 
-    'consumers'   => 'Mes consommateurs',
-    'profile'     => 'Mon compte',
-    'stock'       => 'Mon stock',
+    'consumers'        => 'Mes consommateurs',
+    'profile'          => 'Mon compte',
+    'stock'            => 'Mon stock',
+    'consumers-orders' => 'Commandes clients',
 
     /*
     |--------------------------------------------------------------------------
@@ -26,8 +26,10 @@ return [
     |
     */
 
-    'edit'   => 'Modifier',
-    'show'   => 'Voir',
-    'delete' => 'Supprimer',
+    'create'  => 'Créer',
+    'edit'    => 'Modifier',
+    'show'    => 'Voir',
+    'see-all' => 'Voir tout',
+    'delete'  => 'Supprimer',
 
 ];

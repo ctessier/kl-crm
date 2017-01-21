@@ -148,9 +148,10 @@ return [
         // Custom attributes
         'birthday'                    => 'Date de naissance',
         'postal_code'                 => 'Code postal',
-        'status_id'                   => 'Statut',
         'products.*.quantity'         => 'Quantité',
         'products.*.optimal_quantity' => 'Stock idéal',
+        'reference'                   => 'Référence',
+        'status_id'                   => 'Statut',
     ],
 
 ];
