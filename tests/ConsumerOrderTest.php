@@ -33,4 +33,18 @@ class ConsumerOrderTest extends TestCase
         $this->assertContainsOnlyInstancesOf(App\Product::class, $consumer_order->products);
         $this->assertCount(2, $consumer_order->products);
     }
+
+    /**
+     * Test a consumer order month attribute.
+     *
+     * @return void
+     */
+    public function test_month_attribute()
+    {
+        $consumer_order = App\ConsumerOrder::findOrFail(1);
+        $this->assertInstanceOf(\Carbon\Carbon::class, $consumer_order->month);
+        $consumer_order->month = '04/2015';
+        $this->assertInstanceOf(\Carbon\Carbon::class, $consumer_order->month);
+        $this->assertEquals('2015-04', $consumer_order->month->format('Y-m'));
+    }
 }
