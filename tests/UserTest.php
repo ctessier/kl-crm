@@ -59,4 +59,15 @@ class UserTest extends TestCase
             }
         }
     }
+
+    /**
+     * Test get pivot by product id for stock.
+     *
+     * @return void
+     */
+    public function test_get_pivot_by_product_id()
+    {
+        $user = \App\User::findOrFail(1);
+        $this->assertNull($user->getProductPivot(55));
+    }
 }
