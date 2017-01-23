@@ -68,6 +68,9 @@ class UserTest extends TestCase
     public function test_get_pivot_by_product_id()
     {
         $user = \App\User::findOrFail(1);
+        $this->assertInstanceOf(Illuminate\Database\Eloquent\Relations\Pivot::class, $user->getProductPivot(2));
+        $this->assertEquals(1, $user->getProductPivot(2)->quantity);
+        $this->assertEquals(1, $user->getProductPivot(2)->optimal_quantity);
         $this->assertNull($user->getProductPivot(55));
     }
 }
