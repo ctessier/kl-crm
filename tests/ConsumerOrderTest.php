@@ -35,6 +35,37 @@ class ConsumerOrderTest extends TestCase
     }
 
     /**
+     * Test consumer's order pivot relation with product.
+     *
+     * @return void
+     */
+    public function test_pivot_relation_with_products()
+    {
+        $consumer_order = App\ConsumerOrder::findOrFail(1);
+
+        foreach ($consumer_order->products as $product)
+        {
+            $this->assertInstanceOf(Illuminate\Database\Eloquent\Relations\Pivot::class, $product->pivot);
+
+            switch ($product->id) {
+                case 7:
+                    $this->assertEquals(2, $product->pivot->quantity);
+                    break;
+                case 8:
+                    $this->assertEquals(2, $product->pivot->quantity);
+                    break;
+                case 16:
+                    $this->assertEquals(1, $product->pivot->quantity);
+                    break;
+                case 20:
+                    $this->assertEquals(1, $product->pivot->quantity);
+                    break;
+                default: break;
+            }
+        }
+    }
+
+    /**
      * Test a consumer order month attribute.
      *
      * @return void
