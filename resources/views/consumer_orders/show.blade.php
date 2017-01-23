@@ -37,31 +37,39 @@
                 <div class="box-header">
                     <h3 class="box-title">{{ trans('title.products') }}</h3>
                 </div>
-                <div class="box-body table-responsive no-padding">
-                    <table class="table table-hover">
-                        <thead>
-                        <tr>
-                            <th>{{ trans('label.product') }}</th>
-                            <th>{{ trans('label.quantity') }}</th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach ($consumer_order->products as $product)
+
+                @if ($consumer_order->products->count() > 0)
+                    <div class="box-body table-responsive no-padding">
+                        <table class="table table-hover">
+                            <thead>
                             <tr>
-                                <td>{{ $product->name }}</td>
-                                <td>{{ $product->pivot->quantity }}</td>
-                                <td>
-                                    {!! link_to_route('consumer_orders.products.edit', 'Modifier', ['consumer_order' => $consumer_order, 'product' => $product], ['class' => 'btn btn-xs btn-default']) !!}
-                                    {!! Form::open(['route' => ['consumer_orders.products.destroy', $consumer_order, $product], 'method' => 'delete', 'class' => 'inline']) !!}
-                                        {!! Form::submit('Supprimer', ['class' => 'btn btn-xs btn-danger']) !!}
-                                    {!! Form::close() !!}
-                                </td>
+                                <th>{{ trans('label.product') }}</th>
+                                <th>{{ trans('label.quantity') }}</th>
+                                <th></th>
                             </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                            </thead>
+                            <tbody>
+                            @foreach ($consumer_order->products as $product)
+                                <tr>
+                                    <td>{{ $product->name }}</td>
+                                    <td>{{ $product->pivot->quantity }}</td>
+                                    <td>
+                                        {!! link_to_route('consumer_orders.products.edit', 'Modifier', ['consumer_order' => $consumer_order, 'product' => $product], ['class' => 'btn btn-xs btn-default']) !!}
+                                        {!! Form::open(['route' => ['consumer_orders.products.destroy', $consumer_order, $product], 'method' => 'delete', 'class' => 'inline']) !!}
+                                            {!! Form::submit('Supprimer', ['class' => 'btn btn-xs btn-danger']) !!}
+                                        {!! Form::close() !!}
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                @else
+                    <div class="box-body">
+                        <p>{{ trans('messages.no-products') }}</p>
+                    </div>
+                @endif
+
                 <div class="box-footer">
                     {!! Form::open(['route' => ['consumer_orders.products.store', $consumer_order], 'method' => 'post']) !!}
                         <div class="row">
