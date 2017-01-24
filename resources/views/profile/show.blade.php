@@ -3,11 +3,11 @@
 @section('header')
     <section class="content-header">
         <h1>
-            {{ trans('krisslaure.profile') }}
+            {{ trans('general.profile') }}
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ url(config('backpack.base.route_prefix', 'admin')) }}">{{ config('backpack.base.project_name') }}</a></li>
-            <li class="active">{{ trans('krisslaure.profile') }}</li>
+            <li class="active">{{ trans('general.profile') }}</li>
         </ol>
     </section>
 @endsection
@@ -17,21 +17,21 @@
     <div class="col-md-6">
         <div class="box">
             <div class="box-header with-border">
-                <h3 class="box-title">Mes informations personnelles</h3>
+                <h3 class="box-title">{{ trans('title.personal-information') }}</h3>
             </div>
             <div class="box-body">
                 {!! Form::model($user, ['route' => 'profile.update', 'method' => 'PUT', 'role' => 'form']) !!}
                     <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
-                        {!! Form::label('name', 'Nom') !!}
+                        {!! Form::label('name', trans('label.name')) !!}
                         {!! Form::text('name', null, ['class' => 'form-control']) !!}
                         {!! $errors->first('name', '<span class="help-block">:message</span>') !!}
                     </div>
                     <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
-                        {!! Form::label('email', 'Adresse E-Mail') !!}
+                        {!! Form::label('email', trans('label.email')) !!}
                         {!! Form::email('email', null, ['class' => 'form-control']) !!}
                         {!! $errors->first('email', '<span class="help-block">:message</span>') !!}
                     </div>
-                    {!! Form::submit('Enregistrer', ['class' => 'btn btn-default']) !!}
+                    {!! Form::submit(trans('actions.save'), ['class' => 'btn btn-default']) !!}
                 {!! Form::close() !!}
             </div>
         </div>
@@ -39,21 +39,21 @@
     <div class="col-md-6">
         <div class="box">
             <div class="box-header with-border">
-                <h3 class="box-title">Sécurité</h3>
+                <h3 class="box-title">{{ trans('title.security') }}</h3>
             </div>
             <div class="box-body">
                 {!! Form::open(['route' => 'profile.password.update', 'method' => 'PUT', 'role' => 'form']) !!}
                 <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
-                    {!! Form::label('password', 'Nouveau mot de passe') !!}
+                    {!! Form::label('password', trans('label.new-password')) !!}
                     {!! Form::password('password', ['class' => 'form-control']) !!}
                     {!! $errors->first('password', '<span class="help-block">:message</span>') !!}
                 </div>
                 <div class="form-group {{ $errors->has('password_confirmation') ? 'has-error' : '' }}">
-                    {!! Form::label('password_confirmation', 'Confirmation du mot de passe') !!}
+                    {!! Form::label('password_confirmation', trans('label.confirmation-new-password')) !!}
                     {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
                     {!! $errors->first('password_confirmation', '<span class="help-block">:message</span>') !!}
                 </div>
-                {!! Form::submit('Changer mon mot de passe', ['class' => 'btn btn-default']) !!}
+                {!! Form::submit(trans('actions.change-password'), ['class' => 'btn btn-default']) !!}
                 {!! Form::close() !!}
             </div>
         </div>

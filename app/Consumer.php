@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Consumer extends Model
 {
+    use SoftDeletes;
+
     /**
      * The attributes that are guarded.
      *
@@ -65,7 +68,7 @@ class Consumer extends Model
      *
      * @return string
      */
-    public function getFullName()
+    public function getFullNameAttribute()
     {
         return $this->first_name . ' ' . $this->last_name;
     }

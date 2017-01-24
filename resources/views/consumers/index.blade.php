@@ -3,11 +3,11 @@
 @section('header')
     <section class="content-header">
         <h1>
-            {{ trans('krisslaure.consumers') }}
+            {{ trans('general.consumers') }}
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ url(config('backpack.base.route_prefix', 'admin')) }}">{{ config('backpack.base.project_name') }}</a></li>
-            <li class="active">{{ trans('krisslaure.consumers') }}</li>
+            <li class="active">{{ trans('general.consumers') }}</li>
         </ol>
     </section>
 @endsection
@@ -23,11 +23,11 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th>Prénom</th>
-                                <th>Nom</th>
-                                <th>Adresse e-mail</th>
-                                <th>Numéro de téléphone</th>
-                                <th>Statut</th>
+                                <th>{{ trans('label.firstname') }}</th>
+                                <th>{{ trans('label.lastname') }}</th>
+                                <th>{{ trans('label.email') }}</th>
+                                <th>{{ trans('label.phone') }}</th>
+                                <th>{{ trans('label.consumer-status') }}</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -40,10 +40,10 @@
                                     <td>{{ $consumer->phone }}</td>
                                     <td>{{ $consumer->current_status ? $consumer->current_status->status->label : '' }}</td>
                                     <td>
-                                        <!--{!! link_to_route('consumers.show', 'Voir', ['consumers' => $consumer], ['class' => 'btn btn-xs btn-default']) !!}-->
-                                        {!! link_to_route('consumers.edit', 'Modifier', ['consumers' => $consumer], ['class' => 'btn btn-xs btn-default']) !!}
+                                        <!--{!! link_to_route('consumers.show', trans('actions.see'), ['consumers' => $consumer], ['class' => 'btn btn-xs btn-default']) !!}-->
+                                        {!! link_to_route('consumers.edit', trans('actions.edit'), ['consumers' => $consumer], ['class' => 'btn btn-xs btn-default']) !!}
                                         {!! Form::open(['route' => ['consumers.destroy', $consumer], 'method' => 'delete', 'class' => 'inline']) !!}
-                                            {!! Form::submit('Supprimer', ['class' => 'btn btn-xs btn-danger']) !!}
+                                            {!! Form::submit(trans('actions.delete'), ['class' => 'btn btn-xs btn-danger', 'data-delete' => trans('messages.consumer-delete-confirm')]) !!}
                                         {!! Form::close() !!}
                                     </td>
                                 </tr>
@@ -53,11 +53,11 @@
                 </div>
                 @else
                 <div class="box-body">
-                    Vous n'avez encore aucun consommateur.
+                    {{ trans('messages.no-consumers') }}
                 </div>
                 @endif
                 <div class="box-footer">
-                    {!! link_to_route('consumers.create', 'Nouveau', [], ['class' => 'btn btn-default']) !!}
+                    {!! link_to_route('consumers.create', trans('actions.new'), [], ['class' => 'btn btn-default']) !!}
                 </div>
             </div>
         </div>

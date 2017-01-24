@@ -26,6 +26,7 @@ class CreateConsumersTables extends Migration
             $table->string('city')->nullable();
             $table->unsignedInteger('user_id');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('user_id')->references('id')->on('users');
         });
@@ -37,6 +38,7 @@ class CreateConsumersTables extends Migration
         });
 
         Schema::create('consumers_consumer_statuses', function (Blueprint $table) {
+            $table->increments('id');
             $table->unsignedInteger('consumer_id');
             $table->unsignedInteger('status_id');
             $table->date('date');

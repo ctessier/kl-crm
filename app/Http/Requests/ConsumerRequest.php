@@ -33,7 +33,7 @@ class ConsumerRequest extends FormRequest
             'address'     => '',
             'postal_code' => 'numeric|digits_between:2,5',
             'status_id'   => 'required|exists:consumer_statuses,id',
-            'date'        => 'date_format:Y-m-d',
+            'date'        => 'date_format:d/m/Y',
         ];
     }
 }
