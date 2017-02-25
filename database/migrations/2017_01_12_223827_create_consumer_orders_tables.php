@@ -27,11 +27,9 @@ class CreateConsumerOrdersTables extends Migration
         });
 
         Schema::create('consumer_orders_products', function (Blueprint $table) {
-            $table->increments('id');
             $table->unsignedInteger('consumer_order_id');
             $table->unsignedInteger('product_id');
-            $table->smallInteger('quantity')->default(0);
-            $table->timestamps();
+            $table->smallInteger('quantity');
 
             $table->foreign('consumer_order_id')->references('id')->on('consumer_orders');
             $table->foreign('product_id')->references('id')->on('products');
