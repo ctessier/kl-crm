@@ -2,8 +2,8 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -64,7 +64,5 @@ class User extends Authenticatable
         if ($product) {
             return $product->pivot;
         }
-
-        return null;
     }
 }

@@ -38,8 +38,7 @@ class UserTest extends TestCase
     {
         $user = App\User::findOrFail(1);
 
-        foreach ($user->products as $product)
-        {
+        foreach ($user->products as $product) {
             $this->assertInstanceOf(Illuminate\Database\Eloquent\Relations\Pivot::class, $product->pivot);
 
             switch ($product->id) {

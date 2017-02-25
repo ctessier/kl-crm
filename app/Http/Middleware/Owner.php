@@ -3,23 +3,22 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\Auth;
 
-class RedirectIfAuthenticated
+class Owner
 {
     /**
      * Handle an incoming request.
      *
      * @param \Illuminate\Http\Request $request
      * @param \Closure                 $next
-     * @param string|null              $guard
      *
      * @return mixed
      */
-    public function handle($request, Closure $next, $guard = null)
+    public function handle($request, Closure $next, $resource)
     {
-        if (Auth::guard($guard)->check()) {
-            return redirect('/home');
+        // Throw 404 error if authenticated user is not the owner of the resource
+        if ($request->{$resource}->user_id !== \Auth::id()) {
+            abort(404);
         }
 
         return $next($request);

@@ -6,7 +6,6 @@ use App\Consumer;
 use App\ConsumerOrder;
 use App\Http\Requests\ConsumerOrderRequest;
 use App\Product;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ConsumerOrderController extends Controller
@@ -20,6 +19,7 @@ class ConsumerOrderController extends Controller
 
         parent::__construct();
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -51,7 +51,8 @@ class ConsumerOrderController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\ConsumerOrderRequest  $request
+     * @param \App\Http\Requests\ConsumerOrderRequest $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(ConsumerOrderRequest $request)
@@ -116,7 +117,8 @@ class ConsumerOrderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

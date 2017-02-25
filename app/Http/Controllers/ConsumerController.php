@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ConsumerRequest;
 use App\Consumer;
 use App\ConsumersConsumerStatus;
+use App\Http\Requests\ConsumerRequest;
 
 class ConsumerController extends Controller
 {
@@ -14,6 +14,15 @@ class ConsumerController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+
+        $this->middleware('owner:consumer', [
+            'only' => [
+                'show',
+                'edit',
+                'update',
+                'destroy',
+            ],
+        ]);
 
         parent::__construct();
     }

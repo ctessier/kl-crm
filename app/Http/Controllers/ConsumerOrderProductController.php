@@ -6,7 +6,6 @@ use App\ConsumerOrder;
 use App\ConsumerOrdersProduct;
 use App\Http\Requests\ConsumerOrderProductRequest;
 use App\Product;
-use Illuminate\Http\Request;
 
 class ConsumerOrderProductController extends Controller
 {
@@ -30,8 +29,8 @@ class ConsumerOrderProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \App\Http\Requests\ConsumerOrderProductRequest  $request
-     * @param \App\ConsumerOrder                              $consumer_order
+     * @param \App\Http\Requests\ConsumerOrderProductRequest $request
+     * @param \App\ConsumerOrder                             $consumer_order
      *
      * @return \Illuminate\Http\Response
      */
@@ -84,8 +83,8 @@ class ConsumerOrderProductController extends Controller
      * Update the specified resource in storage.
      *
      * @param \App\Http\Requests\ConsumerOrderProductRequest $request
-     * @param \App\ConsumerOrder $consumer_order
-     * @param \App\Product $product
+     * @param \App\ConsumerOrder                             $consumer_order
+     * @param \App\Product                                   $product
      *
      * @return \Illuminate\Http\Response
      */

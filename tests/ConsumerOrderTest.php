@@ -43,8 +43,7 @@ class ConsumerOrderTest extends TestCase
     {
         $consumer_order = App\ConsumerOrder::findOrFail(1);
 
-        foreach ($consumer_order->products as $product)
-        {
+        foreach ($consumer_order->products as $product) {
             $this->assertInstanceOf(Illuminate\Database\Eloquent\Relations\Pivot::class, $product->pivot);
 
             switch ($product->id) {
