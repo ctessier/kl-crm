@@ -90,13 +90,10 @@ class ConsumerOrderProductController extends Controller
      */
     public function update(ConsumerOrderProductRequest $request, ConsumerOrder $consumer_order, Product $product)
     {
-        $consumer_orders_product = ConsumerOrdersProduct::where('consumer_order_id', $consumer_order->id)
-            ->where('product_id', $product->id)
-            ->firstOrFail();
-
-        $consumer_orders_product->fill($request->all());
-
-        $consumer_orders_product->save();
+        $consumer_order->products()->updateExistingPivot($product->id, [
+            'product_id' => $request->get('product_id'),
+            'quantity'   => $request->get('quantity'),
+        ]);
 
         \Alert::success('Produit mis à jour !')->flash();
 
@@ -115,11 +112,7 @@ class ConsumerOrderProductController extends Controller
      */
     public function destroy(ConsumerOrder $consumer_order, Product $product)
     {
-        $consumer_order_product = ConsumerOrdersProduct::where('consumer_order_id', $consumer_order->id)
-            ->where('product_id', $product->id)
-            ->firstOrFail();
-
-        $consumer_order_product->delete();
+        $consumer_order->products()->detach($product->id);
 
         \Alert::success('Produit supprimé avec succès !')->flash();
 

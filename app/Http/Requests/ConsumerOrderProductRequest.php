@@ -24,7 +24,8 @@ class ConsumerOrderProductRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'product_id' => 'required|exists:products,id',
+            'quantity'   => 'required|integer',
         ];
     }
 }
