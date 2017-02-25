@@ -38,6 +38,7 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
         $this->runDatabaseMigrations();
         $this->seed();
     }
+
     /**
      * Tear down testing environment.
      *

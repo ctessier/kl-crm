@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ConsumerRequest;
 use App\Consumer;
 use App\ConsumersConsumerStatus;
+use App\Http\Requests\ConsumerRequest;
 
 class ConsumerController extends Controller
 {

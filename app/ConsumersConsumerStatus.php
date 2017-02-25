@@ -3,7 +3,6 @@
 namespace App;
 
 use Carbon\Carbon;
-use Faker\Provider\DateTime;
 use Illuminate\Database\Eloquent\Model;
 
 class ConsumersConsumerStatus extends Model
@@ -11,7 +10,7 @@ class ConsumersConsumerStatus extends Model
     /**
      * Disable timestamps for this model.
      *
-     * @var boolean
+     * @var bool
      */
     public $timestamps = false;
 

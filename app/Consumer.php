@@ -15,7 +15,7 @@ class Consumer extends Model
      * @var array
      */
     protected $guarded = [
-        'user_id'
+        'user_id',
     ];
 
     /**
@@ -34,7 +34,7 @@ class Consumer extends Model
      * @param int    $status
      * @param string $date
      *
-     * @return boolean
+     * @return bool
      */
     public function setStatus($status, $date)
     {
@@ -70,6 +70,6 @@ class Consumer extends Model
      */
     public function getFullNameAttribute()
     {
-        return $this->first_name . ' ' . $this->last_name;
+        return $this->first_name.' '.$this->last_name;
     }
 }

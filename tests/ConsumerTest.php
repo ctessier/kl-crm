@@ -14,6 +14,7 @@ class ConsumerTest extends TestCase
         $this->assertEquals(\App\ConsumerStatus::PRIVILEGED_CUSTOMER, $consumer->current_status->status_id);
         $this->assertEquals(\Carbon\Carbon::createFromDate(2014, 6, 23), $consumer->current_status->date);
     }
+
     /**
      * Test setting a new status for a consumer.
      *
