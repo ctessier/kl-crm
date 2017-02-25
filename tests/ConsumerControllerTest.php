@@ -3,7 +3,7 @@
 class ConsumerControllerTest extends TestCase
 {
     /**
-     * Test methods access
+     * Test methods access.
      *
      * @return void
      */

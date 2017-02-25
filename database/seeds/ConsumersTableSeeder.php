@@ -1,8 +1,8 @@
 <?php
 
 use App\ConsumerStatus;
-use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
+use Illuminate\Database\Seeder;
 
 class ConsumersTableSeeder extends Seeder
 {

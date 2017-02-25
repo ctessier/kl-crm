@@ -25,7 +25,6 @@ class ProfileControllerTest extends TestCase
             ->press('Enregistrer')
             ->seeRouteIs('profile.show')
             ->see('Le champ Adresse e-mail doit être une adresse e-mail valide.');
-
     }
 
     /**

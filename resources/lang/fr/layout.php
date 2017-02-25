@@ -17,5 +17,4 @@ return [
     'profile'          => 'Mon compte',
     'stock'            => 'Mon stock',
 
-
 ];
