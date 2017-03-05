@@ -27,7 +27,7 @@
             <a href="#"><i class="fa fa-shopping-cart"></i> <span>{{ trans('layout.consumers-orders') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
             <ul class="treeview-menu">
               <li><a href="{{ route('consumer_orders.create') }}"><i class="fa fa-plus"></i> <span>{{ trans('actions.create') }}</span></a></li>
-              <li><a href="{{ route('consumer_orders.index') }}"><i class="fa fa-eye"></i> <span>{{ trans('actions.see-all') }}</span></a></li>
+              <li><a href="{{ route('consumer_orders.index') }}"><i class="fa fa-eye"></i> <span>{{ trans('actions.view-all') }}</span></a></li>
             </ul>
           </li>
 

@@ -40,7 +40,7 @@
                                     <td>{{ $consumer->phone }}</td>
                                     <td>{{ $consumer->current_status ? $consumer->current_status->status->label : '' }}</td>
                                     <td>
-                                        <!--{!! link_to_route('consumers.show', trans('actions.see'), ['consumers' => $consumer], ['class' => 'btn btn-xs btn-default']) !!}-->
+                                        <!--{!! link_to_route('consumers.show', trans('actions.view'), ['consumers' => $consumer], ['class' => 'btn btn-xs btn-default']) !!}-->
                                         {!! link_to_route('consumers.edit', trans('actions.edit'), ['consumers' => $consumer], ['class' => 'btn btn-xs btn-default']) !!}
                                         {!! Form::open(['route' => ['consumers.destroy', $consumer], 'method' => 'delete', 'class' => 'inline']) !!}
                                             {!! Form::submit(trans('actions.delete'), ['class' => 'btn btn-xs btn-danger', 'data-delete' => trans('messages.consumer-delete-confirm')]) !!}

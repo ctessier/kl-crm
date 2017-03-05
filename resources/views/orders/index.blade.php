@@ -31,7 +31,7 @@
                                 <tr>
                                     <td>{{ $order->reference }}</td>
                                     <td>
-                                    <!--{!! link_to_route('orders.show', trans('actions.see'), ['orders' => $order], ['class' => 'btn btn-xs btn-default']) !!}-->
+                                    <!--{!! link_to_route('orders.show', trans('actions.view'), ['orders' => $order], ['class' => 'btn btn-xs btn-default']) !!}-->
                                         {!! link_to_route('orders.edit', trans('actions.edit'), ['orders' => $order], ['class' => 'btn btn-xs btn-default']) !!}
                                         {!! Form::open(['route' => ['orders.destroy', $order], 'method' => 'delete', 'class' => 'inline']) !!}
                                         {!! Form::submit(trans('actions.delete'), ['class' => 'btn btn-xs btn-danger', 'data-delete' => trans('messages.order-delete-confirm')]) !!}
