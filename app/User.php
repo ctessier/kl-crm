@@ -40,6 +40,16 @@ class User extends Authenticatable
     }
 
     /**
+     * Return the orders of the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    /**
      * Return associated products (stock) thanks to pivot table.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany

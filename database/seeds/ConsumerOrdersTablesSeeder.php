@@ -15,6 +15,7 @@ class ConsumerOrdersTablesSeeder extends Seeder
         DB::table('consumer_orders')->insert([
             [
                 'id'          => 1,
+                'order_id'    => 1,
                 'consumer_id' => 1,
                 'user_id'     => 1,
                 'reference'   => 'KL1',
@@ -22,6 +23,7 @@ class ConsumerOrdersTablesSeeder extends Seeder
             ],
             [
                 'id'          => 2,
+                'order_id'    => 1,
                 'consumer_id' => 2,
                 'user_id'     => 1,
                 'reference'   => 'KL2',

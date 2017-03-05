@@ -15,6 +15,7 @@ class CreateConsumerOrdersTables extends Migration
     {
         Schema::create('consumer_orders', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('order_id')->nullable();
             $table->unsignedInteger('consumer_id')->nullable();
             $table->unsignedInteger('user_id');
             $table->string('reference');
@@ -22,6 +23,7 @@ class CreateConsumerOrdersTables extends Migration
             $table->boolean('is_test_program')->default(false);
             $table->timestamps();
 
+            $table->foreign('order_id')->references('id')->on('orders');
             $table->foreign('consumer_id')->references('id')->on('consumers');
             $table->foreign('user_id')->references('id')->on('users');
         });
