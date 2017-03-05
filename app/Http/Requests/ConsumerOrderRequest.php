@@ -25,8 +25,9 @@ class ConsumerOrderRequest extends FormRequest
     {
         return [
             'reference'   => '',
-            'consumer_id' => 'exists:consumers,id',
-            'month'       => 'date_format:m/Y',
+            'consumer_id' => 'required|exists:consumers,id',
+            'order_id'    => 'exists:orders,id',
+            'month'       => 'required|date_format:m/Y',
         ];
     }
 }

@@ -44,8 +44,12 @@ class ConsumerOrderController extends Controller
             ->where('user_id', $this->user->id)
             ->pluck('name', 'id');
 
+        // Get user's orders
+        $orders = $this->user->orders()->pluck('reference', 'id');
+
         return view('consumer_orders.create')
-            ->with('consumers', $consumers);
+            ->with('consumers', $consumers)
+            ->with('orders', $orders);
     }
 
     /**
@@ -87,10 +91,14 @@ class ConsumerOrderController extends Controller
         // Get list of products
         $products = Product::pluck('name', 'id');
 
+        // Get user's orders
+        $orders = $this->user->orders()->pluck('reference', 'id');
+
         return view('consumer_orders.show')
             ->with('consumer_order', $consumer_order)
             ->with('consumers', $consumers)
-            ->with('products', $products);
+            ->with('products', $products)
+            ->with('orders', $orders);
     }
 
     /**

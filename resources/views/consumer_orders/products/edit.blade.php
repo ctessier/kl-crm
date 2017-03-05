@@ -34,6 +34,7 @@
                     </div>
                 </div>
                 <div class="box-footer">
+                    {{ link_to_route('consumer_orders.show', trans('actions.back'), $consumer_orders_product->consumer_order_id, ['class' => 'btn btn-default']) }}
                     {!! Form::submit(trans('actions.save'), ['class' => 'btn btn-primary pull-right']) !!}
                 </div>
             </div>

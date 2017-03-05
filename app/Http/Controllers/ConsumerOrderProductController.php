@@ -36,25 +36,14 @@ class ConsumerOrderProductController extends Controller
      */
     public function store(ConsumerOrderProductRequest $request, ConsumerOrder $consumer_order)
     {
-        $consumer_order_product = new ConsumerOrdersProduct();
-        $consumer_order_product->fill($request->except('saveAndNew'));
-        $consumer_order_product->consumer_order_id = $consumer_order->id;
-
-        $consumer_order_product->save();
-
-        $params = [
-            'consumer_order' => $consumer_order,
-        ];
-
-        if ($request->get('saveAndNew')) {
-            $target = 'consumer_orders.products.create';
-        } else {
-            $target = 'consumer_orders.show';
-        }
+        $product = Product::find($request->get('product_id'));
+        $consumer_order->products()->save($product, [
+            'quantity' => $request->get('quantity'),
+        ]);
 
         \Alert::success('Le produit a été ajouté !')->flash();
 
-        return redirect()->route($target, $params);
+        return back();
     }
 
     /**

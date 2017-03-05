@@ -5,8 +5,13 @@
 </div>
 <div class="form-group{{ $errors->has('consumer_id') ? ' has-error' : '' }}">
     {{ Form::label('consumer_id', trans('label.consumer')) }}
-    {{ Form::select('consumer_id', $consumers, null, ['class' => 'form-control']) }}
+    {{ Form::select('consumer_id', $consumers, null, ['placeholder' => 'Sélectionner un consommateur', 'class' => 'form-control']) }}
     {!! $errors->first('consumer_id', '<span class="help-block">:message</span>') !!}
+</div>
+<div class="form-group{{ $errors->has('order_id') ? ' has-error' : '' }}">
+    {{ Form::label('order_id', trans('label.order')) }}
+    {{ Form::select('order_id', $orders, null, ['placeholder' => 'Sélectionner une commande', 'class' => 'form-control']) }}
+    {!! $errors->first('order_id', '<span class="help-block">:message</span>') !!}
 </div>
 <div class="form-group {{ $errors->has('month') ? 'has-error' : '' }}">
     {!! Form::label('month', trans('label.month')) !!}

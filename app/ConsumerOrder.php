@@ -36,6 +36,16 @@ class ConsumerOrder extends Model
     }
 
     /**
+     * Return the associated order of the consumer order.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
+
+    /**
      * Return the products of the consumer's order.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -69,5 +79,15 @@ class ConsumerOrder extends Model
         $this->attributes['month'] = $value->format('Y-m-d');
 
         return $this;
+    }
+
+    /**
+     * Set the order_id attribute (to null if empty).
+     *
+     * @param $value
+     */
+    public function setOrderIdAttribute($value)
+    {
+        $this->attributes['order_id'] = trim($value) !== '' ? $value : null;
     }
 }

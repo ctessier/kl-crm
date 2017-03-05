@@ -25,6 +25,7 @@ return [
     'month'                     => 'Mois',
     'name'                      => 'Nom',
     'new-password'              => 'Nouveau mot de passe',
+    'order'                     => 'Commande',
     'phone'                     => 'Téléphone',
     'postal-code'               => 'Code postal',
     'product'                   => 'Produit',
