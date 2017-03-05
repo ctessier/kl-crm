@@ -30,6 +30,7 @@
               <li><a href="{{ route('consumer_orders.index') }}"><i class="fa fa-eye"></i> <span>{{ trans('actions.view-all') }}</span></a></li>
             </ul>
           </li>
+          <li><a href="{{ route('orders.index') }}"><i class="fa fa-list"></i> <span>{{ trans('layout.orders') }}</span></a></li>
 
           <!-- ======================================= -->
           <li class="header">{{ trans('backpack::base.user') }}</li>

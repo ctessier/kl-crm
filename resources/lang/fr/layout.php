@@ -14,6 +14,7 @@ return [
     'consumers'        => 'Mes consommateurs',
     'consumers-orders' => 'Commandes clients',
     'logged-in'        => 'Connecté',
+    'orders'           => 'Commandes',
     'profile'          => 'Mon compte',
     'stock'            => 'Mon stock',
 
