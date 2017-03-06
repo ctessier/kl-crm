@@ -122,7 +122,7 @@ class ConsumerOrderProductController extends Controller
                 ]);
 
                 \Alert::warning('Le produit a été replacé dans le stock.')->flash();
-            };
+            }
         } catch (\Exception $ex) {
             \Alert::error('Impossible de mettre à jour le stock.')->flash();
         }
@@ -142,9 +142,9 @@ class ConsumerOrderProductController extends Controller
      * @param \App\Product       $product
      * @param int                $quantity
      * @param \App\ConsumerOrder $consumer_order
-     * @param boolean|null       $from_stock
+     * @param bool|null          $from_stock
      *
-     * @return boolean
+     * @return bool
      */
     private function updateStock($product, $quantity, $consumer_order = null, $from_stock = null)
     {
@@ -159,10 +159,10 @@ class ConsumerOrderProductController extends Controller
             if ($from_stock === null || (!$previous_from_stock && $from_stock)) {
                 // New product or it was not taken from stock but now it is, we decrease the stock by the quantity
                 $newStock = $stock->quantity - $quantity;
-            } else if ($previous_from_stock && !$from_stock) {
+            } elseif ($previous_from_stock && !$from_stock) {
                 // Update of a product and it was taken from stock but it is not anymore, we add the previous quantity
                 $newStock = $stock->quantity + $consumer_order->products()->find($product->id)->pivot->quantity;
-            } else if ($previous_from_stock && $from_stock) {
+            } elseif ($previous_from_stock && $from_stock) {
                 // Update of a product and it is still taken from stock, we add/sub the difference
                 $newStock = $stock->quantity + $consumer_order->products()->find($product->id)->pivot->quantity
                     - $quantity;
