@@ -53,7 +53,7 @@ class ConsumerOrder extends Model
     public function products()
     {
         return $this->belongsToMany(Product::class, 'consumer_orders_products', 'consumer_order_id', 'product_id')
-            ->withPivot('quantity');
+            ->withPivot('quantity', 'from_stock');
     }
 
     /**

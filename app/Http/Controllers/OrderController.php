@@ -55,7 +55,7 @@ class OrderController extends Controller
 
         $orphan_consumer_orders = ConsumerOrder::whereNull('order_id')->get();
         foreach ($orphan_consumer_orders as $consumer_order) {
-            $order->consumer_orders()->attach($consumer_order);
+            $consumer_order->order()->associate($order)->save();
         }
 
         \Alert::success('Le nouvelle commande a bien été créée !')->flash();

@@ -32,6 +32,7 @@ class CreateConsumerOrdersTables extends Migration
             $table->unsignedInteger('consumer_order_id');
             $table->unsignedInteger('product_id');
             $table->smallInteger('quantity');
+            $table->boolean('from_stock')->default(false);
 
             $table->foreign('consumer_order_id')->references('id')->on('consumer_orders');
             $table->foreign('product_id')->references('id')->on('products');
