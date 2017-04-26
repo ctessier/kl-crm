@@ -48,7 +48,7 @@
                 @endif
                 <div class="box-footer">
                     {!! Form::open(['route' => ['orders.store'], 'method' => 'post', 'class' => 'inline']) !!}
-                    {!! Form::submit(trans('actions.new'), ['class' => 'btn btn-default']) !!}
+                    {!! Form::submit(trans('actions.new'), ['class' => 'btn btn-primary']) !!}
                     {!! Form::close() !!}
                 </div>
             </div>
