@@ -25,9 +25,21 @@ class ConsumerOrderRequest extends FormRequest
     {
         return [
             'reference'   => '',
-            'consumer_id' => 'required|exists:consumers,id',
+            'consumer_id' => 'required_without:stock|exists:consumers,id',
             'order_id'    => 'exists:orders,id',
             'month'       => 'required|date_format:m/Y',
+        ];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'consumer_id.required_without' => "Le champ :attribute est obligatoire.",
         ];
     }
 }

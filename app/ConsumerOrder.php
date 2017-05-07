@@ -90,4 +90,14 @@ class ConsumerOrder extends Model
     {
         $this->attributes['order_id'] = trim($value) !== '' ? $value : null;
     }
+
+    /**
+     * Set the consumer_id attribute (to null if empty).
+     *
+     * @param $value
+     */
+    public function setConsumerIdAttribute($value)
+    {
+        $this->attributes['consumer_id'] = trim($value) !== '' ? $value : null;
+    }
 }

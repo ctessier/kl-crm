@@ -62,7 +62,7 @@ class ConsumerOrderController extends Controller
     public function store(ConsumerOrderRequest $request)
     {
         $consumer_order = new ConsumerOrder();
-        $consumer_order->fill($request->all());
+        $consumer_order->fill($request->except(['stock']));
         $consumer_order->user_id = $this->user->id;
 
         $consumer_order->save();
@@ -111,7 +111,7 @@ class ConsumerOrderController extends Controller
      */
     public function update(ConsumerOrderRequest $request, ConsumerOrder $consumer_order)
     {
-        $consumer_order->fill($request->all());
+        $consumer_order->fill($request->except(['stock']));
 
         $consumer_order->save();
 

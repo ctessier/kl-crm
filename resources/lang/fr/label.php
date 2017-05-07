@@ -31,6 +31,7 @@ return [
     'product'                   => 'Produit',
     'reference'                 => 'Référence',
     'sex'                       => 'Sexe',
+    'stock'                     => 'Commander pour le stock',
     'status-date'               => 'Date',
 
 ];
