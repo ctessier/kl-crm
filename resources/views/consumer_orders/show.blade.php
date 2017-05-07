@@ -1,18 +1,5 @@
 @extends('backpack::layout')
 
-@section('header')
-    <section class="content-header">
-        <h1>
-            {{ trans('general.consumers-orders') }}<small>{{ trans('general.for') }} {{ $consumer_order->consumer->full_name }}</small>
-        </h1>
-        <ol class="breadcrumb">
-            <li><a href="{{ url(config('backpack.base.route_prefix', 'admin')) }}">{{ config('backpack.base.project_name') }}</a></li>
-            <li><a href="{{ route('consumer_orders.index') }}">{{ trans('general.consumers-orders') }}</a></li>
-            <li class="active">{{ (!empty($consumer_order->reference)) ? $consumer_order->reference : '#'.$consumer_order->id }}</li>
-        </ol>
-    </section>
-@endsection
-
 @section('content')
 
     <div class="row">
