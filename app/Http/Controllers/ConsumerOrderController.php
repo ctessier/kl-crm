@@ -131,6 +131,6 @@ class ConsumerOrderController extends Controller
      */
     public function destroy($id)
     {
-        // TODO now!
+        //
     }
 }
