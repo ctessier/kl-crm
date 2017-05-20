@@ -16,6 +16,7 @@ return [
     'consumers-orders' => 'Commande cliente',
     'for'              => 'pour',
     'male'             => 'Homme',
+    'no'               => 'Non',
     'female'           => 'Femme',
     'profile'          => 'Mon compte',
     'stock'            => 'Mon stock',
@@ -23,5 +24,6 @@ return [
         'masculine' => 'Nouveau',
         'feminine'  => 'Nouvelle',
     ],
+    'yes'              => 'Oui',
 
 ];

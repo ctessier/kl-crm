@@ -18,6 +18,7 @@ return [
     'consumer-status'           => 'Statut',
     'email'                     => 'Adresse e-mail',
     'firstname'                 => 'Prénom',
+    'from_stock'                => 'Pris du stock',
     'ideal-quantity'            => 'Quantité idéal',
     'is-test-program'           => 'Programme Test ?',
     'quantity'                  => 'Quantité',

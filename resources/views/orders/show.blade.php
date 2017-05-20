@@ -41,7 +41,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-3 col-sm-12">
+        <div class="col-sm-12">
             <div class="box">
                 <div class="box-header with-border">
                     <h3 class="box-title">{{ trans('title.consumer-orders-list') }}</h3>
@@ -51,55 +51,34 @@
                         <thead>
                             <tr>
                                 <th>{{ trans('label.consumer') }}</th>
-                                <th>Quantité à commander</th>
-                                <th>Quantité du stock</th>
-                                <th></th>
+                                @foreach ($order->products as $product)
+                                <th>{{ $product->product->name }}</th>
+                                @endforeach
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($order->consumer_orders as $consumer_order)
                                 <tr>
-                                    <td>{{ $consumer_order->consumer->full_name }}</td>
-                                    <td>{{ $consumer_order->products()->sum('quantity') - $consumer_order->products()->where('from_stock', true)->sum('quantity') }}</td>
-                                    <td>{{ $consumer_order->products()->where('from_stock', true)->sum('quantity') }}</td>
                                     <td>
+                                        {{ $consumer_order->consumer->full_name }}
                                         {{ link_to_route('consumer_orders.show', trans('actions.view'), $consumer_order->id, ['class' => 'btn btn-xs btn-default']) }}
                                     </td>
+                                    @foreach ($order->products as $order_consumer_order)
+                                    <td>{{ $consumer_order->getProductQuantity($order_consumer_order->product) }}</td>
+                                    @endforeach
                                 </tr>
                             @endforeach
                         </tbody>
+                        <tfoot>
+                            <th>Total</th>
+                            @foreach ($order->products as $consumer_order)
+                                <th>{{ $order->getTotalByProduct($consumer_order->product) }}</th>
+                            @endforeach
+                        </tfoot>
                     </table>
                 </div>
                 <div class="box-footer">
                     {{ link_to_route('consumer_orders.create', trans('actions.new'), [], ['class' => 'btn btn-primary pull-left']) }}
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-9 col-sm-12">
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title"></h3>
-                </div>
-                <div class="box-body table-responsive no-padding">
-                    <table class="table table-hover">
-                        <thead>
-                        <tr>
-                            <th>{{ trans('label.product') }}</th>
-                            <th>{{ trans('label.category') }}</th>
-                            <th>{{ trans('label.quantity') }}</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($order->products as $product)
-                                <tr>
-                                    <td>{{ $product->product->name }}</td>
-                                    <td>{{ $product->product->category->name }}</td>
-                                    <td>{{ $product->sum_quantity }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </div>

@@ -36,6 +36,8 @@ class Order extends Model
     }
 
     /**
+     * Return the collection of consumer orders products.
+     *
      * @param bool $from_stock
      * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
      */
@@ -51,6 +53,16 @@ class Order extends Model
             ->orderBy('sum_quantity', 'DESC');
     }
 
+    public function getTotalByProduct($product)
+    {
+        return $this->products()->where('product_id', $product->id)->first()->sum_quantity;
+    }
+
+    /**
+     * Return the total quantity of products.
+     *
+     * @return int
+     */
     public function getTotalProductsQuantity()
     {
         $query = ConsumerOrdersProduct::selectRaw('sum(consumer_orders_products.quantity) as total')

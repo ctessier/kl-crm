@@ -41,11 +41,11 @@
                                 <tr>
                                     <td>{{ $product->name }}</td>
                                     <td>{{ $product->pivot->quantity }}</td>
-                                    <td>{{ $product->pivot->from_stock ? 'Oui' : 'Non' }}</td>
+                                    <td>{{ $product->pivot->from_stock ? trans('general.yes') : trans('general.no') }}</td>
                                     <td>
-                                        {!! link_to_route('consumer_orders.products.edit', 'Modifier', ['consumer_order' => $consumer_order, 'product' => $product], ['class' => 'btn btn-xs btn-default']) !!}
+                                        {!! link_to_route('consumer_orders.products.edit', trans('actions.edit'), ['consumer_order' => $consumer_order, 'product' => $product], ['class' => 'btn btn-xs btn-default']) !!}
                                         {!! Form::open(['route' => ['consumer_orders.products.destroy', $consumer_order, $product], 'method' => 'delete', 'class' => 'inline']) !!}
-                                            {!! Form::submit('Supprimer', ['class' => 'btn btn-xs btn-danger']) !!}
+                                            {!! Form::submit(trans('actions.delete'), ['class' => 'btn btn-xs btn-danger']) !!}
                                         {!! Form::close() !!}
                                     </td>
                                 </tr>
@@ -72,7 +72,7 @@
                                 <div class="checkbox">
                                     <label for="from_stock">
                                         {{ Form::checkbox('from_stock', true, null, ['id' => 'from_stock']) }}
-                                        {{ trans('label.stock') }}
+                                        {{ trans('label.from_stock') }}
                                     </label>
                                 </div>
                             </div>

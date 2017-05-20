@@ -15,11 +15,13 @@
 @section('content')
 
     {!! Form::open(['route' => 'stock.update', 'method' => 'post', 'role' => 'form']) !!}
-        {!! Form::submit(trans('actions.save'), ['class' => 'btn btn-default']) !!}
+        {!! Form::submit(trans('actions.save'), ['class' => 'btn btn-primary']) !!}
 
-        @foreach ($categories as $category)
-            @include('elements.stock-category')
-        @endforeach
+        <div class="row">
+            @foreach ($categories as $category)
+                @include('elements.stock-category')
+            @endforeach
+        </div>
 
     {!! Form::close() !!}
 

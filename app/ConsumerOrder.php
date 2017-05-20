@@ -57,6 +57,23 @@ class ConsumerOrder extends Model
     }
 
     /**
+     * @param Product $product
+     * @param bool $exclude_stock
+     *
+     * @return int|string
+     */
+    public function getProductQuantity($product, $exclude_stock = true)
+    {
+        $quantity = $this->products()->where('product_id', $product->id)->sum('quantity');
+
+        if ($exclude_stock) {
+            $quantity -= $this->products()->where('from_stock', true)->where('product_id', $product->id)->sum('quantity');
+        }
+
+        return 0 === $quantity ? '' : $quantity;
+    }
+
+    /**
      * Get the month attribute.
      *
      * @return \DateTime

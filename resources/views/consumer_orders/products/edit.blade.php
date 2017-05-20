@@ -26,7 +26,7 @@
                 <div class="box-body">
                     <div class="row">
                         <div class="col-md-8">
-                            {{ Form::select('product_id', $products, null, ['class' => 'form-control', 'readonly' => 'readonly']) }}
+                            {{ Form::select('product_id', $products, null, ['class' => 'form-control', 'disabled' => 'disabled']) }}
                         </div>
                         <div class="col-md-4">
                             {{ Form::selectRange('quantity', 1, config('krisslaure.stock-range-max'), null, ['class' => 'form-control']) }}
@@ -37,7 +37,7 @@
                             <div class="checkbox">
                                 <label for="from_stock">
                                     {{ Form::checkbox('from_stock', true, null, ['id' => 'from_stock']) }}
-                                    {{ trans('label.stock') }}
+                                    {{ trans('label.from_stock') }}
                                 </label>
                             </div>
                         </div>
