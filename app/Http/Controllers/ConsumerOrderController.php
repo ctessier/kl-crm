@@ -35,7 +35,9 @@ class ConsumerOrderController extends Controller
      */
     public function index()
     {
-        //
+        $consumer_orders = $this->user->consumer_orders;
+
+        return view('consumer_orders.index', compact('consumer_orders'));
     }
 
     /**

@@ -18,6 +18,16 @@ class UserTest extends TestCase
         $this->assertCount(2, $userConsumers);
     }
 
+    public function test_consumer_order_relationship()
+    {
+        $userConsumerOrders = \App\User::findOrFail(1)->consumer_orders;
+        $this->assertContainsOnlyInstancesOf(\App\ConsumerOrder::class, $userConsumerOrders);
+        $this->assertCount(2, $userConsumerOrders);
+
+        $userConsumerOrders = \App\User::findOrFail(2)->consumer_orders;
+        $this->assertCount(0, $userConsumerOrders);
+    }
+
     /**
      * Test the user's relationship with the products.
      *
