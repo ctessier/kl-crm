@@ -17,6 +17,14 @@ class ConsumerOrderController extends Controller
     {
         $this->middleware('auth');
 
+        $this->middleware('owner:consumer_order', [
+            'only' => [
+                'show',
+                'update',
+                'destroy',
+            ],
+        ]);
+
         parent::__construct();
     }
 
