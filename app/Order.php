@@ -39,11 +39,12 @@ class Order extends Model
      * Return the collection of consumer orders products.
      *
      * @param bool $from_stock
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
      */
     public function products($from_stock = false)
     {
-         return $this->hasManyThrough(ConsumerOrdersProduct::class, ConsumerOrder::class)
+        return $this->hasManyThrough(ConsumerOrdersProduct::class, ConsumerOrder::class)
             ->selectRaw('consumer_orders_products.product_id, sum(consumer_orders_products.quantity) as sum_quantity')
             ->join('products', 'products.id', '=', 'consumer_orders_products.product_id')
             ->join('categories', 'categories.id', '=', 'products.category_id')

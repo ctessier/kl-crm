@@ -39,7 +39,7 @@ class ConsumerOrderRequest extends FormRequest
     public function messages()
     {
         return [
-            'consumer_id.required_without' => "Le champ :attribute est obligatoire.",
+            'consumer_id.required_without' => 'Le champ :attribute est obligatoire.',
         ];
     }
 }

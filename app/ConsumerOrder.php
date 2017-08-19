@@ -58,7 +58,7 @@ class ConsumerOrder extends Model
 
     /**
      * @param Product $product
-     * @param bool $exclude_stock
+     * @param bool    $exclude_stock
      *
      * @return int|string
      */
