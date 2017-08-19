@@ -13,7 +13,7 @@ return [
     */
 
     'consumers'        => 'Mes consommateurs',
-    'consumers-orders' => 'Commande cliente',
+    'consumers-orders' => 'Commandes clientes',
     'for'              => 'pour',
     'male'             => 'Homme',
     'no'               => 'Non',
