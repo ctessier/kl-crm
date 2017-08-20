@@ -26,7 +26,7 @@
                 <div class="box-body">
                     <div class="row">
                         <div class="col-md-8">
-                            {{ Form::select('product_id', $products, null, ['class' => 'form-control', 'disabled' => 'disabled']) }}
+                            {{ $consumer_orders_product->product->name }}
                         </div>
                         <div class="col-md-4">
                             {{ Form::selectRange('quantity', 1, config('krisslaure.stock-range-max'), null, ['class' => 'form-control']) }}

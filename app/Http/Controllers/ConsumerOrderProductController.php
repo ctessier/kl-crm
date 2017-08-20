@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\ConsumerOrder;
 use App\ConsumerOrdersProduct;
-use App\Http\Requests\ConsumerOrderProductRequest;
+use App\Http\Requests\ConsumerOrderProductStoreRequest;
+use App\Http\Requests\ConsumerOrderProductUpdateRequest;
 use App\Product;
 
 class ConsumerOrderProductController extends Controller
@@ -29,12 +30,12 @@ class ConsumerOrderProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \App\Http\Requests\ConsumerOrderProductRequest $request
-     * @param \App\ConsumerOrder                             $consumer_order
+     * @param \App\Http\Requests\ConsumerOrderProductStoreRequest $request
+     * @param \App\ConsumerOrder                                  $consumer_order
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(ConsumerOrderProductRequest $request, ConsumerOrder $consumer_order)
+    public function store(ConsumerOrderProductStoreRequest $request, ConsumerOrder $consumer_order)
     {
         $product = Product::find($request->get('product_id'));
         $quantity = $request->get('quantity');
@@ -77,13 +78,13 @@ class ConsumerOrderProductController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \App\Http\Requests\ConsumerOrderProductRequest $request
-     * @param \App\ConsumerOrder                             $consumer_order
-     * @param \App\Product                                   $product
+     * @param \App\Http\Requests\ConsumerOrderProductUpdateRequest $request
+     * @param \App\ConsumerOrder                                   $consumer_order
+     * @param \App\Product                                         $product
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(ConsumerOrderProductRequest $request, ConsumerOrder $consumer_order, Product $product)
+    public function update(ConsumerOrderProductUpdateRequest $request, ConsumerOrder $consumer_order, Product $product)
     {
         $quantity = $request->get('quantity');
         $from_stock = $request->get('from_stock') ? true : false;
