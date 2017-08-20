@@ -31,7 +31,7 @@
                                     <td>{{ $consumer_order->reference }}</td>
                                     <td>{{ $consumer_order->consumer->last_name }}</td>
                                     <td>{{ $consumer_order->consumer->first_name }}</td>
-                                    <td>{{ $consumer_order->month->formatLocalized('%B %Y') }}</td>
+                                    <td>{{ ucfirst($consumer_order->month->formatLocalized('%B %Y')) }}</td>
                                     <td>{{ trans('general.'.($consumer_order->is_test_program ? 'yes' : 'no')) }}</td>
                                     <td>
                                         {!! link_to_route('consumer_orders.show', trans('actions.edit'), ['consumer_order' => $consumer_order], ['class' => 'btn btn-xs btn-default']) !!}
