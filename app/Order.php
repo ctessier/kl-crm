@@ -74,7 +74,6 @@ class Order extends Model
             })
             ->where('consumer_orders.order_id', $this->id);
 
-
         if ($from_stock) {
             $query->where('from_stock', true)
                 ->whereNotNull('consumer_orders.consumer_id');
