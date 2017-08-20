@@ -49,7 +49,7 @@ class Order extends Model
             ->join('products', 'products.id', '=', 'consumer_orders_products.product_id')
             ->join('categories', 'categories.id', '=', 'products.category_id')
             ->where('consumer_orders_products.from_stock', $from_stock)
-            ->groupBy('products.id', 'consumer_orders.order_id')
+            ->groupBy('consumer_orders_products.product_id', 'consumer_orders.order_id')
             ->orderBy('categories.id')
             ->orderBy('sum_quantity', 'DESC');
     }
@@ -60,17 +60,25 @@ class Order extends Model
     }
 
     /**
-     * Return the total quantity of products.
+     * Return the total quantity of products for the order.
+     *
+     * @param bool $from_stock
      *
      * @return int
      */
-    public function getTotalProductsQuantity()
+    public function getTotalProductsQuantity($from_stock = false)
     {
         $query = ConsumerOrdersProduct::selectRaw('sum(consumer_orders_products.quantity) as total')
             ->join('consumer_orders', function ($join) {
                 $join->on('consumer_orders_products.consumer_order_id', '=', 'consumer_orders.id');
             })
             ->where('consumer_orders.order_id', $this->id);
+
+
+        if ($from_stock) {
+            $query->where('from_stock', true)
+                ->whereNotNull('consumer_orders.consumer_id');
+        }
 
         return $query->first()->total;
     }

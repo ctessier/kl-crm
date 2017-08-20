@@ -49,7 +49,7 @@ class OrderController extends Controller
     {
         $order = new Order();
         $order->user_id = $this->user->id;
-        $order->reference = Carbon::now()->formatLocalized('%B');
+        $order->reference = ucfirst(Carbon::now()->formatLocalized('%B'));
         $order->save();
 
         $orphan_consumer_orders = ConsumerOrder::whereNull('order_id')->get();
@@ -59,9 +59,7 @@ class OrderController extends Controller
 
         \Alert::success('Le nouvelle commande a bien été créée !')->flash();
 
-        return redirect()->route('orders.show', [
-            'order' => $order,
-        ]);
+        return redirect()->route('orders.show', compact('order'));
     }
 
     /**

@@ -2,43 +2,9 @@
 
 @section('content')
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="box">
-                <div class="box-header">
-                    <h3 class="box-title">{{ trans('title.general-information') }}</h3>
-                </div>
-                <div class="box-body">
-                    {{ $order->reference }}
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('orders.show-general-information')
 
-    <div class="row">
-        <div class="col-lg-3 col-xs-6">
-            <div class="small-box bg-aqua">
-                <div class="inner">
-                    <h3>{{ $order->getTotalProductsQuantity() }}</h3>
-                    <p>boîtes au total</p>
-                </div>
-                <div class="icon">
-                    <i class="fa fa-check"></i>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-xs-6">
-            <div class="small-box bg-aqua">
-                <div class="inner">
-                    <h3>X</h3>
-                    <p>cartons</p>
-                </div>
-                <div class="icon">
-                    <i class="fa fa-dropbox"></i>
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('orders.show-figures')
 
     <div class="row">
         <div class="col-sm-12">
