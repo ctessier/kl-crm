@@ -17,6 +17,7 @@ return [
     'for'              => 'pour',
     'male'             => 'Homme',
     'no'               => 'Non',
+    'orders'           => 'Commandes',
     'female'           => 'Femme',
     'profile'          => 'Mon compte',
     'stock'            => 'Mon stock',
