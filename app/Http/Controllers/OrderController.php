@@ -35,8 +35,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return view('orders.index')
-            ->with('orders', $this->user->orders);
+        $orders = $this->user->orders;
+
+        return view('orders.index', compact('orders'));
     }
 
     /**
