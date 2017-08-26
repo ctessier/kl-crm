@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
+    public function box_type()
+    {
+        return $this->belongsTo(BoxType::class);
+    }
+
     /**
      * Return the collection of products.
      *
