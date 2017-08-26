@@ -27,7 +27,7 @@ class ProductsTablesSeeder extends Seeder
                 'id'       => 3,
                 'name'     => 'Carton d\'idées délices',
                 'capacity' => 6,
-            ]
+            ],
         ]);
 
         // Seed categories
