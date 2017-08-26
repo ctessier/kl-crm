@@ -32,8 +32,19 @@
                             {{ Form::selectRange('quantity', 1, config('krisslaure.stock-range-max'), null, ['class' => 'form-control']) }}
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="checkbox">
+                                <label for="from_stock">
+                                    {{ Form::checkbox('from_stock', true, null, ['id' => 'from_stock']) }}
+                                    {{ trans('label.from_stock') }}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="box-footer">
+                    {{ link_to_route('consumer_orders.show', trans('actions.back'), $consumer_orders_product->consumer_order_id, ['class' => 'btn btn-default']) }}
                     {!! Form::submit(trans('actions.save'), ['class' => 'btn btn-primary pull-right']) !!}
                 </div>
             </div>

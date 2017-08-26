@@ -36,6 +36,16 @@ class ConsumerOrder extends Model
     }
 
     /**
+     * Return the associated order of the consumer order.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
+
+    /**
      * Return the products of the consumer's order.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -43,7 +53,24 @@ class ConsumerOrder extends Model
     public function products()
     {
         return $this->belongsToMany(Product::class, 'consumer_orders_products', 'consumer_order_id', 'product_id')
-            ->withPivot('quantity');
+            ->withPivot('quantity', 'from_stock');
+    }
+
+    /**
+     * @param Product $product
+     * @param bool    $exclude_stock
+     *
+     * @return int|string
+     */
+    public function getProductQuantity($product, $exclude_stock = true)
+    {
+        $quantity = $this->products()->where('product_id', $product->id)->sum('quantity');
+
+        if ($exclude_stock) {
+            $quantity -= $this->products()->where('from_stock', true)->where('product_id', $product->id)->sum('quantity');
+        }
+
+        return 0 === $quantity ? '' : $quantity;
     }
 
     /**
@@ -69,5 +96,25 @@ class ConsumerOrder extends Model
         $this->attributes['month'] = $value->format('Y-m-d');
 
         return $this;
+    }
+
+    /**
+     * Set the order_id attribute (to null if empty).
+     *
+     * @param $value
+     */
+    public function setOrderIdAttribute($value)
+    {
+        $this->attributes['order_id'] = trim($value) !== '' ? $value : null;
+    }
+
+    /**
+     * Set the consumer_id attribute (to null if empty).
+     *
+     * @param $value
+     */
+    public function setConsumerIdAttribute($value)
+    {
+        $this->attributes['consumer_id'] = trim($value) !== '' ? $value : null;
     }
 }

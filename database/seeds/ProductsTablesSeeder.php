@@ -153,7 +153,7 @@ class ProductsTablesSeeder extends Seeder
                 'category_id' => 4,
             ],
             [
-                'name'        => 'Idée délice chocolat',
+                'name'        => 'Idée délice chocolat (x8)',
                 'description' => null,
                 'category_id' => 5,
             ],

@@ -11,6 +11,7 @@ class Owner
      *
      * @param \Illuminate\Http\Request $request
      * @param \Closure                 $next
+     * @param string                   $resource
      *
      * @return mixed
      */

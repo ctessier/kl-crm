@@ -62,3 +62,4 @@ Route::post('stock', [
 Route::resource('consumers', 'ConsumerController');
 Route::resource('consumer_orders', 'ConsumerOrderController');
 Route::resource('consumer_orders.products', 'ConsumerOrderProductController');
+Route::resource('orders', 'OrderController');

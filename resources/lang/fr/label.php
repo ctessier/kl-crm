@@ -18,6 +18,7 @@ return [
     'consumer-status'           => 'Statut',
     'email'                     => 'Adresse e-mail',
     'firstname'                 => 'Prénom',
+    'from_stock'                => 'Pris du stock',
     'ideal-quantity'            => 'Quantité idéal',
     'is-test-program'           => 'Programme Test ?',
     'quantity'                  => 'Quantité',
@@ -25,11 +26,13 @@ return [
     'month'                     => 'Mois',
     'name'                      => 'Nom',
     'new-password'              => 'Nouveau mot de passe',
+    'order'                     => 'Commande',
     'phone'                     => 'Téléphone',
     'postal-code'               => 'Code postal',
     'product'                   => 'Produit',
     'reference'                 => 'Référence',
     'sex'                       => 'Sexe',
+    'stock'                     => 'Commander pour le stock',
     'status-date'               => 'Date',
 
 ];

@@ -147,6 +147,7 @@ return [
 
         // Custom attributes
         'birthday'                    => 'Date de naissance',
+        'consumer_id'                 => 'Consommateur',
         'postal_code'                 => 'Code postal',
         'products.*.quantity'         => 'Quantité',
         'products.*.optimal_quantity' => 'Stock idéal',

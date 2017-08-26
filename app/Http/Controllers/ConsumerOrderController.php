@@ -54,8 +54,12 @@ class ConsumerOrderController extends Controller
             ->where('user_id', $this->user->id)
             ->pluck('name', 'id');
 
+        // Get user's orders
+        $orders = $this->user->orders()->pluck('reference', 'id');
+
         return view('consumer_orders.create')
-            ->with('consumers', $consumers);
+            ->with('consumers', $consumers)
+            ->with('orders', $orders);
     }
 
     /**
@@ -68,7 +72,7 @@ class ConsumerOrderController extends Controller
     public function store(ConsumerOrderRequest $request)
     {
         $consumer_order = new ConsumerOrder();
-        $consumer_order->fill($request->all());
+        $consumer_order->fill($request->except(['stock']));
         $consumer_order->user_id = $this->user->id;
 
         $consumer_order->save();
@@ -97,10 +101,14 @@ class ConsumerOrderController extends Controller
         // Get list of products
         $products = Product::pluck('name', 'id');
 
+        // Get user's orders
+        $orders = $this->user->orders()->pluck('reference', 'id');
+
         return view('consumer_orders.show')
             ->with('consumer_order', $consumer_order)
             ->with('consumers', $consumers)
-            ->with('products', $products);
+            ->with('products', $products)
+            ->with('orders', $orders);
     }
 
     /**
@@ -113,7 +121,7 @@ class ConsumerOrderController extends Controller
      */
     public function update(ConsumerOrderRequest $request, ConsumerOrder $consumer_order)
     {
-        $consumer_order->fill($request->all());
+        $consumer_order->fill($request->except(['stock']));
 
         $consumer_order->save();
 

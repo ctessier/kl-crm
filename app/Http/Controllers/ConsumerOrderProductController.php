@@ -37,25 +37,20 @@ class ConsumerOrderProductController extends Controller
      */
     public function store(ConsumerOrderProductStoreRequest $request, ConsumerOrder $consumer_order)
     {
-        $consumer_order_product = new ConsumerOrdersProduct();
-        $consumer_order_product->fill($request->except('saveAndNew'));
-        $consumer_order_product->consumer_order_id = $consumer_order->id;
+        $product = Product::find($request->get('product_id'));
+        $quantity = $request->get('quantity');
+        $from_stock = $request->get('from_stock');
 
-        $consumer_order_product->save();
+        if (!$from_stock || ($from_stock && $this->updateStock($product, $quantity))) {
+            $consumer_order->products()->save($product, [
+                'quantity'   => $quantity,
+                'from_stock' => $from_stock ? $from_stock : false,
+            ]);
 
-        $params = [
-            'consumer_order' => $consumer_order,
-        ];
-
-        if ($request->get('saveAndNew')) {
-            $target = 'consumer_orders.products.create';
-        } else {
-            $target = 'consumer_orders.show';
+            \Alert::success('Le produit a été ajouté !')->flash();
         }
 
-        \Alert::success('Le produit a été ajouté !')->flash();
-
-        return redirect()->route($target, $params);
+        return back();
     }
 
     /**
@@ -91,12 +86,17 @@ class ConsumerOrderProductController extends Controller
      */
     public function update(ConsumerOrderProductUpdateRequest $request, ConsumerOrder $consumer_order, Product $product)
     {
-        $consumer_order->products()->updateExistingPivot($product->id, [
-            'product_id' => $request->get('product_id'),
-            'quantity'   => $request->get('quantity'),
-        ]);
+        $quantity = $request->get('quantity');
+        $from_stock = $request->get('from_stock') ? true : false;
 
-        \Alert::success('Produit mis à jour !')->flash();
+        if ($this->updateStock($product, $quantity, $consumer_order, $from_stock)) {
+            $consumer_order->products()->updateExistingPivot($product->id, [
+                'quantity'   => $quantity,
+                'from_stock' => $from_stock ? $from_stock : false,
+            ]);
+
+            \Alert::success('Le produit a été mis à jour !')->flash();
+        }
 
         return redirect()->route('consumer_orders.show', [
             'consumer_order' => $consumer_order,
@@ -113,6 +113,21 @@ class ConsumerOrderProductController extends Controller
      */
     public function destroy(ConsumerOrder $consumer_order, Product $product)
     {
+        try {
+            // Update stock if needed
+            $consumer_order_product = $consumer_order->products()->find($product->id)->pivot;
+            if ($consumer_order_product->from_stock) {
+                $stock = $this->user->products()->find($product->id)->pivot;
+                $this->user->products()->updateExistingPivot($product->id, [
+                    'quantity' => $stock->quantity + $consumer_order_product->quantity,
+                ]);
+
+                \Alert::warning('Le produit a été replacé dans le stock.')->flash();
+            }
+        } catch (\Exception $ex) {
+            \Alert::error('Impossible de mettre à jour le stock.')->flash();
+        }
+
         $consumer_order->products()->detach($product->id);
 
         \Alert::success('Produit supprimé avec succès !')->flash();
@@ -120,5 +135,63 @@ class ConsumerOrderProductController extends Controller
         return redirect()->route('consumer_orders.show', [
             'consumer_order' => $consumer_order,
         ]);
+    }
+
+    /**
+     * Update the user's stock from a given product and quantity to take out.
+     *
+     * @param \App\Product       $product
+     * @param int                $quantity
+     * @param \App\ConsumerOrder $consumer_order
+     * @param bool|null          $from_stock
+     *
+     * @return bool
+     */
+    private function updateStock($product, $quantity, $consumer_order = null, $from_stock = null)
+    {
+        try {
+            $stock = $this->user->products()->find($product->id)->pivot;
+
+            $previous_from_stock = null;
+            if ($from_stock !== null) {
+                $previous_from_stock = $consumer_order->products()->find($product->id)->pivot->from_stock;
+            }
+
+            if ($from_stock === null || (!$previous_from_stock && $from_stock)) {
+                // New product or it was not taken from stock but now it is, we decrease the stock by the quantity
+                $newStock = $stock->quantity - $quantity;
+            } elseif ($previous_from_stock && !$from_stock) {
+                // Update of a product and it was taken from stock but it is not anymore, we add the previous quantity
+                $newStock = $stock->quantity + $consumer_order->products()->find($product->id)->pivot->quantity;
+            } elseif ($previous_from_stock && $from_stock) {
+                // Update of a product and it is still taken from stock, we add/sub the difference
+                $newStock = $stock->quantity + $consumer_order->products()->find($product->id)->pivot->quantity
+                    - $quantity;
+            }
+
+            if ($newStock >= 0) {
+                // Update stock
+                $this->user->products()->updateExistingPivot($product->id, [
+                    'quantity' => $newStock,
+                ]);
+
+                // Warn is stock is now empty for the product
+                if ($newStock === 0) {
+                    \Alert::warning('Votre stock est désormais vide pour ce produit.')->flash();
+                } else {
+                    \Alert::warning('Votre stock est désormais de '.$newStock.' pour ce produit.')->flash();
+                }
+
+                return true;
+            } else {
+                \Alert::error('Vous n\'avez pas le stock disponible.')->flash();
+
+                return false;
+            }
+        } catch (\Exception $ex) {
+            \Alert::error('Impossible de mettre à jour le stock.')->flash();
+
+            return false;
+        }
     }
 }

@@ -13,6 +13,7 @@ return [
     */
 
     'add'             => 'Ajouter',
+    'back'            => 'Retour',
     'change-password' => 'Changer mon mot de passe',
     'continue'        => 'Continuer',
     'create'          => 'Créer',
@@ -20,7 +21,7 @@ return [
     'edit'            => 'Modifier',
     'new'             => 'Nouveau',
     'save'            => 'Enregistrer',
-    'see'             => 'Voir',
-    'see-all'         => 'Voir tout',
+    'view'            => 'Voir',
+    'view-all'        => 'Voir tout',
 
 ];

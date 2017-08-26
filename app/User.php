@@ -39,15 +39,25 @@ class User extends Authenticatable
             ->orderBy('first_name');
     }
 
-    /**
-     * Return the consumer orders of the user ordered by month descending.
-     *
-     * @return \Illuminate\Database\Eloquent\Collection|ConsumerOrder[]
-     */
+    /*
+    * Return the consumer orders of the user ordered by month descending.
+    *
+    * @return \Illuminate\Database\Eloquent\Collection|ConsumerOrder[]
+    */
     public function consumer_orders()
     {
         return $this->hasMany(ConsumerOrder::class)
             ->orderBy('month', 'DESC');
+    }
+
+    /**
+     * Return the orders of the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
     }
 
     /**
