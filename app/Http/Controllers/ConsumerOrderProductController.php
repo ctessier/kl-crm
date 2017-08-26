@@ -167,6 +167,9 @@ class ConsumerOrderProductController extends Controller
                 // Update of a product and it is still taken from stock, we add/sub the difference
                 $newStock = $stock->quantity + $consumer_order->products()->find($product->id)->pivot->quantity
                     - $quantity;
+            } else {
+                // The product was not and is still not from stock
+                return true;
             }
 
             if ($newStock >= 0) {
