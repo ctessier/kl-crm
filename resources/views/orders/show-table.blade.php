@@ -1,27 +1,29 @@
 @inject('orders_service', 'App\Services\OrdersService')
 
-<table class="table table-hover">
+<table id="recap" class="table table-hover">
     <thead>
         <tr>
             <th>{{ trans('label.consumer') }}</th>
             @foreach ($order->products as $product)
-            <th class="text-center">
+            <th class="product-column">
                 {{ $product->product->name }}
-                ({{ $product->product->category->name }})
             </th>
             @endforeach
+            <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach ($order->consumer_orders as $consumer_order)
-        <tr>
+        <tr class="{{ !$consumer_order->consumer ? 'filler' : '' }}">
             <td>
-                {{ $consumer_order->consumer->full_name }}
-                {{ link_to_route('consumer_orders.show', trans('actions.view'), $consumer_order->id, ['class' => 'btn btn-xs btn-default']) }}
+                {{ $consumer_order->consumer ? $consumer_order->consumer->full_name : trans('messages.filler') }}
             </td>
             @foreach ($order->products as $order_consumer_order)
-            <td class="text-center">{{ $consumer_order->getProductQuantity($order_consumer_order->product) }}</td>
+            <td class="product-column">{{ $consumer_order->getProductQuantity($order_consumer_order->product) }}</td>
             @endforeach
+            <td>
+                {{ link_to_route('consumer_orders.show', trans('actions.edit'), $consumer_order->id, ['class' => 'btn btn-xs btn-default']) }}
+            </td>
         </tr>
         @endforeach
     </tbody>

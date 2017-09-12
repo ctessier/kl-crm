@@ -9,7 +9,12 @@ class Box
     /**
      * @var BoxType
      */
-    private $type;
+    public $type;
+
+    /**
+     * @var Candidate[]|Collection
+     */
+    public $candidates;
 
     /**
      * @var int
@@ -31,6 +36,7 @@ class Box
         $this->type = $box_type;
         $this->capacity = $box_type->capacity;
         $this->content = new Collection();
+        $this->candidates = new Collection();
     }
 
     /**
@@ -61,13 +67,45 @@ class Box
     }
 
     /**
+     * @param Product $product
+     *
+     * @return bool
+     */
+    public function addCandidate(Product $product)
+    {
+        if ($this->isFull(true)) {
+            return false;
+        }
+
+        $candidate = $this->candidates->where('product', $product);
+
+        if ($candidate->isNotEmpty()) {
+            $candidate->first()->increment();
+        } else {
+            $candidate = new Candidate($product, 1);
+            $this->candidates->push($candidate);
+        }
+
+        return $candidate;
+    }
+
+    /**
      * Return the number of slots used in the box.
+     *
+     * @param bool $with_candidate
      *
      * @return int
      */
-    public function getQuantity()
+    public function getQuantity($with_candidate = false)
     {
-        return $this->content->count();
+        $quantity = 0;
+        if ($with_candidate) {
+            $quantity = $this->candidates->sum(function ($candidate) {
+                return $candidate->quantity;
+            });
+        }
+
+        return $quantity + $this->content->count();
     }
 
     /**
@@ -83,10 +121,12 @@ class Box
     /**
      * Tell if the box is full or not.
      *
+     * @param bool $with_candidates
+     *
      * @return bool
      */
-    public function isFull()
+    public function isFull($with_candidates = false)
     {
-        return $this->capacity === $this->getQuantity();
+        return $this->capacity === $this->getQuantity($with_candidates);
     }
 }
