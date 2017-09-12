@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Box;
 use App\BoxType;
-use App\Candidate;
 use App\ConsumerOrdersProduct;
 use App\Order;
 use App\Product;
@@ -83,7 +82,7 @@ class OrdersService
     }
 
     /**
-     *
+     * Determine the filler candidates for a given order and a stock.
      *
      * @param Order                                              $order
      * @param Product[]|\Illuminate\Database\Eloquent\Collection $stock
@@ -106,7 +105,9 @@ class OrdersService
     }
 
     /**
-     * @param BoxType $box_type
+     * Get a product candidate from a given type and a stock.
+     *
+     * @param BoxType    $box_type
      * @param Collection $stock
      *
      * @return Product
