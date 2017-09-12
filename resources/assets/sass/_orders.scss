@@ -1,0 +1,11 @@
+table#recap {
+    tr.filler {
+        font-style: italic;
+        color: $brand-warning;
+    }
+    th.product-column,
+    td.product-column {
+        text-align: center;
+        max-width: 10%;
+    }
+}

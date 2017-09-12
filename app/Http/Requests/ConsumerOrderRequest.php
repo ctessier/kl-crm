@@ -24,10 +24,11 @@ class ConsumerOrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'reference'   => '',
+            'reference'   => 'max:25',
             'consumer_id' => 'required_without:stock|exists:consumers,id',
             'order_id'    => 'exists:orders,id',
             'month'       => 'required|date_format:m/Y',
+            'stock'       => 'boolean',
         ];
     }
 
