@@ -1,4 +1,29 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+.box {
+  border-top-width: 4px;
+  border-radius: 3px;
+}
+
+.box.box-entremet {
+  border-top-color: #0c8bd1;
+}
+
+.box.box-potage {
+  border-top-color: #74b94e;
+}
+
+.box.box-tonic {
+  border-top-color: #f5bf00;
+}
+
+.box.box-idee-delice {
+  border-top-color: #c3ad76;
+}
+
+.box.box-barre-gourmande {
+  border-top-color: #999999;
+}
+
 table#recap tr.filler {
   font-style: italic;
   color: #cbb956;

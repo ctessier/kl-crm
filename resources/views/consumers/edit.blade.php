@@ -17,7 +17,7 @@
     {!! Form::model($consumer, ['route' => ['consumers.update', $consumer], 'method' => 'put']) !!}
     <div class="row">
         <div class="col-md-6">
-            <div class="box">
+            <div class="box box-solid">
                 <div class="box-header">
                     <h3 class="box-title">Informations personnelles</h3>
                 </div>
@@ -25,7 +25,7 @@
                     @include('elements.forms.consumers.personal-information')
                 </div>
             </div>
-            <div class="box">
+            <div class="box box-solid">
                 <div class="box-header">
                     <h3 class="box-title">Statut Kriss-Laure</h3>
                 </div>
@@ -55,7 +55,7 @@
             </div>
         </div>
         <div class="col-md-6">
-            <div class="box">
+            <div class="box box-solid">
                 <div class="box-header">
                     <h3 class="box-title">Coordonnées</h3>
                 </div>
@@ -63,7 +63,7 @@
                     @include('elements.forms.consumers.contact-details')
                 </div>
             </div>
-            {!! Form::submit('Enregistrer', ['class' => 'btn btn-default']) !!}
+            {!! Form::submit('Enregistrer', ['class' => 'btn btn-primary']) !!}
         </div>
     </div>
     {!! Form::close() !!}

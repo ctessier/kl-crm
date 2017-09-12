@@ -11,7 +11,7 @@
 @section('content')
     <div class="row">
         <div class="col-xs-12">
-            <div class="box">
+            <div class="box box-solid">
                 @if ($consumer_orders->count() > 0)
                     <div class="box-body table-responsive no-padding">
                         <table class="table table-hover">
@@ -45,7 +45,7 @@
                     </div>
                 @endif
                 <div class="box-footer">
-                    {!! link_to_route('consumer_orders.create', trans('actions.new'), [], ['class' => 'btn btn-default']) !!}
+                    {!! link_to_route('consumer_orders.create', trans('actions.new'), [], ['class' => 'btn btn-primary']) !!}
                 </div>
             </div>
         </div>
