@@ -2,18 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Consumer;
 use App\ConsumerOrder;
 use App\Http\Requests\ConsumerOrderRequest;
 use App\Product;
-use Illuminate\Support\Facades\DB;
+use App\Repository\ConsumersRepository;
 
 class ConsumerOrderController extends Controller
 {
     /**
-     * ConsumerOrderController constructor.
+     * @var ConsumersRepository
      */
-    public function __construct()
+    protected $consumer_repository;
+
+    /**
+     * ConsumerOrderController constructor.
+     *
+     * @param ConsumersRepository $consumer_repository
+     */
+    public function __construct(ConsumersRepository $consumer_repository)
     {
         $this->middleware('auth');
 
@@ -24,6 +30,8 @@ class ConsumerOrderController extends Controller
                 'destroy',
             ],
         ]);
+
+        $this->consumer_repository = $consumer_repository;
 
         parent::__construct();
     }
@@ -48,11 +56,7 @@ class ConsumerOrderController extends Controller
     public function create()
     {
         // Get user's consumers with their full name
-        $consumers = Consumer::select(
-            DB::raw("CONCAT(first_name,' ',last_name) AS name"),
-            'id')
-            ->where('user_id', $this->user->id)
-            ->pluck('name', 'id');
+        $consumers = $this->consumer_repository->getUsersConsumersList($this->user);
 
         // Get user's orders
         $orders = $this->user->orders()->pluck('reference', 'id');
@@ -91,14 +95,10 @@ class ConsumerOrderController extends Controller
      */
     public function show(ConsumerOrder $consumer_order)
     {
-        // Get user's consumers with their full name
-        $consumers = Consumer::select(
-            DB::raw("CONCAT(first_name,' ',last_name) AS name"),
-            'id')
-            ->where('user_id', $this->user->id)
-            ->pluck('name', 'id');
+        // Get the list of the user's consumers
+        $consumers = $this->consumer_repository->getUsersConsumersList($this->user);
 
-        // Get list of products
+        // Get the list of products
         $products = Product::pluck('name', 'id');
 
         // Get user's orders
