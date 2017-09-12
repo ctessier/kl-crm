@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-6 col-sm-12">
             {!! Form::model($consumer_order, ['route' => ['consumer_orders.update', $consumer_order], 'method' => 'put']) !!}
-                <div class="box">
+                <div class="box box-solid">
                     <div class="box-header">
                         <h3 class="box-title">{{ trans('title.general-information') }}</h3>
                     </div>
@@ -20,7 +20,7 @@
         </div>
 
         <div class="col-md-6 col-sm-12">
-            <div class="box">
+            <div class="box box-solid">
                 <div class="box-header">
                     <h3 class="box-title">{{ trans('title.products') }}</h3>
                 </div>

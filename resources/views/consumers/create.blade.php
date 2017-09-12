@@ -20,7 +20,7 @@
         <div class="row">
 
             <div class="col-md-6">
-                <div class="box">
+                <div class="box box-solid">
                     <div class="box-header">
                         <h3 class="box-title">{{ trans('title.personal-information') }}</h3>
                     </div>
@@ -28,7 +28,7 @@
                         @include('elements.forms.consumers.personal-information')
                     </div>
                 </div>
-                <div class="box">
+                <div class="box box-solid">
                     <div class="box-header">
                         <h3 class="box-title">{{ trans('label.consumer-status') }} {{ config('backpack.base.project_name') }}</h3>
                     </div>
@@ -59,7 +59,7 @@
             </div>
 
             <div class="col-md-6">
-                <div class="box">
+                <div class="box box-solid">
                     <div class="box-header">
                         <h3 class="box-title">{{ trans('title.contact-details') }}</h3>
                     </div>
@@ -67,7 +67,7 @@
                         @include('elements.forms.consumers.contact-details')
                     </div>
                 </div>
-                {!! Form::submit(trans('actions.save'), ['class' => 'btn btn-default']) !!}
+                {!! Form::submit(trans('actions.save'), ['class' => 'btn btn-primary']) !!}
             </div>
 
         </div>
