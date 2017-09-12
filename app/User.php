@@ -53,7 +53,7 @@ class User extends Authenticatable
     /**
      * Return the orders of the user.
      *
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return Order[]|\Illuminate\Database\Eloquent\Collection
      */
     public function orders()
     {
@@ -63,7 +63,7 @@ class User extends Authenticatable
     /**
      * Return associated products (stock) thanks to pivot table.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return Product[]|Illuminate\Database\Eloquent\Collection
      */
     public function products()
     {
