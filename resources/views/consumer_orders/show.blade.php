@@ -32,7 +32,7 @@
                             <tr>
                                 <th>{{ trans('label.product') }}</th>
                                 <th>{{ trans('label.quantity') }}</th>
-                                <th>{{ trans('label.stock') }}</th></h>
+                                <th>{{ trans('label.from_stock') }}</th></h>
                                 <th></th>
                             </tr>
                             </thead>

@@ -5,7 +5,7 @@
 </div>
 <div class="form-group{{ $errors->has('consumer_id') ? ' has-error' : '' }}">
     {{ Form::label('consumer_id', trans('label.consumer')) }}
-    {{ Form::select('consumer_id', $consumers, null, ['placeholder' => 'Sélectionner un consommateur', 'class' => 'form-control']) }}
+    {{ Form::select('consumer_id', $consumers, null, ['class' => 'form-control']) }}
     {!! $errors->first('consumer_id', '<span class="help-block">:message</span>') !!}
 </div>
 <div class="form-group{{ $errors->has('stock') ? ' has-error' : '' }}">
