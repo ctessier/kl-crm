@@ -1,5 +1,5 @@
 <div class="col-md-4 col-xs-12">
-    <div class="box with-border">
+    <div class="box with-border box-{{ str_slug($category->name) }}">
         <div class="box-header">
             <h3 class="box-title">
                 {{ $category->name }}

@@ -19,7 +19,7 @@
 
         <div class="row">
             <div class="col-lg-4 col-md-8 col-lg-offset-4 col-md-offset-2">
-                <div class="box">
+                <div class="box box-solid">
                     <div class="box-header">
                         <h3 class="box-title">{{ trans('title.general-information') }}</h3>
                     </div>

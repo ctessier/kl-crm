@@ -1,0 +1,19 @@
+.box {
+    border-top-width: 4px;
+    border-radius: 3px;
+    &.box-entremet {
+        border-top-color: $brand-entremet;
+    }
+    &.box-potage {
+        border-top-color: $brand-potage;
+    }
+    &.box-tonic {
+        border-top-color: $brand-tonic;
+    }
+    &.box-idee-delice {
+        border-top-color: $brand-idee-delice;
+    }
+    &.box-barre-gourmande {
+        border-top-color: $brand-barre-gourmande;
+    }
+}

@@ -15,7 +15,7 @@
 @section('content')
 <div class="row">
     <div class="col-md-6">
-        <div class="box">
+        <div class="box box-solid">
             <div class="box-header with-border">
                 <h3 class="box-title">{{ trans('title.personal-information') }}</h3>
             </div>
@@ -31,13 +31,13 @@
                         {!! Form::email('email', null, ['class' => 'form-control']) !!}
                         {!! $errors->first('email', '<span class="help-block">:message</span>') !!}
                     </div>
-                    {!! Form::submit(trans('actions.save'), ['class' => 'btn btn-default']) !!}
+                    {!! Form::submit(trans('actions.save'), ['class' => 'btn btn-primary']) !!}
                 {!! Form::close() !!}
             </div>
         </div>
     </div>
     <div class="col-md-6">
-        <div class="box">
+        <div class="box box-solid">
             <div class="box-header with-border">
                 <h3 class="box-title">{{ trans('title.security') }}</h3>
             </div>
@@ -53,7 +53,7 @@
                     {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
                     {!! $errors->first('password_confirmation', '<span class="help-block">:message</span>') !!}
                 </div>
-                {!! Form::submit(trans('actions.change-password'), ['class' => 'btn btn-default']) !!}
+                {!! Form::submit(trans('actions.change-password'), ['class' => 'btn btn-primary']) !!}
                 {!! Form::close() !!}
             </div>
         </div>
