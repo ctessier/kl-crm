@@ -1,7 +1,6 @@
 language: php
 
 php:
-  - 7.0
   - 7.1
 
 before_install:
@@ -9,13 +8,13 @@ before_install:
 
 before_script:
   - composer self-update
-  - composer install --prefer-source --no-interaction --dev
+  - composer install --prefer-source --no-interaction
   - cp .env.example .env
   - php artisan key:generate
-  #- npm install
+  - npm install
 
 script:
-  #- gulp
+  - npm run prod
   - vendor/bin/phpunit --coverage-clover=coverage.xml
 
 after_success:
