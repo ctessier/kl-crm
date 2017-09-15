@@ -20,7 +20,7 @@ class CreateConsumersTables extends Migration
             $table->date('birthdate')->nullable();
             $table->char('sex', 1)->nullable();
             $table->string('email')->nullable();
-            $table->string('phone', 12)->nullable();
+            $table->string('phone', 15)->nullable();
             $table->string('address')->nullable();
             $table->string('postal_code', 5)->nullable();
             $table->string('city')->nullable();
