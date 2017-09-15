@@ -26,7 +26,7 @@
     <div class="col-xs-12">
         <div class="small-box bg-green">
             <div class="inner">
-                <h3>{{ $orders_service->getBoxes($order)->count() }}</h3>
+                <h3>{{ $orders_service->getBoxes($order)->count() - $orders_service->getBoxes($order, true)->count() }}</h3>
                 <p>cartons</p>
             </div>
             <div class="icon">
