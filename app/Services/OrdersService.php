@@ -119,16 +119,14 @@ class OrdersService
         });
 
         $candidate = $filtered_stock->first();
-        $candidate->pivot->quantity++;
         foreach ($filtered_stock->slice(1) as $product) {
             $candidate_value = $candidate->pivot->optimal_quantity - $candidate->pivot->quantity;
             $product_value = $product->pivot->optimal_quantity - $product->pivot->quantity;
             if ($product_value >= $candidate_value) {
-                $candidate->pivot->quantity--;
                 $candidate = $product;
-                $candidate->pivot->quantity++;
             }
         }
+        $candidate->pivot->quantity++;
 
         return $candidate;
     }

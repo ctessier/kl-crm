@@ -16,7 +16,7 @@
         @foreach ($order->consumer_orders as $consumer_order)
         <tr class="{{ !$consumer_order->consumer ? 'filler' : '' }}">
             <td>
-                {{ $consumer_order->consumer ? $consumer_order->consumer->full_name : trans('messages.filler') }}
+                {{ $consumer_order->consumer ? $consumer_order->consumer->full_name : trans('general.fillers') }}
             </td>
             @foreach ($order->products as $order_consumer_order)
             <td class="product-column">{{ $consumer_order->getProductQuantity($order_consumer_order->product) }}</td>

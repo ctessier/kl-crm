@@ -4,7 +4,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            <div class="box">
+            <div class="box box-solid">
                 <div class="box-header">
                     <h3 class="box-title">{{ $order->reference }}</h3>
                 </div>
@@ -12,6 +12,7 @@
                     <div class="row">
                         <div class="col-md-6 col-xs-12">
                             @include('orders.show-boxes-table')
+                            @include('orders.show-candidates-table')
                         </div>
                         <div class="col-md-6 col-xs-12">
                             @include('orders.show-figures')
@@ -24,7 +25,7 @@
 
     <div class="row">
         <div class="col-sm-12">
-            <div class="box">
+            <div class="box box-solid">
                 <div class="box-header with-border">
                     <h3 class="box-title">{{ trans('title.consumer-orders-list') }}</h3>
                 </div>

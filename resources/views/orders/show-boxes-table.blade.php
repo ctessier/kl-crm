@@ -1,15 +1,16 @@
 @inject('orders_service', 'App\Services\OrdersService')
 
+@if (($boxes = $orders_service->getBoxes($order))->isNotEmpty())
 <table class="table table-bordered">
     <thead>
-    <tr>
-        <th></th>
-        <th>Type</th>
-        <th>Complet ?</th>
-    </tr>
+        <tr>
+            <th></th>
+            <th>Type</th>
+            <th>Complet ?</th>
+        </tr>
     </thead>
     <tbody>
-    @foreach ($orders_service->getBoxes($order) as $box)
+    @foreach ($boxes as $box)
         <tr>
             <td>
                 Carton {{ $loop->index + 1 }}
@@ -24,7 +25,4 @@
     @endforeach
     </tbody>
 </table>
-
-@foreach ($orders_service->getFillerCandidates($order, $user->products) as $candidate)
-    {{ $candidate->product->name }} ({{ $candidate->quantity }})<br />
-@endforeach
+@endif

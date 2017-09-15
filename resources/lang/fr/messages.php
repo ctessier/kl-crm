@@ -12,7 +12,6 @@ return [
     */
 
     'consumer-delete-confirm' => 'Êtes-vous certain de vouloir supprimer ce consommateur ?',
-    'filler'                  => 'Avenant',
     'no-consumers'            => 'Vous n\'avez pas encore de consommateur.',
     'no-orders'               => 'Vous n\'avez pas de commande.',
     'no-products'             => 'Aucun produit associé à cette commande.',
