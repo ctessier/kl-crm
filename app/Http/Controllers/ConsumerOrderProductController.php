@@ -47,6 +47,8 @@ class ConsumerOrderProductController extends Controller
                 'from_stock' => $from_stock ? $from_stock : false,
             ]);
 
+            $consumer_order->touch();
+
             \Alert::success('Le produit a été ajouté !')->flash();
         }
 
@@ -95,6 +97,8 @@ class ConsumerOrderProductController extends Controller
                 'from_stock' => $from_stock ? $from_stock : false,
             ]);
 
+            $consumer_order->touch();
+
             \Alert::success('Le produit a été mis à jour !')->flash();
         }
 
@@ -129,6 +133,8 @@ class ConsumerOrderProductController extends Controller
         }
 
         $consumer_order->products()->detach($product->id);
+
+        $consumer_order->touch();
 
         \Alert::success('Produit supprimé avec succès !')->flash();
 

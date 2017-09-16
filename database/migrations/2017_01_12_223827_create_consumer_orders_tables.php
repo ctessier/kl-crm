@@ -21,6 +21,7 @@ class CreateConsumerOrdersTables extends Migration
             $table->date('month');
             $table->boolean('is_test_program')->default(false);
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('consumer_id')->references('id')->on('consumers');
             $table->foreign('user_id')->references('id')->on('users');

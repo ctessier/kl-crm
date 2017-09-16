@@ -39,11 +39,9 @@
                                     <td>{{ $consumer->email }}</td>
                                     <td>{{ $consumer->phone }}</td>
                                     <td>{{ $consumer->current_status ? $consumer->current_status->status->label : '' }}</td>
-                                    <td>
+                                    <td class="text-right">
                                         {!! link_to_route('consumers.edit', trans('actions.edit'), ['consumers' => $consumer], ['class' => 'btn btn-xs btn-default']) !!}
-                                        {!! Form::open(['route' => ['consumers.destroy', $consumer], 'method' => 'delete', 'class' => 'inline']) !!}
-                                            {!! Form::submit(trans('actions.delete'), ['class' => 'btn btn-xs btn-danger', 'data-delete' => trans('messages.consumer-delete-confirm')]) !!}
-                                        {!! Form::close() !!}
+                                        {!! link_to_route('consumer_orders.create', trans('actions.add-consumer-order'), ['consumer_id' => $consumer->id], ['class' => 'btn btn-xs btn-info']) !!}
                                     </td>
                                 </tr>
                             @endforeach
