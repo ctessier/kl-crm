@@ -14,7 +14,7 @@ return [
 
     'consumers'        => 'Mes consommateurs',
     'consumers-orders' => 'Commandes clientes',
-    'fillers'           => 'Avenant',
+    'fillers'          => 'Avenant',
     'for'              => 'pour',
     'male'             => 'Homme',
     'no'               => 'Non',

@@ -86,7 +86,7 @@ class OrderController extends Controller
     {
         $this->validate($request, [
             'product.*'  => 'required|unique|exists:products,id',
-            'quantity.*' => 'required|min:1'
+            'quantity.*' => 'required|min:1',
         ]);
 
         $consumer_order = $order->consumer_orders()->whereNull('consumer_id')->first();
