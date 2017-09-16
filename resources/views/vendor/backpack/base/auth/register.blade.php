@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="box box-default">
+            <div class="box box-solid">
                 <div class="box-header with-border">
                     <div class="box-title">{{ trans('backpack::base.register') }}</div>
                 </div>
