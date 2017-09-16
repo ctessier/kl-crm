@@ -19,8 +19,6 @@ class OrderController extends Controller
         $this->middleware('owner:order', [
             'only' => [
                 'show',
-                'edit',
-                'update',
                 'destroy',
             ],
         ]);

@@ -102,7 +102,7 @@ class ConsumerOrderProductController extends Controller
             \Alert::success('Le produit a été mis à jour !')->flash();
         }
 
-        return redirect()->route('consumer_orders.show', [
+        return redirect()->route('consumer_orders.edit', [
             'consumer_order' => $consumer_order,
         ]);
     }
@@ -138,7 +138,7 @@ class ConsumerOrderProductController extends Controller
 
         \Alert::success('Produit supprimé avec succès !')->flash();
 
-        return redirect()->route('consumer_orders.show', [
+        return redirect()->route('consumer_orders.edit', [
             'consumer_order' => $consumer_order,
         ]);
     }

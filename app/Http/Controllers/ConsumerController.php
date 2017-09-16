@@ -17,10 +17,8 @@ class ConsumerController extends Controller
 
         $this->middleware('owner:consumer', [
             'only' => [
-                'show',
                 'edit',
                 'update',
-                'destroy',
             ],
         ]);
 
@@ -74,18 +72,6 @@ class ConsumerController extends Controller
             .' fait désormais partie de vos consommateurs !')->flash();
 
         return redirect()->route('consumers.index');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**

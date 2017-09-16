@@ -36,7 +36,7 @@
                                         @endif
                                     </td>
                                     <td class="text-right">
-                                        {!! link_to_route('consumer_orders.show', trans('actions.edit'), ['consumer_order' => $consumer_order], ['class' => 'btn btn-xs btn-default']) !!}
+                                        {!! link_to_route('consumer_orders.edit', trans('actions.edit'), ['consumer_order' => $consumer_order], ['class' => 'btn btn-xs btn-default']) !!}
                                         {!! Form::open(['route' => ['consumer_orders.destroy', $consumer_order], 'method' => 'delete', 'class' => 'inline']) !!}
                                             {!! Form::submit(trans('actions.delete'), ['class' => 'btn btn-xs btn-danger', 'data-delete' => trans('messages.consumer-order-delete-confirm')]) !!}
                                         {!! Form::close() !!}

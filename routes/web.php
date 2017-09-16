@@ -48,14 +48,22 @@ Route::post('stock', [
 | Defines the routes of all project's resources.
 |
 */
-Route::resource('consumers', 'ConsumerController');
-Route::resource('consumer_orders', 'ConsumerOrderController');
+Route::resource('consumers', 'ConsumerController', [
+    'except' => ['show', 'destroy'],
+]);
+Route::resource('consumer_orders', 'ConsumerOrderController', [
+    'except' => ['show']
+]);
 Route::put('consumer_orders/{consumer_order}/detach', [
     'as'   => 'consumer_orders.detach',
     'uses' => 'ConsumerOrderController@detach',
 ]);
-Route::resource('consumer_orders.products', 'ConsumerOrderProductController');
-Route::resource('orders', 'OrderController');
+Route::resource('consumer_orders.products', 'ConsumerOrderProductController', [
+    'except' => ['index', 'show'],
+]);
+Route::resource('orders', 'OrderController', [
+    'except' => ['edit', 'update'],
+]);
 Route::post('orders/{order}/fillers/store', [
     'as'   => 'orders.fillers.store',
     'uses' => 'OrderController@storeFillers',

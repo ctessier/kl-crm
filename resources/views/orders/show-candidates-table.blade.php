@@ -26,7 +26,7 @@
             </tbody>
         </table>
 
-        {!! Form::submit(trans('actions.add'), ['class' => 'btn btn-default pull-right']) !!}
+        {!! Form::submit($order->hasFillers() ? trans('actions.update') : trans('actions.add'), ['class' => 'btn btn-default pull-right']) !!}
 
     {!! Form::close() !!}
 

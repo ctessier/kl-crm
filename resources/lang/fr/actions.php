@@ -21,8 +21,11 @@ return [
     'delete'             => 'Supprimer',
     'detach'             => 'Détacher',
     'edit'               => 'Modifier',
+    'go-to-consumer'     => 'Aller au consommateur',
+    'go-to-order'        => 'Aller à la commande',
     'new'                => 'Nouveau',
     'save'               => 'Enregistrer',
+    'update'             => 'Mettre à jour',
     'view'               => 'Voir',
     'view-all'           => 'Voir tout',
 

@@ -7,6 +7,12 @@
     {{ Form::label('consumer_id', trans('label.consumer')) }}
     {{ Form::select('consumer_id', $consumers, null, ['class' => 'form-control']) }}
     {!! $errors->first('consumer_id', '<span class="help-block">:message</span>') !!}
+    @if (isset($consumer_order) && $consumer_order->consumer)
+        <a href="{{ route('consumers.edit', $consumer_order->consumer) }}" class="btn btn-xs btn-default">
+            <i class="fa fa-arrow-right"></i>
+            {{ trans('actions.go-to-consumer') }}
+        </a>
+    @endif
 </div>
 <div class="form-group{{ $errors->has('stock') ? ' has-error' : '' }}">
     <div class="checkbox">
@@ -21,6 +27,12 @@
     {{ Form::label('order_id', trans('label.order')) }}
     {{ Form::select('order_id', $orders, null, ['class' => 'form-control']) }}
     {!! $errors->first('order_id', '<span class="help-block">:message</span>') !!}
+    @if (isset($consumer_order) && $consumer_order->order)
+        <a href="{{ route('orders.show', $consumer_order->order) }}" class="btn btn-xs btn-default">
+            <i class="fa fa-arrow-right"></i>
+            {{ trans('actions.go-to-order') }}
+        </a>
+    @endif
 </div>
 <div class="form-group {{ $errors->has('month') ? 'has-error' : '' }}">
     {!! Form::label('month', trans('label.month')) !!}

@@ -46,4 +46,14 @@ class Order extends Model
             ->orderBy('categories.id')
             ->orderBy('sum_quantity', 'DESC');
     }
+
+    /**
+     * Tell if the order already has a filler order.
+     *
+     * @return bool
+     */
+    public function hasFillers()
+    {
+        return $this->consumer_orders()->whereNull('consumer_id')->get()->isNotEmpty();
+    }
 }

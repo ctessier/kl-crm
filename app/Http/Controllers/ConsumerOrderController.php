@@ -25,7 +25,7 @@ class ConsumerOrderController extends Controller
 
         $this->middleware('owner:consumer_order', [
             'only' => [
-                'show',
+                'edit',
                 'update',
                 'destroy',
             ],
@@ -83,19 +83,19 @@ class ConsumerOrderController extends Controller
 
         $consumer_order->save();
 
-        return redirect()->route('consumer_orders.show', [
+        return redirect()->route('consumer_orders.edit', [
             'consumer_order' => $consumer_order,
         ]);
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified resource for being edited.
      *
      * @param \App\ConsumerOrder $consumer_order
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(ConsumerOrder $consumer_order)
+    public function edit(ConsumerOrder $consumer_order)
     {
         // Get the list of the user's consumers
         $consumers = $this->consumer_repository->getUsersConsumersList($this->user);
@@ -108,7 +108,7 @@ class ConsumerOrderController extends Controller
             ->pluck('reference', 'id')
             ->prepend(trans('placeholder.select-order'), '');
 
-        return view('consumer_orders.show')
+        return view('consumer_orders.edit')
             ->with('consumer_order', $consumer_order)
             ->with('consumers', $consumers)
             ->with('products', $products)
@@ -131,9 +131,7 @@ class ConsumerOrderController extends Controller
 
         \Alert::success('Le commande a bien été modifiée !')->flash();
 
-        return redirect()->route('consumer_orders.show', [
-            'consumer_order' => $consumer_order,
-        ]);
+        return redirect()->back();
     }
 
     /**
