@@ -34,7 +34,7 @@
                     @include('orders.show-table')
                 </div>
                 <div class="box-footer">
-                    {{ link_to_route('consumer_orders.create', trans('actions.new'), [], ['class' => 'btn btn-primary pull-left']) }}
+                    {{ link_to_route('consumer_orders.create', trans('actions.new'), ['order_id' => $order->id], ['class' => 'btn btn-primary pull-left']) }}
                 </div>
             </div>
         </div>

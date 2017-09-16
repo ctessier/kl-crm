@@ -7,7 +7,7 @@
             <div class="box-body">
                 <p>{{ trans('messages.empty-order') }}</p>
                 <p>
-                    <a href="{{ route('consumer_orders.create') }}" class="btn btn-primary text-center">{{ trans('actions.add-consumer-order') }}</a>
+                    <a href="{{ route('consumer_orders.create', ['order_id' => $order->id]) }}" class="btn btn-primary text-center">{{ trans('actions.add-consumer-order') }}</a>
                 </p>
             </div>
         </div>

@@ -59,7 +59,9 @@ class ConsumerOrderController extends Controller
         $consumers = $this->consumer_repository->getUsersConsumersList($this->user);
 
         // Get user's orders
-        $orders = $this->user->orders()->pluck('reference', 'id');
+        $orders = $this->user->orders()
+            ->pluck('reference', 'id')
+            ->prepend(trans('placeholder.select-order'), '');
 
         return view('consumer_orders.create')
             ->with('consumers', $consumers)
@@ -102,7 +104,9 @@ class ConsumerOrderController extends Controller
         $products = Product::pluck('name', 'id');
 
         // Get user's orders
-        $orders = $this->user->orders()->pluck('reference', 'id');
+        $orders = $this->user->orders()
+            ->pluck('reference', 'id')
+            ->prepend(trans('placeholder.select-order'), '');
 
         return view('consumer_orders.show')
             ->with('consumer_order', $consumer_order)
