@@ -12,5 +12,6 @@ return [
     */
 
     'select-consumer' => 'Sélectionnez un consommateur...',
+    'select-order'    => 'Sélectionnez une commande...',
 
 ];

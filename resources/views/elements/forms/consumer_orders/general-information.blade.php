@@ -19,7 +19,7 @@
 </div>
 <div class="form-group{{ $errors->has('order_id') ? ' has-error' : '' }}">
     {{ Form::label('order_id', trans('label.order')) }}
-    {{ Form::select('order_id', $orders, null, ['placeholder' => 'Sélectionner une commande', 'class' => 'form-control']) }}
+    {{ Form::select('order_id', $orders, null, ['class' => 'form-control']) }}
     {!! $errors->first('order_id', '<span class="help-block">:message</span>') !!}
 </div>
 <div class="form-group {{ $errors->has('month') ? 'has-error' : '' }}">
