@@ -48,7 +48,12 @@ class OrderController extends Controller
     {
         $order = new Order();
         $order->user_id = $this->user->id;
-        $order->reference = ucfirst(Carbon::now()->formatLocalized('%B'));
+        $reference = ucfirst(Carbon::now()->formatLocalized('%B %Y')) . ' #';
+        $counter = 1;
+        while (Order::where('reference', $reference . $counter)->first()) {
+            ++$counter;
+        }
+        $order->reference = $reference . $counter;
         $order->save();
 
         $orphan_consumer_orders = ConsumerOrder::whereNull('order_id')->get();
