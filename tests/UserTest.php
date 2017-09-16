@@ -87,4 +87,20 @@ class UserTest extends TestCase
         $this->assertEquals(1, $user->getProductPivot(2)->optimal_quantity);
         $this->assertNull($user->getProductPivot(55));
     }
+
+    /**
+     * Test user relationship with orders.
+     *
+     * @return void
+     */
+    public function test_user_has_orders()
+    {
+        $orders = \App\User::findOrFail(1)->orders;
+        $this->assertContainsOnlyInstancesOf(\App\Order::class, $orders);
+        $this->assertCount(2, $orders);
+
+        $orders = \App\User::findOrFail(2)->orders;
+        $this->assertContainsOnlyInstancesOf(\App\Order::class, $orders);
+        $this->assertCount(1, $orders);
+    }
 }
