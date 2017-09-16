@@ -10,6 +10,9 @@ use App\Product;
 
 class ConsumerOrderProductController extends Controller
 {
+    /**
+     * ConsumerOrderProductController constructor.
+     */
     public function __construct()
     {
         $this->middleware('auth');
