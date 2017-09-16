@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\ConsumerOrder;
 use App\Order;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
@@ -76,5 +77,53 @@ class OrderController extends Controller
     public function show(Order $order)
     {
         return view('orders.show', compact('order'));
+    }
+
+    /**
+     * Store the fillers given in request in existing filler consumer order or create a new one.
+     *
+     * @param Request $request
+     * @param Order   $order
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function storeFillers(Request $request, Order $order)
+    {
+        $this->validate($request, [
+            'product.*'  => 'required|unique|exists:products,id',
+            'quantity.*' => 'required|min:1',
+        ]);
+
+        $consumer_order = $order->consumer_orders()->whereNull('consumer_id')->first();
+        if (!$consumer_order) {
+            $consumer_order = new ConsumerOrder();
+            $consumer_order->reference = '';
+            $consumer_order->month = date('m/Y');
+            $consumer_order->order_id = $order->id;
+            $consumer_order->user_id = $this->user->id;
+            $consumer_order->save();
+        }
+
+        $quantities = $request->get('quantities');
+        foreach ($request->get('products') as $key => $product_id) {
+            $product = $consumer_order->products()->where('product_id', $product_id)->first();
+            if (!$product) {
+                $consumer_order->products()->attach($product_id, [
+                    'quantity'   => $quantities[$key],
+                    'from_stock' => false,
+                ]);
+            } else {
+                $quantity = $product->pivot->quantity + $quantities[$key];
+                $consumer_order->products()->updateExistingPivot($product_id, [
+                    'quantity' => $quantity,
+                ]);
+            }
+        }
+
+        \Alert::success(trans('alert.success.store-filler'))->flash();
+
+        return redirect()->route('orders.show', [
+            'order' => $order,
+        ]);
     }
 }
