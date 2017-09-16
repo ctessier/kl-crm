@@ -11,6 +11,26 @@ use App\Product;
 class ConsumerOrderProductController extends Controller
 {
     /**
+     * ConsumerOrderProductController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+
+        $this->middleware('owner:consumer_order', [
+            'only' => [
+                'create',
+                'store',
+                'edit',
+                'update',
+                'destroy',
+            ],
+        ]);
+
+        parent::__construct();
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @param \App\ConsumerOrder $consumer_order
