@@ -21,16 +21,10 @@
           <!-- ================================================ -->
           <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/dashboard') }}"><i class="fa fa-dashboard"></i><span>{{ trans('backpack::base.dashboard') }}</span></a></li>
 
-          <li><a href="{{ route('consumers.index') }}"><i class="fa fa-cutlery"></i> <span>{{ trans('layout.consumers') }}</span></a></li>
-          <li><a href="{{ route('stock.edit') }}"><i class="fa fa-list"></i> <span>{{ trans('layout.stock') }}</span></a></li>
-          <li class="treeview">
-            <a href="#"><i class="fa fa-shopping-cart"></i> <span>{{ trans('layout.consumers-orders') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
-            <ul class="treeview-menu">
-              <li><a href="{{ route('consumer_orders.create') }}"><i class="fa fa-plus"></i> <span>{{ trans('actions.create') }}</span></a></li>
-              <li><a href="{{ route('consumer_orders.index') }}"><i class="fa fa-eye"></i> <span>{{ trans('actions.view-all') }}</span></a></li>
-            </ul>
-          </li>
-          <li><a href="{{ route('orders.index') }}"><i class="fa fa-list"></i> <span>{{ trans('layout.orders') }}</span></a></li>
+          <li><a href="{{ route('consumers.index') }}"><i class="fa fa-address-book"></i> <span>{{ trans('layout.consumers') }}</span></a></li>
+          <li><a href="{{ route('stock.edit') }}"><i class="fa fa-cubes"></i> <span>{{ trans('layout.stock') }}</span></a></li>
+          <li><a href="{{ route('consumer_orders.index') }}"><i class="fa fa-shopping-basket"></i> <span>{{ trans('layout.consumers-orders') }}</span></a></li>
+          <li><a href="{{ route('orders.index') }}"><i class="fa fa-shopping-cart"></i> <span>{{ trans('layout.orders') }}</span></a></li>
 
           <!-- ======================================= -->
           <li class="header">{{ trans('backpack::base.user') }}</li>
