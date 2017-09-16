@@ -48,7 +48,7 @@
                     </div>
                 @else
                     <div class="box-body">
-                        {{ trans('messages.no-consumers') }}
+                        {{ trans('messages.no-consumer-orders') }}
                     </div>
                 @endif
                 <div class="box-footer">
