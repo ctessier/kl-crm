@@ -67,11 +67,14 @@ class Box
     }
 
     /**
+     * Add a filler candidate to the box.
+     *
      * @param Product $product
+     * @param int     $quantity
      *
      * @return bool
      */
-    public function addCandidate(Product $product)
+    public function addCandidate(Product $product, $quantity = 1)
     {
         if ($this->isFull(true)) {
             return false;
@@ -80,9 +83,9 @@ class Box
         $candidate = $this->candidates->where('product', $product);
 
         if ($candidate->isNotEmpty()) {
-            $candidate->first()->increment();
+            $candidate->first()->increment($quantity);
         } else {
-            $candidate = new Candidate($product, 1);
+            $candidate = new Candidate($product, $quantity);
             $this->candidates->push($candidate);
         }
 
@@ -127,6 +130,6 @@ class Box
      */
     public function isFull($with_candidates = false)
     {
-        return $this->capacity === $this->getQuantity($with_candidates);
+        return $this->capacity == $this->getQuantity($with_candidates);
     }
 }

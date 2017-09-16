@@ -57,12 +57,12 @@ class OrdersServiceTest extends TestCase
      */
     public function test_boxes()
     {
-        /*$order1 = \App\Order::find(1);
+        $order1 = \App\Order::find(1);
         $boxes = $this->orders_service->getBoxes($order1);
         $incomplete_boxes = $this->orders_service->getBoxes($order1, true);
 
         $this->assertCount(3, $boxes);
-        $this->assertCount(2, $incomplete_boxes);*/
+        $this->assertCount(2, $incomplete_boxes);
     }
 
     /**

@@ -29,10 +29,12 @@ class Candidate
     /**
      * Increment the candidate's product quantity.
      *
+     * @param int $amount
+     *
      * @return int
      */
-    public function increment()
+    public function increment($amount = 1)
     {
-        return ++$this->quantity;
+        return $this->quantity += $amount;
     }
 }
