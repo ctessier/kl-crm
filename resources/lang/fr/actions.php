@@ -12,16 +12,17 @@ return [
     |
     */
 
-    'add'             => 'Ajouter',
-    'back'            => 'Retour',
-    'change-password' => 'Changer mon mot de passe',
-    'continue'        => 'Continuer',
-    'create'          => 'Créer',
-    'delete'          => 'Supprimer',
-    'edit'            => 'Modifier',
-    'new'             => 'Nouveau',
-    'save'            => 'Enregistrer',
-    'view'            => 'Voir',
-    'view-all'        => 'Voir tout',
+    'add'                => 'Ajouter',
+    'add-consumer-order' => 'Ajouter une commande client',
+    'back'               => 'Retour',
+    'change-password'    => 'Changer mon mot de passe',
+    'continue'           => 'Continuer',
+    'create'             => 'Créer',
+    'delete'             => 'Supprimer',
+    'edit'               => 'Modifier',
+    'new'                => 'Nouveau',
+    'save'               => 'Enregistrer',
+    'view'               => 'Voir',
+    'view-all'           => 'Voir tout',
 
 ];
