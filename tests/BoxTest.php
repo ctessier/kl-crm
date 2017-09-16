@@ -66,5 +66,21 @@ class BoxTest extends TestCase
         $box->addCandidate(\App\Product::find(17), 1);
         $this->assertFalse($box->isFull());
         $this->assertTrue($box->isFull(true));
+
+        $this->assertFalse($box->addCandidate(\App\Product::find(18)));
+    }
+
+    /**
+     * Test box remaining when adding products.
+     *
+     * @return void
+     */
+    public function test_remaining()
+    {
+        $box = new \App\Box(\App\BoxType::find(1));
+
+        $box->addProduct(\App\Product::find(16));
+        $this->assertEquals(0, $box->addProduct(\App\Product::find(17)));
+        $this->assertEquals(2, $box->addProduct(\App\Product::find(16), 6));
     }
 }

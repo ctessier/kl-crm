@@ -16,16 +16,6 @@ class Order extends Model
     ];
 
     /**
-     * Return the associated consumer of the order.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function consumer()
-    {
-        return $this->belongsTo(Consumer::class);
-    }
-
-    /**
      * Return the collection of consumer orders.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

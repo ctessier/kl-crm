@@ -34,7 +34,7 @@ class Box
     public function __construct(BoxType $box_type)
     {
         $this->type = $box_type;
-        $this->capacity = $box_type->capacity;
+        $this->capacity = (int) $box_type->capacity;
         $this->content = new Collection();
         $this->candidates = new Collection();
     }
@@ -130,6 +130,6 @@ class Box
      */
     public function isFull($with_candidates = false)
     {
-        return $this->capacity == $this->getQuantity($with_candidates);
+        return $this->capacity === $this->getQuantity($with_candidates);
     }
 }

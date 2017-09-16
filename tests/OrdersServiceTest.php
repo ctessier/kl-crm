@@ -75,7 +75,9 @@ class OrdersServiceTest extends TestCase
         $stock = $this->generateStock();
         $order = \App\Order::find(1);
 
-        //$candidates = $this->orders_service->getFillerCandidates($order, $stock);
+        $candidates = $this->orders_service->getFillerCandidates($order, $stock);
+
+        $this->assertCount(7, $candidates);
     }
 
     /**
@@ -87,6 +89,31 @@ class OrdersServiceTest extends TestCase
     {
         $user = factory(App\User::class)->create();
 
+        /*
+         * Arôme vanille crème brûlée
+         * Café amer
+         * Cappuccino
+         * Caprice de caramel
+         * Délice de fruits des îles
+         * Douceur de cacao
+         * Mix fraise franboise
+         * Noir de cacao
+         * Crème de champignons
+         * Jardinière de légumes
+         * Mouliné de légumes
+         * Suprême de crustacés
+         * Tomate provençale
+         * Velouté d'aperges
+         * Arôme pomme vanille
+         * Café
+         * Fruits exotiques
+         * Mix orange grenade
+         * Pamplemousse rose
+         * Thé au citron
+         * Caramel noisette
+         * Noix de coco citron
+         * Idée délice chocolat
+         */
         $quantities = [2, 0, 0, 1, 3, 2, 0, 0, 1, 1, 1, 2, 0, 0, 1, 3, 2, 0, 0, 1, 1, 1, 0];
 
         foreach (\App\Product::orderBy('id')->get() as $product) {
