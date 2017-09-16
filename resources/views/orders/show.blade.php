@@ -2,6 +2,7 @@
 
 @section('content')
 
+    @if ($order->consumer_orders->isNotEmpty())
     <div class="row">
         <div class="col-md-12">
             <div class="box box-solid">
@@ -38,5 +39,8 @@
             </div>
         </div>
     </div>
+    @else
+        @include('orders.show-empty')
+    @endif
 
 @endsection
