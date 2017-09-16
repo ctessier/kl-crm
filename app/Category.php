@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
+    /**
+     * Return the associated box type.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function box_type()
     {
         return $this->belongsTo(BoxType::class);

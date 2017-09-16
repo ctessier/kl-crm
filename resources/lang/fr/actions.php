@@ -13,12 +13,13 @@ return [
     */
 
     'add'                => 'Ajouter',
-    'add-consumer-order' => 'Ajouter une commande client',
+    'add-consumer-order' => 'Nouvelle commande',
     'back'               => 'Retour',
     'change-password'    => 'Changer mon mot de passe',
     'continue'           => 'Continuer',
     'create'             => 'Créer',
     'delete'             => 'Supprimer',
+    'detach'             => 'Détacher',
     'edit'               => 'Modifier',
     'new'                => 'Nouveau',
     'save'               => 'Enregistrer',

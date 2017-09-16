@@ -122,21 +122,4 @@ class ConsumerController extends Controller
 
         return redirect()->route('consumers.index');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param \App\Consumer $consumer
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Consumer $consumer)
-    {
-        $consumer->statuses()->delete();
-        $consumer->delete();
-
-        \Alert::success('Consommateur supprimé avec succès !')->flash();
-
-        return redirect()->route('consumers.index');
-    }
 }

@@ -4,9 +4,12 @@ namespace App;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ConsumerOrder extends Model
 {
+    use SoftDeletes;
+
     /**
      * The attributes that are guarded.
      *

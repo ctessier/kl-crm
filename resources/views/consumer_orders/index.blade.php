@@ -28,11 +28,18 @@
                             @foreach ($consumer_orders as $consumer_order)
                                 <tr>
                                     <td>{{ $consumer_order->reference }}</td>
-                                    <td>{{ $consumer_order->consumer ? $consumer_order->consumer->full_name : '-' }}</td>
+                                    <td>{{ $consumer_order->consumer->full_name }}</td>
                                     <td>{{ ucfirst($consumer_order->month->formatLocalized('%B %Y')) }}</td>
-                                    <td>{{ trans('general.'.($consumer_order->is_test_program ? 'yes' : 'no')) }}</td>
                                     <td>
+                                        @if ($consumer_order->is_test_program)
+                                            <i class="fa fa-check"></i>
+                                        @endif
+                                    </td>
+                                    <td class="text-right">
                                         {!! link_to_route('consumer_orders.show', trans('actions.edit'), ['consumer_order' => $consumer_order], ['class' => 'btn btn-xs btn-default']) !!}
+                                        {!! Form::open(['route' => ['consumer_orders.destroy', $consumer_order], 'method' => 'delete', 'class' => 'inline']) !!}
+                                            {!! Form::submit(trans('actions.delete'), ['class' => 'btn btn-xs btn-danger', 'data-delete' => trans('messages.consumer-order-delete-confirm')]) !!}
+                                        {!! Form::close() !!}
                                     </td>
                                 </tr>
                             @endforeach

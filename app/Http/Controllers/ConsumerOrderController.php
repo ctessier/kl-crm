@@ -43,7 +43,7 @@ class ConsumerOrderController extends Controller
      */
     public function index()
     {
-        $consumer_orders = $this->user->consumer_orders;
+        $consumer_orders = $this->user->consumer_orders()->whereNotNull('consumer_id')->get();
 
         return view('consumer_orders.index', compact('consumer_orders'));
     }
@@ -137,14 +137,42 @@ class ConsumerOrderController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Detach the specified resource from its order.
      *
-     * @param int $id
+     * @param ConsumerOrder $consumer_order
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function detach(ConsumerOrder $consumer_order)
     {
-        //
+        $order = $consumer_order->order;
+        $consumer_order->order()->dissociate();
+        $consumer_order->save();
+
+        \Alert::success(trans('alert.success.consumer-order-detached'))->flash();
+
+        return redirect()->route('orders.show', [
+            'order' => $order,
+        ]);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param ConsumerOrder $consumer_order
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(ConsumerOrder $consumer_order)
+    {
+        $consumer_order->delete();
+
+        if ($consumer_order->consumer_id) {
+            \Alert::success(trans('alert.success.consumer-order-deleted'))->flash();
+        } else {
+            \Alert::success(trans('alert.success.filler-deleted'))->flash();
+        }
+
+        return redirect()->back();
     }
 }

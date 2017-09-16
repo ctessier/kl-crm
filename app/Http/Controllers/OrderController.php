@@ -126,4 +126,22 @@ class OrderController extends Controller
             'order' => $order,
         ]);
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param Order $order
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Order $order)
+    {
+        $order->consumer_orders->map(function ($consumer_order) {
+            $consumer_order->order()->dissociate()->save();
+        });
+
+        $order->delete();
+
+        return redirect()->route('orders.index');
+    }
 }

@@ -12,7 +12,10 @@ return [
     */
 
     'success' => [
-        'store-filler' => 'Les produits ont bien été ajoutés à la commande sous forme d\'avenant.',
+        'consumer-order-deleted'  => 'La commande a été supprimée avec succès.',
+        'consumer-order-detached' => 'La commande a été détachée avec succès.',
+        'filler-deleted'          => 'L\'avenant a été supprimé avec succès.',
+        'store-filler'            => 'Les produits ont bien été ajoutés à la commande sous forme d\'avenant.',
     ],
     'error'   => [
 

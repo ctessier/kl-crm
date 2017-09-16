@@ -50,6 +50,10 @@ Route::post('stock', [
 */
 Route::resource('consumers', 'ConsumerController');
 Route::resource('consumer_orders', 'ConsumerOrderController');
+Route::put('consumer_orders/{consumer_order}/detach', [
+    'as'   => 'consumer_orders.detach',
+    'uses' => 'ConsumerOrderController@detach',
+]);
 Route::resource('consumer_orders.products', 'ConsumerOrderProductController');
 Route::resource('orders', 'OrderController');
 Route::post('orders/{order}/fillers/store', [
