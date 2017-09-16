@@ -11,7 +11,7 @@ return [
     |
     */
 
-    'consumer-orders-list'  => 'Liste des commandes clientes',
+    'consumer-orders-list'  => 'Récapitulatif des commandes clientes',
     'contact-details'       => 'Coordonnées',
     'general-information'   => 'Informations générales',
     'new'                   => [

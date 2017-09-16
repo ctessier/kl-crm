@@ -18,8 +18,7 @@
                             <thead>
                             <tr>
                                 <th>{{ trans('label.reference') }}</th>
-                                <th>{{ trans('label.lastname') }}</th>
-                                <th>{{ trans('label.firstname') }}</th>
+                                <th>{{ trans('label.consumer') }}</th>
                                 <th>{{ trans('label.month') }}</th>
                                 <th>{{ trans('label.is-test-program') }}</th>
                                 <th></th>
@@ -29,8 +28,7 @@
                             @foreach ($consumer_orders as $consumer_order)
                                 <tr>
                                     <td>{{ $consumer_order->reference }}</td>
-                                    <td>{{ $consumer_order->consumer->last_name }}</td>
-                                    <td>{{ $consumer_order->consumer->first_name }}</td>
+                                    <td>{{ $consumer_order->consumer ? $consumer_order->consumer->full_name : '-' }}</td>
                                     <td>{{ ucfirst($consumer_order->month->formatLocalized('%B %Y')) }}</td>
                                     <td>{{ trans('general.'.($consumer_order->is_test_program ? 'yes' : 'no')) }}</td>
                                     <td>

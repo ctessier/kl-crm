@@ -37,31 +37,37 @@ class ConsumerOrdersTablesSeeder extends Seeder
                 'consumer_order_id' => 1,
                 'product_id'        => 7,
                 'quantity'          => 2,
+                'from_stock'        => false,
             ],
             [
                 'consumer_order_id' => 1,
                 'product_id'        => 8,
                 'quantity'          => 2,
+                'from_stock'        => false,
             ],
             [
                 'consumer_order_id' => 1,
                 'product_id'        => 16,
                 'quantity'          => 1,
+                'from_stock'        => true,
             ],
             [
                 'consumer_order_id' => 1,
                 'product_id'        => 20,
                 'quantity'          => 1,
+                'from_stock'        => false,
             ],
             [
                 'consumer_order_id' => 2,
                 'product_id'        => 5,
                 'quantity'          => 4,
+                'from_stock'        => false,
             ],
             [
                 'consumer_order_id' => 2,
                 'product_id'        => 6,
                 'quantity'          => 2,
+                'from_stock'        => true,
             ],
         ]);
     }

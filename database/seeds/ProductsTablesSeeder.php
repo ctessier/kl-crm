@@ -11,32 +11,51 @@ class ProductsTablesSeeder extends Seeder
      */
     public function run()
     {
+        // Seed box types
+        DB::table('box_types')->insert([
+            [
+                'id'       => 1,
+                'name'     => 'Carton de tonics',
+                'capacity' => 6,
+            ],
+            [
+                'id'       => 2,
+                'name'     => 'Carton d\'entremets, potages et barres gourmandes',
+                'capacity' => 6,
+            ],
+            [
+                'id'       => 3,
+                'name'     => 'Carton d\'idées délices',
+                'capacity' => 6,
+            ],
+        ]);
+
         // Seed categories
         DB::table('categories')->insert([
             [
-                'id'               => 1,
-                'name'             => 'Entremets',
-                'quantity_per_box' => 6,
+                'id'          => 1,
+                'name'        => 'Entremet',
+                'box_type_id' => 2,
             ],
             [
-                'id'               => 2,
-                'name'             => 'Potages',
-                'quantity_per_box' => 6,
+                'id'          => 2,
+                'name'        => 'Potage',
+                'box_type_id' => 2,
             ],
             [
-                'id'               => 3,
-                'name'             => 'Tonics',
-                'quantity_per_box' => 6,
+                'id'          => 3,
+                'name'        => 'Tonic',
+                'box_type_id' => 1,
             ],
             [
-                'id'               => 4,
-                'name'             => 'Barres Gourmandes',
-                'quantity_per_box' => 6,
+                'id'          => 4,
+                'name'        => 'Barre Gourmande',
+                'box_type_id' => 2,
             ],
             [
-                'id'               => 5,
-                'name'             => 'Idée Délice',
-                'quantity_per_box' => 4,
+                'id'          => 5,
+                'name'        => 'Idée Délice',
+                'box_type_id' => 3,
             ],
         ]);
 
@@ -153,7 +172,7 @@ class ProductsTablesSeeder extends Seeder
                 'category_id' => 4,
             ],
             [
-                'name'        => 'Idée délice chocolat (x8)',
+                'name'        => 'Idée délice chocolat',
                 'description' => null,
                 'category_id' => 5,
             ],

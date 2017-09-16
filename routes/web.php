@@ -2,17 +2,6 @@
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-/*
-|--------------------------------------------------------------------------
 | Profile routes
 |--------------------------------------------------------------------------
 |
@@ -63,3 +52,7 @@ Route::resource('consumers', 'ConsumerController');
 Route::resource('consumer_orders', 'ConsumerOrderController');
 Route::resource('consumer_orders.products', 'ConsumerOrderProductController');
 Route::resource('orders', 'OrderController');
+Route::post('orders/{order}/fillers/store', [
+    'as'   => 'orders.fillers.store',
+    'uses' => 'OrderController@storeFillers',
+]);

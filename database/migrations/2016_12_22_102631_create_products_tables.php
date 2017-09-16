@@ -13,11 +13,20 @@ class CreateProductsTables extends Migration
      */
     public function up()
     {
+        Schema::create('box_types', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->smallInteger('capacity');
+            $table->timestamps();
+        });
+
         Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->smallInteger('quantity_per_box');
+            $table->unsignedInteger('box_type_id');
             $table->timestamps();
+
+            $table->foreign('box_type_id')->references('id')->on('box_types');
         });
 
         Schema::create('products', function (Blueprint $table) {
@@ -40,5 +49,6 @@ class CreateProductsTables extends Migration
     {
         Schema::drop('products');
         Schema::drop('categories');
+        Schema::dropIfExists('box_types');
     }
 }

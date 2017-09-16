@@ -16,16 +16,6 @@ class Order extends Model
     ];
 
     /**
-     * Return the associated consumer of the order.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function consumer()
-    {
-        return $this->belongsTo(Consumer::class);
-    }
-
-    /**
      * Return the collection of consumer orders.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -52,33 +42,5 @@ class Order extends Model
             ->groupBy('consumer_orders_products.product_id', 'consumer_orders.order_id')
             ->orderBy('categories.id')
             ->orderBy('sum_quantity', 'DESC');
-    }
-
-    public function getTotalByProduct($product)
-    {
-        return $this->products()->where('product_id', $product->id)->first()->sum_quantity;
-    }
-
-    /**
-     * Return the total quantity of products for the order.
-     *
-     * @param bool $from_stock
-     *
-     * @return int
-     */
-    public function getTotalProductsQuantity($from_stock = false)
-    {
-        $query = ConsumerOrdersProduct::selectRaw('sum(consumer_orders_products.quantity) as total')
-            ->join('consumer_orders', function ($join) {
-                $join->on('consumer_orders_products.consumer_order_id', '=', 'consumer_orders.id');
-            })
-            ->where('consumer_orders.order_id', $this->id);
-
-        if ($from_stock) {
-            $query->where('from_stock', true)
-                ->whereNotNull('consumer_orders.consumer_id');
-        }
-
-        return $query->first()->total;
     }
 }
