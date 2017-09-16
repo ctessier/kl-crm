@@ -7,7 +7,6 @@ use App\BoxType;
 use App\ConsumerOrdersProduct;
 use App\Order;
 use App\Product;
-use Illuminate\Support\Collection;
 
 class OrdersService
 {
@@ -91,6 +90,8 @@ class OrdersService
      */
     public function getFillerCandidates($order, $stock)
     {
+        $stock = $this->updateStockFromExistingFillers($order, $stock);
+
         $candidates = collect([]);
         foreach ($this->getBoxes($order, true) as $box) {
             while (!$box->isFull(true)) {
@@ -107,8 +108,8 @@ class OrdersService
     /**
      * Get a product candidate from a given type and a stock.
      *
-     * @param BoxType    $box_type
-     * @param Collection $stock
+     * @param BoxType                                  $box_type
+     * @param \Illuminate\Database\Eloquent\Collection $stock
      *
      * @return Product
      */
@@ -129,5 +130,26 @@ class OrdersService
         $candidate->pivot->quantity++;
 
         return $candidate;
+    }
+
+    /**
+     * @param Order                                    $order
+     * @param \Illuminate\Database\Eloquent\Collection $stock
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    private function updateStockFromExistingFillers(Order $order, $stock)
+    {
+        $filler_order = $order->consumer_orders()->whereNull('consumer_id')->first();
+        if ($filler_order) {
+            foreach ($filler_order->products as $product) {
+                $product_stock = $stock->filter(function ($product_stock) use ($product) {
+                    return $product_stock->id === $product->id;
+                })->first();
+                $product_stock->pivot->quantity += $product->pivot->quantity;
+            }
+        }
+
+        return $stock;
     }
 }
