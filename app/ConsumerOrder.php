@@ -51,12 +51,16 @@ class ConsumerOrder extends Model
     /**
      * Return the products of the consumer's order.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function products()
     {
-        return $this->belongsToMany(Product::class, 'consumer_orders_products', 'consumer_order_id', 'product_id')
-            ->withPivot('quantity', 'from_stock');
+        return $this->belongsToMany(
+            Product::class,
+            'consumer_orders_products',
+            'consumer_order_id',
+            'product_id'
+        )->withPivot('quantity', 'from_stock');
     }
 
     /**
@@ -119,5 +123,17 @@ class ConsumerOrder extends Model
     public function setConsumerIdAttribute($value)
     {
         $this->attributes['consumer_id'] = trim($value) !== '' ? $value : null;
+    }
+
+    /**
+     * Scope a query to only include consumer orders with a consumer.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeWithConsumer($query)
+    {
+        return $query->has('consumer');
     }
 }

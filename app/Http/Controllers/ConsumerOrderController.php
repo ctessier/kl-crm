@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\ConsumerOrder;
 use App\Http\Requests\ConsumerOrderRequest;
 use App\Product;
+use App\Repository\ConsumerOrdersRepository;
 use App\Repository\ConsumersRepository;
 
 class ConsumerOrderController extends Controller
@@ -12,15 +13,23 @@ class ConsumerOrderController extends Controller
     /**
      * @var ConsumersRepository
      */
-    protected $consumer_repository;
+    protected $consumers_repository;
+
+    /**
+     * @var ConsumerOrdersRepository
+     */
+    protected $consumer_orders_repository;
 
     /**
      * ConsumerOrderController constructor.
      *
-     * @param ConsumersRepository $consumer_repository
+     * @param ConsumersRepository      $consumer_repository
+     * @param ConsumerOrdersRepository $consumer_orders_repository
      */
-    public function __construct(ConsumersRepository $consumer_repository)
-    {
+    public function __construct(
+        ConsumersRepository $consumer_repository,
+        ConsumerOrdersRepository $consumer_orders_repository
+    ) {
         $this->middleware('auth');
 
         $this->middleware('owner:consumer_order', [
@@ -31,7 +40,8 @@ class ConsumerOrderController extends Controller
             ],
         ]);
 
-        $this->consumer_repository = $consumer_repository;
+        $this->consumers_repository = $consumer_repository;
+        $this->consumer_orders_repository = $consumer_orders_repository;
 
         parent::__construct();
     }
@@ -43,7 +53,7 @@ class ConsumerOrderController extends Controller
      */
     public function index()
     {
-        $consumer_orders = $this->user->consumer_orders()->whereNotNull('consumer_id')->get();
+        $consumer_orders = $this->consumer_orders_repository->getUsersConsumerOrders($this->user);
 
         return view('consumer_orders.index', compact('consumer_orders'));
     }
@@ -56,7 +66,7 @@ class ConsumerOrderController extends Controller
     public function create()
     {
         // Get user's consumers with their full name
-        $consumers = $this->consumer_repository->getUsersConsumersList($this->user);
+        $consumers = $this->consumers_repository->getUsersConsumersList($this->user);
 
         // Get user's orders
         $orders = $this->user->orders()
@@ -98,7 +108,7 @@ class ConsumerOrderController extends Controller
     public function edit(ConsumerOrder $consumer_order)
     {
         // Get the list of the user's consumers
-        $consumers = $this->consumer_repository->getUsersConsumersList($this->user);
+        $consumers = $this->consumers_repository->getUsersConsumersList($this->user);
 
         // Get the list of products
         $products = Product::pluck('name', 'id');

@@ -20,6 +20,8 @@
                                 <th>{{ trans('label.reference') }}</th>
                                 <th>{{ trans('label.consumer') }}</th>
                                 <th>{{ trans('label.month') }}</th>
+                                <th>{{ trans('label.order') }}</th>
+                                <th>{{ trans('label.quantity') }}</th>
                                 <th>{{ trans('label.is-test-program') }}</th>
                                 <th></th>
                             </tr>
@@ -28,8 +30,24 @@
                             @foreach ($consumer_orders as $consumer_order)
                                 <tr>
                                     <td>{{ $consumer_order->reference }}</td>
-                                    <td>{{ $consumer_order->consumer->full_name }}</td>
+                                    <td>
+                                        {{ $consumer_order->consumer->full_name }}
+                                        <a href="{{ route('consumers.edit', $consumer_order->consumer) }}" class="btn btn-xs btn-default">
+                                            <i class="fa fa-link"></i>
+                                        </a>
+                                    </td>
                                     <td>{{ ucfirst($consumer_order->month->formatLocalized('%B %Y')) }}</td>
+                                    <td>
+                                        @if ($consumer_order->order)
+                                            {{ $consumer_order->order->reference }}
+                                            <a href="{{ route('orders.show', $consumer_order->order) }}" class="btn btn-xs btn-default">
+                                                <i class="fa fa-link"></i>
+                                            </a>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        {{ $consumer_order->products->count() }}
+                                    </td>
                                     <td>
                                         @if ($consumer_order->is_test_program)
                                             <i class="fa fa-check"></i>

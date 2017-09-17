@@ -22,7 +22,7 @@
             <td class="product-column">{{ $consumer_order->getProductQuantity($order_consumer_order->product) }}</td>
             @endforeach
             <td class="text-right">
-                {{ link_to_route('consumer_orders.show', trans('actions.edit'), $consumer_order->id, ['class' => 'btn btn-xs btn-default']) }}
+                {{ link_to_route('consumer_orders.edit', trans('actions.edit'), $consumer_order->id, ['class' => 'btn btn-xs btn-default']) }}
                 @if ($consumer_order->consumer)
                     {!! Form::open(['route' => ['consumer_orders.detach', $consumer_order], 'method' => 'put', 'class' => 'inline']) !!}
                         {!! Form::submit(trans('actions.detach'), ['class' => 'btn btn-xs btn-warning', 'data-delete' => trans('messages.consumer-order-detach-confirm')]) !!}
