@@ -52,7 +52,7 @@ Route::resource('consumers', 'ConsumerController', [
     'except' => ['show', 'destroy'],
 ]);
 Route::resource('consumer_orders', 'ConsumerOrderController', [
-    'except' => ['show']
+    'except' => ['show'],
 ]);
 Route::put('consumer_orders/{consumer_order}/detach', [
     'as'   => 'consumer_orders.detach',
