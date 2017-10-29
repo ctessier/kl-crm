@@ -64,4 +64,24 @@ class ConsumersConsumerStatus extends Model
 
         return $this;
     }
+
+    /**
+     * Set the main_consumer_id attribute (to null if empty).
+     *
+     * @param $value
+     */
+    public function setMainConsumerIdAttribute($value)
+    {
+        $this->attributes['main_consumer_id'] = trim($value) !== '' ? $value : null;
+    }
+
+    /**
+     * Returns the Consumer relation (for dependant members).
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function main_consumer()
+    {
+        return $this->belongsTo(Consumer::class, 'main_consumer_id');
+    }
 }

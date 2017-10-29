@@ -29,29 +29,6 @@ class Consumer extends Model
     }
 
     /**
-     * Set a new status for the consumer.
-     *
-     * @param int    $status
-     * @param string $date
-     *
-     * @return bool
-     */
-    public function setStatus($status, $date)
-    {
-        $consumers_consumer_status = $this->current_status;
-
-        if ($consumers_consumer_status === null || $consumers_consumer_status->status_id != $status) {
-            $consumers_consumer_status = new ConsumersConsumerStatus();
-            $consumers_consumer_status->consumer_id = $this->id;
-            $consumers_consumer_status->status_id = $status;
-        }
-
-        $consumers_consumer_status->date = $date;
-
-        return $consumers_consumer_status->save();
-    }
-
-    /**
      * Return consumer's current status (latest status).
      *
      * @return \App\ConsumersConsumerStatus

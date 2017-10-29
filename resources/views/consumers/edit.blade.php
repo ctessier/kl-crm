@@ -30,27 +30,7 @@
                     <h3 class="box-title">@lang('label.consumer-status') {{ config('backpack.base.project_name') }}</h3>
                 </div>
                 <div class="box-body">
-                    <div class="row">
-                        <div class="col-md-7">
-                            <div class="form-group {{ $errors->has('status_id') ? 'has-error' : '' }}">
-                                {!! Form::label('status_id', 'Statut') !!}
-                                {!! Form::select('status_id', \App\ConsumerStatus::pluck('label', 'id'), $consumer->current_status->status_id, ['class' => 'form-control']) !!}
-                                {!! $errors->first('status_id', '<span class="help-block">:message</span>') !!}
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="form-group {{ $errors->has('date') ? 'has-error' : '' }}">
-                                {!! Form::label('date', 'Date') !!}
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-calendar"></i>
-                                    </div>
-                                    {!! Form::text('date', $consumer->current_status->date->format('d/m/Y'), ['class' => 'form-control pull-right', 'data-provide' => 'datepicker', 'data-date-format' => 'dd/mm/yyyy', 'data-date-language' => 'fr', 'data-date-autoclose' => 'true']) !!}
-                                </div>
-                                {!! $errors->first('date', '<span class="help-block">:message</span>') !!}
-                            </div>
-                        </div>
-                    </div>
+                    @include('elements.forms.consumers.status')
                 </div>
             </div>
         </div>

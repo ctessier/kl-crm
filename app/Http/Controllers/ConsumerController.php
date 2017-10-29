@@ -5,22 +5,39 @@ namespace App\Http\Controllers;
 use App\Consumer;
 use App\ConsumersConsumerStatus;
 use App\Http\Requests\ConsumerRequest;
+use App\Repository\ConsumersRepository;
+use App\Services\ConsumerStatusesService;
 
 class ConsumerController extends Controller
 {
     /**
-     * Create a new controller instance.
+     * @var ConsumersRepository
      */
-    public function __construct()
+    protected $consumers_repository;
+
+    /**
+     * @var ConsumerStatusesService
+     */
+    protected $status_service;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @param ConsumersRepository     $consumers_repository
+     * @param ConsumerStatusesService $status_service
+     */
+    public function __construct(ConsumersRepository $consumers_repository, ConsumerStatusesService $status_service)
     {
         $this->middleware('auth');
-
         $this->middleware('owner:consumer', [
             'only' => [
                 'edit',
                 'update',
             ],
         ]);
+
+        $this->consumers_repository = $consumers_repository;
+        $this->status_service = $status_service;
 
         parent::__construct();
     }
@@ -43,7 +60,9 @@ class ConsumerController extends Controller
      */
     public function create()
     {
-        return view('consumers.create');
+        $consumers = $this->consumers_repository->getUsersConsumersList($this->user);
+
+        return view('consumers.create', compact('consumers'));
     }
 
     /**
@@ -56,20 +75,20 @@ class ConsumerController extends Controller
     public function store(ConsumerRequest $request)
     {
         $consumer = new Consumer();
-        $consumer->fill($request->except(['status_id', 'date']));
+        $consumer->fill($request->except($this->status_service->getStatusFields()));
         $consumer->user_id = $this->user->id;
 
         if ($consumer->save()) {
             $consumer_status = new ConsumersConsumerStatus();
-            $consumer_status->fill($request->only('status_id', 'date'));
             $consumer_status->consumer_id = $consumer->id;
+            $consumer_status = $this->status_service->populate($consumer_status, $request);
             if (!$consumer_status->save()) {
                 $consumer->forceDelete();
+                \Alert::error(trans('alert.error.consumer-store'))->flash();
+            } else {
+                \Alert::success(trans('alert.success.consumer-store', ['name' => $consumer->first_name]))->flash();
             }
         }
-
-        \Alert::success($consumer->first_name
-            .' fait désormais partie de vos consommateurs !')->flash();
 
         return redirect()->route('consumers.index');
     }
@@ -83,8 +102,10 @@ class ConsumerController extends Controller
      */
     public function edit(Consumer $consumer)
     {
-        return view('consumers.edit')
-            ->with('consumer', $consumer);
+        $consumers = $this->consumers_repository->getUsersConsumersList($this->user);
+        unset($consumers[$consumer->id]); // remove custom consumer from list of main consumers
+
+        return view('consumers.edit', compact('consumers', 'consumer'));
     }
 
     /**
@@ -97,14 +118,16 @@ class ConsumerController extends Controller
      */
     public function update(ConsumerRequest $request, Consumer $consumer)
     {
-        $consumer->fill($request->except(['status_id', 'date']));
+        $consumer->fill($request->except($this->status_service->getStatusFields()));
 
-        if ($consumer->save()) {
-            $consumer->setStatus($request->get('status_id'), $request->get('date'));
+        try {
+            $consumer->save();
+            $this->status_service->setConsumerStatus($consumer, $request)->save();
+            \Alert::success(trans('alert.success.consumer-update', ['name' => $consumer->first_name]))->flash();
+        } catch (\Exception $ex) {
+            dd($ex->getMessage());
+            \Alert::error(trans('alert.error.consumer-update'))->flash();
         }
-
-        \Alert::success('Les nouvelles informations de '.$consumer->first_name
-            .' ont bien été prises en compte !')->flash();
 
         return redirect()->route('consumers.index');
     }

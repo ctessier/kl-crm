@@ -98,8 +98,8 @@ return [
     */
 
     'custom'               => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'main_consumer_id' => [
+            'required_if' => 'Vous devez sélectionner un adhérent parent.',
         ],
     ],
 
