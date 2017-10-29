@@ -50,7 +50,7 @@
                 </div>
                 @else
                 <div class="box-body">
-                    {{ trans('messages.no-consumers') }}
+                    @lang('messages.no-consumers')
                 </div>
                 @endif
                 <div class="box-footer">

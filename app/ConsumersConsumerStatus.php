@@ -15,13 +15,11 @@ class ConsumersConsumerStatus extends Model
     public $timestamps = false;
 
     /**
-     * The attributes that are mass assignable.
+     * The attributes that aren't mass assignable.
      *
      * @var array
      */
-    protected $fillable = [
-        'status_id', 'date',
-    ];
+    protected $guarded = ['consumer_id'];
 
     /**
      * The attributes that should be mutated to dates.

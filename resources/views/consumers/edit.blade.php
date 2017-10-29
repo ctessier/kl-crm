@@ -19,7 +19,7 @@
         <div class="col-md-6">
             <div class="box box-solid">
                 <div class="box-header">
-                    <h3 class="box-title">Informations personnelles</h3>
+                    <h3 class="box-title">@lang('title.personal-information')</h3>
                 </div>
                 <div class="box-body">
                     @include('elements.forms.consumers.personal-information')
@@ -27,7 +27,7 @@
             </div>
             <div class="box box-solid">
                 <div class="box-header">
-                    <h3 class="box-title">Statut Kriss-Laure</h3>
+                    <h3 class="box-title">@lang('label.consumer-status') {{ config('backpack.base.project_name') }}</h3>
                 </div>
                 <div class="box-body">
                     <div class="row">
@@ -57,13 +57,13 @@
         <div class="col-md-6">
             <div class="box box-solid">
                 <div class="box-header">
-                    <h3 class="box-title">Coordonnées</h3>
+                    <h3 class="box-title">@lang('title.contact-details')</h3>
                 </div>
                 <div class="box-body">
                     @include('elements.forms.consumers.contact-details')
                 </div>
             </div>
-            {!! Form::submit('Enregistrer', ['class' => 'btn btn-primary']) !!}
+            {!! Form::submit(trans('actions.save'), ['class' => 'btn btn-primary']) !!}
         </div>
     </div>
     {!! Form::close() !!}

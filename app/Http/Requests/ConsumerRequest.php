@@ -34,6 +34,7 @@ class ConsumerRequest extends FormRequest
             'postal_code' => 'numeric|digits_between:2,5',
             'status_id'   => 'required|exists:consumer_statuses,id',
             'date'        => 'date_format:d/m/Y',
+            'phone'             => 'min:10|max:15|regex:/[0-9+\(\)]/',
         ];
     }
 }
