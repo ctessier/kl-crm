@@ -37,7 +37,7 @@ class ConsumerRequest extends FormRequest
             'date'              => 'required|date_format:d/m/Y',
             'membership_number' => '',
             'break'             => 'boolean',
-            'main_consumer_id'  => 'required_if:status_id,'.ConsumerStatus::DEPENDANT_MEMBER.'|exists:consumers,id'
+            'main_consumer_id'  => 'required_if:status_id,'.ConsumerStatus::DEPENDANT_MEMBER.'|exists:consumers,id',
         ];
     }
 }

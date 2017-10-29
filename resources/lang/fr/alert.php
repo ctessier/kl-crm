@@ -19,8 +19,8 @@ return [
         'filler-deleted'          => 'L\'avenant a été supprimé avec succès.',
         'store-filler'            => 'Les produits ont bien été ajoutés à la commande sous forme d\'avenant.',
     ],
-    'error'   => [
-        'consumer-store'   => 'Une erreur s\'est produite lors de la création du consommateur. Veuillez réessayer ultérieurement.',
+    'error' => [
+        'consumer-store'  => 'Une erreur s\'est produite lors de la création du consommateur. Veuillez réessayer ultérieurement.',
         'consumer-update' => 'Une erreur s\'est produite lors de la mise à jour du consommateur. Veuillez réessayer ultérieurement.',
     ],
     'warning' => [

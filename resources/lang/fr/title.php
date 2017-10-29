@@ -11,15 +11,15 @@ return [
     |
     */
 
-    'consumer-orders-list'  => 'Récapitulatif des commandes clientes',
-    'contact-details'       => 'Coordonnées',
-    'general-information'   => 'Informations générales',
-    'new'                   => [
+    'consumer-orders-list' => 'Récapitulatif des commandes clientes',
+    'contact-details'      => 'Coordonnées',
+    'general-information'  => 'Informations générales',
+    'new'                  => [
         'feminine'  => 'Nouvelle',
         'masculine' => 'Nouveau',
     ],
-    'personal-information'  => 'Informations personnelles',
-    'products'              => 'Produits',
-    'security'              => 'Sécurité',
+    'personal-information' => 'Informations personnelles',
+    'products'             => 'Produits',
+    'security'             => 'Sécurité',
 
 ];

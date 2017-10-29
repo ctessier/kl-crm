@@ -25,15 +25,16 @@ class ConsumerStatusesService
      *
      * @return array
      */
-    public function getStatusFields() {
+    public function getStatusFields()
+    {
         return $this->fields;
     }
 
     /**
      * Populate a given consumer status from a request.
      *
-     * @param ConsumersConsumerStatus  $consumerStatus
-     * @param ConsumerRequest          $request
+     * @param ConsumersConsumerStatus $consumerStatus
+     * @param ConsumerRequest         $request
      *
      * @return ConsumersConsumerStatus
      */
@@ -70,8 +71,7 @@ class ConsumerStatusesService
          */
         if ($consumer_status === null ||
             $consumer_status->status_id != $request->get('status_id') ||
-            ($consumer_status->status_id == ConsumerStatus::MAIN_MEMBER && $consumer_status->break != $request->get('break')))
-        {
+            ($consumer_status->status_id == ConsumerStatus::MAIN_MEMBER && $consumer_status->break != $request->get('break'))) {
             $consumer_status = new ConsumersConsumerStatus();
             $consumer_status->consumer_id = $consumer->id;
         }
