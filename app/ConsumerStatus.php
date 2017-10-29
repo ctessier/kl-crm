@@ -7,8 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ConsumerStatus extends Model
 {
     const TEST_PROGRAM = 1;
-    const PRIVILEGED_CUSTOMER = 2;
-    const STOPPED = 3;
-    const IN_BREAK = 4;
-    const OTHER = 5;
+    const MAIN_MEMBER = 2;
+    const DEPENDANT_MEMBER = 3;
+    const STOPPED = 4;
 }
