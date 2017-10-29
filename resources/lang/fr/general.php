@@ -26,6 +26,6 @@ return [
         'masculine' => 'Nouveau',
         'feminine'  => 'Nouvelle',
     ],
-    'yes'              => 'Oui',
+    'yes' => 'Oui',
 
 ];
