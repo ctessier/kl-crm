@@ -44,6 +44,21 @@ class ConsumerTest extends TestCase
         $this->assertEquals($newData['date'], $consumer->current_status->date->format('d/m/Y'));
         $this->assertEquals($newData['membership_number'], $consumer->current_status->membership_number);
         $this->assertEquals($newData['break'], $consumer->current_status->break);
+
+        $nbStatuses = $consumer->statuses->count();
+
+        $newData['status_id'] = \App\ConsumerStatus::DEPENDANT_MEMBER;
+        $newData['main_consumer_id'] = 1;
+        $newData['date'] = '07/11/2017';
+
+        $consumerData['status_id'] = $newData['status_id'];
+        $consumerData['main_consumer_id'] = $newData['main_consumer_id'];
+        $consumerData['date'] = $newData['date'];
+
+        $this->put('/consumers/1', $consumerData)->assertResponseStatus(302);
+        $this->assertEquals($newData['status_id'], $consumer->current_status->status_id);
+        $this->assertEquals($newData['date'], $consumer->current_status->date->format('d/m/Y'));
+        $this->assertEquals($newData['main_consumer_id'], $consumer->current_status->main_consumer_id);
     }
 
     /**
