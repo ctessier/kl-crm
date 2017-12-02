@@ -27,7 +27,6 @@ class ConsumerRequest extends FormRequest
         return [
             'first_name'        => 'required|alpha_dash',
             'last_name'         => 'required|alpha_dash',
-            'birthday'          => 'date_format:Y-m-d',
             'sex'               => 'required|in:m,f',
             'email'             => 'email',
             'phone'             => 'min:10|max:15|regex:/[0-9+\(\)]/',
