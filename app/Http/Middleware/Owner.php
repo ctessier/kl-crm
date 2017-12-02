@@ -18,7 +18,7 @@ class Owner
     public function handle($request, Closure $next, $resource)
     {
         // Throw 404 error if authenticated user is not the owner of the resource
-        if ($request->{$resource}->user_id !== \Auth::id()) {
+        if (intval($request->{$resource}->user_id) !== \Auth::id()) {
             abort(404);
         }
 

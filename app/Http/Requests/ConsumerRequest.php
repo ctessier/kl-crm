@@ -35,7 +35,7 @@ class ConsumerRequest extends FormRequest
             'postal_code'       => 'numeric|digits_between:2,5',
             'status_id'         => 'required|exists:consumer_statuses,id',
             'date'              => 'required|date_format:d/m/Y',
-            'membership_number' => '',
+            //'membership_number' => '',
             'break'             => 'boolean',
             'main_consumer_id'  => 'required_if:status_id,'.ConsumerStatus::DEPENDANT_MEMBER.'|exists:consumers,id',
         ];
