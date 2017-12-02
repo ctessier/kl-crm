@@ -50,7 +50,7 @@ class OrderController extends Controller
         $reference = ucfirst(Carbon::now()->formatLocalized('%B %Y')).' #';
         $counter = 1;
         while (Order::where('reference', $reference.$counter)->first()) {
-            ++$counter;
+            $counter++;
         }
         $order->reference = $reference.$counter;
         $order->save();

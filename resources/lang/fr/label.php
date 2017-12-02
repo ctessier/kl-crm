@@ -23,6 +23,8 @@ return [
     'is-test-program'           => 'Programme Test ?',
     'quantity'                  => 'Quantité',
     'lastname'                  => 'Nom',
+    'main-consumer'             => 'Consommateur parent',
+    'membership-number'         => 'Numéro adhérent',
     'month'                     => 'Mois',
     'name'                      => 'Nom',
     'new-password'              => 'Nouveau mot de passe',
@@ -32,7 +34,8 @@ return [
     'product'                   => 'Produit',
     'reference'                 => 'Référence',
     'sex'                       => 'Sexe',
-    'stock'                     => 'Commander pour le stock',
+    'status-break'              => 'Consommation en pause',
     'status-date'               => 'Date',
+    'stock'                     => 'Commander pour le stock',
 
 ];

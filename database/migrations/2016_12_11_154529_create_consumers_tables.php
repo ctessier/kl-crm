@@ -17,7 +17,6 @@ class CreateConsumersTables extends Migration
             $table->increments('id');
             $table->string('first_name');
             $table->string('last_name');
-            $table->date('birthdate')->nullable();
             $table->char('sex', 1)->nullable();
             $table->string('email')->nullable();
             $table->string('phone', 15)->nullable();
@@ -42,9 +41,13 @@ class CreateConsumersTables extends Migration
             $table->unsignedInteger('consumer_id');
             $table->unsignedInteger('status_id');
             $table->date('date');
+            $table->integer('membership_number')->nullable();
+            $table->unsignedInteger('main_consumer_id')->nullable();
+            $table->boolean('break')->nullable();
 
             $table->foreign('consumer_id')->references('id')->on('consumers');
             $table->foreign('status_id')->references('id')->on('consumer_statuses');
+            $table->foreign('main_consumer_id')->references('id')->on('consumers');
         });
     }
 

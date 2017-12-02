@@ -11,9 +11,7 @@ class ConsumerControllerTest extends TestCase
     {
         $user = \App\User::find(1);
         $this->be($user);
-
-        $response = $this->call('GET', '/consumers/1/edit');
-        $this->assertTrue(true);
-        //$this->assertEquals(200, $response->getStatusCode());
+        $response = $this->route('GET', 'consumers.edit', ['consumers' => 1]);
+        $this->assertEquals(200, $response->getStatusCode());
     }
 }

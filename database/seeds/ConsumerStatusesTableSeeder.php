@@ -18,20 +18,16 @@ class ConsumerStatusesTableSeeder extends Seeder
                 'label' => 'Programme Test',
             ],
             [
-                'id'    => ConsumerStatus::PRIVILEGED_CUSTOMER,
-                'label' => 'Client Privilégié',
+                'id'    => ConsumerStatus::MAIN_MEMBER,
+                'label' => 'Adhérent principal',
+            ],
+            [
+                'id'    => ConsumerStatus::DEPENDANT_MEMBER,
+                'label' => 'Adhérent rattaché',
             ],
             [
                 'id'    => ConsumerStatus::STOPPED,
                 'label' => 'A arrêté la consommation',
-            ],
-            [
-                'id'    => ConsumerStatus::IN_BREAK,
-                'label' => 'A arrêté temporairement',
-            ],
-            [
-                'id'    => ConsumerStatus::OTHER,
-                'label' => 'Autre',
             ],
         ]);
     }

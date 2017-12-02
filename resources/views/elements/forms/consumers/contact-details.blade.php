@@ -26,6 +26,6 @@
 </div>
 <div class="form-group {{ $errors->has('phone') ? 'has-error' : '' }}">
     {!! Form::label('phone', trans('label.phone')) !!}
-    {!! Form::text('phone', null, ['class' => 'form-control']) !!}
+    {!! Form::text('phone', null, ['class' => 'form-control', 'maxlength' => '15']) !!}
     {!! $errors->first('phone', '<span class="help-block">:message</span>') !!}
 </div>

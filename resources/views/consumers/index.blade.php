@@ -38,7 +38,15 @@
                                     <td>{{ $consumer->last_name }}</td>
                                     <td>{{ $consumer->email }}</td>
                                     <td>{{ $consumer->phone }}</td>
-                                    <td>{{ $consumer->current_status ? $consumer->current_status->status->label : '' }}</td>
+                                    <td>
+                                        {{ $consumer->current_status ? $consumer->current_status->status->label : '' }}
+                                        @if ($consumer->current_status && $consumer->current_status->status_id == \App\ConsumerStatus::MAIN_MEMBER)
+                                            ({{ $consumer->current_status->membership_number }})
+                                        @endif
+                                        @if ($consumer->current_status && $consumer->current_status->status_id == \App\ConsumerStatus::DEPENDANT_MEMBER)
+                                            ({{ $consumer->current_status->main_consumer->full_name }})
+                                        @endif
+                                    </td>
                                     <td class="text-right">
                                         {!! link_to_route('consumers.edit', trans('actions.edit'), ['consumers' => $consumer], ['class' => 'btn btn-xs btn-default']) !!}
                                         {!! link_to_route('consumer_orders.create', trans('actions.add-consumer-order'), ['consumer_id' => $consumer->id], ['class' => 'btn btn-xs btn-info']) !!}
@@ -50,7 +58,7 @@
                 </div>
                 @else
                 <div class="box-body">
-                    {{ trans('messages.no-consumers') }}
+                    @lang('messages.no-consumers')
                 </div>
                 @endif
                 <div class="box-footer">

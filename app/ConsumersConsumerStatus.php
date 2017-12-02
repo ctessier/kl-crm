@@ -15,13 +15,11 @@ class ConsumersConsumerStatus extends Model
     public $timestamps = false;
 
     /**
-     * The attributes that are mass assignable.
+     * The attributes that aren't mass assignable.
      *
      * @var array
      */
-    protected $fillable = [
-        'status_id', 'date',
-    ];
+    protected $guarded = ['consumer_id'];
 
     /**
      * The attributes that should be mutated to dates.
@@ -65,5 +63,25 @@ class ConsumersConsumerStatus extends Model
         $this->attributes['date'] = $value->format('Y-m-d');
 
         return $this;
+    }
+
+    /**
+     * Set the main_consumer_id attribute (to null if empty).
+     *
+     * @param $value
+     */
+    public function setMainConsumerIdAttribute($value)
+    {
+        $this->attributes['main_consumer_id'] = trim($value) !== '' ? $value : null;
+    }
+
+    /**
+     * Returns the Consumer relation (for dependant members).
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function main_consumer()
+    {
+        return $this->belongsTo(Consumer::class, 'main_consumer_id');
     }
 }
