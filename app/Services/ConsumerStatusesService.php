@@ -70,7 +70,7 @@ class ConsumerStatusesService
          * - the status is MAIN_MEMBER and the break value has changed
          */
         if ($consumer_status === null ||
-            $consumer_status->status_id != $request->get('status_id') ||
+            ($consumer_status->status_id != $request->get('status_id') && $consumer_status->date->format('d/m/Y') != $request->get('date')) ||
             ($consumer_status->status_id == ConsumerStatus::MAIN_MEMBER && $consumer_status->break != $request->get('break'))) {
             $consumer_status = new ConsumersConsumerStatus();
             $consumer_status->consumer_id = $consumer->id;
