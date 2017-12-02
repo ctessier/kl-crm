@@ -4,7 +4,6 @@ namespace App\Repository;
 
 use App\Consumer;
 use App\User;
-use Illuminate\Support\Facades\DB;
 
 class ConsumersRepository
 {

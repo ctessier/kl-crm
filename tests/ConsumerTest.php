@@ -27,11 +27,11 @@ class ConsumerTest extends TestCase
         $this->be(\App\User::find(1));
 
         $newData = [
-            'status_id' => \App\ConsumerStatus::MAIN_MEMBER,
-            'break' => true,
+            'status_id'         => \App\ConsumerStatus::MAIN_MEMBER,
+            'break'             => true,
             'membership_number' => '123456789',
-            'date' => '07/10/2017',
-            'main_consumer_id' => null,
+            'date'              => '07/10/2017',
+            'main_consumer_id'  => null,
         ];
 
         $consumerData['status_id'] = $newData['status_id'];
