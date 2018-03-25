@@ -6,13 +6,28 @@ use App\ConsumerOrder;
 use App\Order;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Services\ConsumerOrdersService;
+use App\Services\OrdersService;
 
 class OrderController extends Controller
 {
     /**
-     * OrderController constructor.
+     * @var OrdersService
      */
-    public function __construct()
+    protected $orders_service;
+
+    /**
+     * @var ConsumerOrdersServcie
+     */
+    protected $consumer_orders_service;
+
+    /**
+     * OrderController constructor.
+     *
+     * @param OrdersService         $orders_service
+     * @param ConsumerOrdersService $consumer_orders_service
+     */
+    public function __construct(OrdersService $orders_service, ConsumerOrdersService $consumer_orders_service)
     {
         $this->middleware('auth');
 
@@ -22,6 +37,9 @@ class OrderController extends Controller
                 'destroy',
             ],
         ]);
+
+        $this->orders_service = $orders_service;
+        $this->consumer_orders_service = $consumer_orders_service;
 
         parent::__construct();
     }
@@ -33,9 +51,14 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = $this->user->orders;
+        $consumer_orders = $this->user->consumer_orders()
+            ->has('order')
+            ->with('order')
+            ->orderBy('order_id')
+            ->get();
 
-        return view('orders.index', compact('orders'));
+        $data = $this->consumer_orders_service->groupConsumerOrdersByDateAndOrder($consumer_orders);
+        return view('orders.index', compact('data'));
     }
 
     /**

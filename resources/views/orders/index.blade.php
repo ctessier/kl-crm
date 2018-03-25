@@ -17,31 +17,17 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="box box-solid">
-                @if ($orders->count() > 0)
+                @if (count($data) > 0)
                     <div class="box-body table-responsive no-padding">
-                        <table class="table table-hover">
-                            <thead>
-                            <tr>
-                                <th>{{ trans('label.reference') }}</th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach ($orders as $order)
-                                <tr>
-                                    <td>{{ $order->reference }}</td>
-                                    <td>{{ $order->products->count() }}</td>
-                                    <td class="text-right">
-                                        {!! link_to_route('orders.show', trans('actions.view'), ['orders' => $order], ['class' => 'btn btn-xs btn-default']) !!}
-                                        {!! Form::open(['route' => ['orders.destroy', $order], 'method' => 'delete', 'class' => 'inline']) !!}
-                                            {!! Form::submit(trans('actions.delete'), ['class' => 'btn btn-xs btn-danger', 'data-delete' => trans('messages.order-delete-confirm')]) !!}
-                                        {!! Form::close() !!}
-                                    </td>
-                                </tr>
+                        @foreach ($data as $month => $orders)
+                            <h1>{{ \Carbon\Carbon::createFromFormat('mY', $month)->formatLocalized('%B %Y') }}<h1>
+                            @foreach ($orders as $consumer_orders)
+                                <h2>{{ $consumer_orders[0]->order->reference }}</h2>
+                                @foreach ($consumer_orders as $consumer_order)
+                                    {{ $consumer_order->reference }} <br />
+                                @endforeach
                             @endforeach
-                            </tbody>
-                        </table>
+                        @endforeach
                     </div>
                 @else
                     <div class="box-body">
