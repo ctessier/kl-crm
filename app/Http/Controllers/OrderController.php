@@ -6,7 +6,6 @@ use App\ConsumerOrder;
 use App\Order;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use App\Services\ConsumerOrdersService;
 use App\Services\OrdersService;
 
 class OrderController extends Controller
@@ -18,8 +17,10 @@ class OrderController extends Controller
 
     /**
      * OrderController constructor.
+     *
+     * @param OrdersService $orders_service
      */
-    public function __construct()
+    public function __construct(OrdersService $orders_service)
     {
         $this->middleware('auth');
 
@@ -29,6 +30,8 @@ class OrderController extends Controller
                 'destroy',
             ],
         ]);
+
+        $this->orders_service = $orders_service;
 
         parent::__construct();
     }
