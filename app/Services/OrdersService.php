@@ -90,7 +90,11 @@ class OrdersService
      */
     public function getFillerCandidates($order, $stock)
     {
-        $stock = $this->updateStockFromExistingFillers($order, $stock);
+        $clone = collect([]);
+        foreach ($stock as $entry) {
+            $clone->push($entry->replicate());
+        }
+        $stock = $this->updateStockFromExistingFillers($order, $clone);
 
         $candidates = collect([]);
         foreach ($this->getBoxes($order, true) as $box) {

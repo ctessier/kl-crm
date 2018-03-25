@@ -6,9 +6,16 @@ use App\ConsumerOrder;
 use App\Order;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Services\ConsumerOrdersService;
+use App\Services\OrdersService;
 
 class OrderController extends Controller
 {
+    /**
+     * @var OrdersService
+     */
+    protected $orders_service;
+
     /**
      * OrderController constructor.
      */
@@ -74,7 +81,9 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        return view('orders.show', compact('order'));
+        $candidates = $this->orders_service->getFillerCandidates($order, $this->user->products);
+
+        return view('orders.show', compact('order', 'candidates'));
     }
 
     /**
@@ -92,6 +101,7 @@ class OrderController extends Controller
             'quantity.*' => 'required|min:1',
         ]);
 
+        // Create a new consumer order for the fillers if it doesn't already exist
         $consumer_order = $order->consumer_orders()->whereNull('consumer_id')->first();
         if (!$consumer_order) {
             $consumer_order = new ConsumerOrder();
@@ -102,6 +112,7 @@ class OrderController extends Controller
             $consumer_order->save();
         }
 
+        // Update the fillers order with the given products and quantites
         $quantities = $request->get('quantities');
         foreach ($request->get('products') as $key => $product_id) {
             $product = $consumer_order->products()->where('product_id', $product_id)->first();

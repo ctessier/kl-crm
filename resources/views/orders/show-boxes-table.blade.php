@@ -1,6 +1,7 @@
 @inject('orders_service', 'App\Services\OrdersService')
 
 @if (($boxes = $orders_service->getBoxes($order))->isNotEmpty())
+<h4>{{ trans('title.order-boxes') }}</h4>
 <table class="table table-bordered">
     <thead>
         <tr>
