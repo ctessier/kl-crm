@@ -84,7 +84,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        $candidates = $this->orders_service->getFillerCandidates($order, $this->user->products);
+        $candidates = $this->orders_service->getFillerCandidates($order, $this->user->getStock());
 
         return view('orders.show', compact('order', 'candidates'));
     }

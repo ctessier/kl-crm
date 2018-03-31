@@ -30,6 +30,11 @@ class User extends Authenticatable
     ];
 
     /**
+     * @var Stock
+     */
+    private $stock = null;
+
+    /**
      * Return the consumers of the user ordered by last name, then first name.
      *
      * @return \Illuminate\Database\Eloquent\Collection|Consumer[]
@@ -87,5 +92,26 @@ class User extends Authenticatable
         if ($product) {
             return $product->pivot;
         }
+    }
+
+    /**
+     * Return the user's stock
+     *
+     * @return Stock
+     */
+    public function getStock()
+    {
+        if (!$this->stock) {
+            $this->stock = new Stock();
+            foreach ($this->products as $product) {
+                $this->stock->addProduct(
+                    $product,
+                    $product->pivot->quantity,
+                    $product->pivot->optimal_quantity
+                );
+            }
+        }
+
+        return $this->stock;
     }
 }
