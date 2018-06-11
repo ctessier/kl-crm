@@ -4,8 +4,6 @@
 /vendor
 /.idea
 /.vscode
-Homestead.json
-Homestead.yaml
 .env
 /public/css
 /public/js
