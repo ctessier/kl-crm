@@ -43,9 +43,18 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = $this->user->orders;
+        $data = $this->user->consumer_orders()
+            ->has('order')
+            ->with('order')
+            ->get()
+            ->groupBy(function($d) {
+                return Carbon::parse($d->month)->format('Ym');
+            })
+            ->map(function ($month) {
+                return $month->groupBy('order_id');
+            });
 
-        return view('orders.index', compact('orders'));
+        return view('orders.index', compact('data'));
     }
 
     /**
