@@ -6,8 +6,6 @@ use App\ConsumerOrder;
 use App\Order;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use App\Services\ConsumerOrdersService;
-use App\Services\OrdersService;
 
 class OrderController extends Controller
 {
