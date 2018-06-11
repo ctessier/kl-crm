@@ -16,30 +16,43 @@
 
     <div class="row">
         <div class="col-xs-12">
-            <div class="box box-solid">
-                @if (count($data) > 0)
-                    <div class="box-body table-responsive no-padding">
-                        @foreach ($data as $month => $orders)
-                            <h1>{{ \Carbon\Carbon::createFromFormat('mY', $month)->formatLocalized('%B %Y') }}<h1>
+            <p>
+                {!! Form::open(['route' => ['orders.store'], 'method' => 'post', 'class' => 'inline']) !!}
+                {!! Form::submit(trans('actions.new'), ['class' => 'btn btn-primary']) !!}
+                {!! Form::close() !!}
+            </p>
+            @if (count($data) > 0)
+                @foreach ($data as $month => $orders)
+                    <h2 data-toggle="collapse" href="#month-{{ $loop->index }}" class="collapsed">
+                        {{ ucfirst(\Carbon\Carbon::createFromFormat('Ym', $month)->formatLocalized('%B %Y')) }}
+                        <small>X Cartons</small>
+                    </h2>
+                    <div id="month-{{ $loop->index }}" class="collapse">
+                        <div class="box-group" id="group-{{ $loop->index }}">
                             @foreach ($orders as $consumer_orders)
-                                <h2>{{ $consumer_orders[0]->order->reference }}</h2>
-                                @foreach ($consumer_orders as $consumer_order)
-                                    {{ $consumer_order->reference }} <br />
-                                @endforeach
+                                <div class="panel box order-{{ ($loop->index % 3) + 1 }}">
+                                    <div class="box-header">
+                                        <h3 class="box-title">
+                                            <a data-toggle="collapse" data-parent="#group-{{ $loop->parent->index }}" href="#order-{{ $loop->parent->index.'-'.$loop->index }}" aria-expanded="false" class="collapsed">
+                                                {{ $consumer_orders[0]->order->reference }}
+                                            </a>
+                                        </h3>
+                                    </div>
+                                    <div id="order-{{ $loop->parent->index.'-'.$loop->index }}" class="panel-collapse collapse" aria-expanded="false">
+                                        <div class="box-body">
+                                            @foreach ($consumer_orders as $consumer_order)
+                                                {{ $consumer_order->consumer ?? 'Avenant' }}<br />
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
                             @endforeach
-                        @endforeach
+                        </div>
                     </div>
-                @else
-                    <div class="box-body">
-                        {{ trans('messages.no-orders') }}
-                    </div>
-                @endif
-                <div class="box-footer">
-                    {!! Form::open(['route' => ['orders.store'], 'method' => 'post', 'class' => 'inline']) !!}
-                    {!! Form::submit(trans('actions.new'), ['class' => 'btn btn-primary']) !!}
-                    {!! Form::close() !!}
-                </div>
-            </div>
+                @endforeach
+            @else
+                <p>{{ trans('messages.no-orders') }}</p>
+            @endif
         </div>
     </div>
 @endsection
