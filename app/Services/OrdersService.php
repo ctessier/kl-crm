@@ -6,8 +6,8 @@ use App\Box;
 use App\BoxType;
 use App\ConsumerOrdersProduct;
 use App\Order;
-use App\Stock;
 use App\Product;
+use App\Stock;
 
 class OrdersService
 {

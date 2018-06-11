@@ -39,7 +39,7 @@ class StockProduct
     }
 
     /**
-     * Get product
+     * Get product.
      *
      * @return Product
      */

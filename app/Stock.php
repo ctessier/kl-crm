@@ -55,7 +55,5 @@ class Stock
                 return $stockProduct;
             }
         }
-
-        return null;
     }
 }
