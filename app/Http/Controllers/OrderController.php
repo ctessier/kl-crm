@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\ConsumerOrder;
 use App\Order;
+use App\Services\OrdersService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use App\Services\OrdersService;
 
 class OrderController extends Controller
 {
@@ -47,7 +47,7 @@ class OrderController extends Controller
             ->has('order')
             ->with('order')
             ->get()
-            ->groupBy(function($d) {
+            ->groupBy(function ($d) {
                 return Carbon::parse($d->month)->format('Ym');
             })
             ->map(function ($month) {

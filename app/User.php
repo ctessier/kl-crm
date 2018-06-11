@@ -95,7 +95,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Return the user's stock
+     * Return the user's stock.
      *
      * @return Stock
      */
