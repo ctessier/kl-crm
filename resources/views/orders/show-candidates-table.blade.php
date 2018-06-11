@@ -1,10 +1,8 @@
-@inject('orders_service', 'App\Services\OrdersService')
-
-@if (($candidates = $orders_service->getFillerCandidates($order, $user->products))->isNotEmpty())
+@if ($candidates->isNotEmpty())
 
     {!! Form::open(['route' => ['orders.fillers.store', $order->id], 'method' => 'post']) !!}
 
-        <h4>Suggestions pour avenant</h4>
+        <h4>{{ trans('title.candidate-suggestions') }}</h4>
 
         <table class="table table-bordered">
             <thead>

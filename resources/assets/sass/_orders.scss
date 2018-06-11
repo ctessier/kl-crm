@@ -9,3 +9,15 @@ table#recap {
         max-width: 10%;
     }
 }
+
+.box {
+    &.order-1 {
+        border-top-color: $brand-first-order;
+    }
+    &.order-2 {
+        border-top-color: $brand-second-order;
+    }
+    &.order-3 {
+        border-top-color: $brand-third-order;
+    }
+}

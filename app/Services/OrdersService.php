@@ -6,6 +6,7 @@ use App\Box;
 use App\BoxType;
 use App\ConsumerOrdersProduct;
 use App\Order;
+use App\Stock;
 use App\Product;
 
 class OrdersService
@@ -83,8 +84,8 @@ class OrdersService
     /**
      * Determine the filler candidates for a given order and a stock.
      *
-     * @param Order                                              $order
-     * @param Product[]|\Illuminate\Database\Eloquent\Collection $stock
+     * @param Order $order
+     * @param Stock $stock
      *
      * @return array
      */
@@ -108,45 +109,44 @@ class OrdersService
     /**
      * Get a product candidate from a given type and a stock.
      *
-     * @param BoxType                                  $box_type
-     * @param \Illuminate\Database\Eloquent\Collection $stock
+     * @param BoxType $boxType
+     * @param Stock   $stock
      *
      * @return Product
      */
-    public function getProductCandidate(BoxType $box_type, $stock)
+    private function getProductCandidate(BoxType $boxType, $stock)
     {
-        $filtered_stock = $stock->filter(function ($product) use ($box_type) {
-            return $product->getBoxType() == $box_type;
+        /** @var StockProduct[] $filteredStock */
+        $filteredStock = $stock->products->filter(function ($product) use ($boxType) {
+            return $product->getProduct()->getBoxType() == $boxType;
         });
 
-        $candidate = $filtered_stock->first();
-        foreach ($filtered_stock->slice(1) as $product) {
-            $candidate_value = $candidate->pivot->optimal_quantity - $candidate->pivot->quantity;
-            $product_value = $product->pivot->optimal_quantity - $product->pivot->quantity;
+        $candidate = $filteredStock->first();
+        foreach ($filteredStock->slice(1) as $product) {
+            $candidate_value = $candidate->optimalQuantity - $candidate->temporaryQuantity;
+            $product_value = $product->optimalQuantity - $product->temporaryQuantity;
             if ($product_value >= $candidate_value) {
                 $candidate = $product;
             }
         }
-        $candidate->pivot->quantity++;
+        $candidate->temporaryQuantity = $candidate->temporaryQuantity + 1;
 
-        return $candidate;
+        return $candidate->getProduct();
     }
 
     /**
-     * @param Order                                    $order
-     * @param \Illuminate\Database\Eloquent\Collection $stock
+     * @param Order $order
+     * @param Stock $stock
      *
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return Stock
      */
     private function updateStockFromExistingFillers(Order $order, $stock)
     {
         $filler_order = $order->consumer_orders()->whereNull('consumer_id')->first();
         if ($filler_order) {
             foreach ($filler_order->products as $product) {
-                $product_stock = $stock->filter(function ($product_stock) use ($product) {
-                    return $product_stock->id === $product->id;
-                })->first();
-                $product_stock->pivot->quantity += $product->pivot->quantity;
+                $stockProduct = $stock->getStockProduct($product);
+                $stockProduct->temporaryQuantity = $stockProduct->quantity + $product->pivot->quantity;
             }
         }
 

@@ -3,8 +3,7 @@
 /storage/*.key
 /vendor
 /.idea
-Homestead.json
-Homestead.yaml
+/.vscode
 .env
 /public/css
 /public/js
